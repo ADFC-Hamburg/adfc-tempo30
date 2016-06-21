@@ -1,0 +1,9 @@
+efine('tempo30/view/map', [
+    'tempo30/view/map',
+], function (map) {
+ 
+    'use strict';
+
+
+
+};

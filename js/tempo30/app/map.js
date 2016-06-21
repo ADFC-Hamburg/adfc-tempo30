@@ -1,0 +1,7 @@
+define('tempo30/app/map', [
+    'tempo30/view/map',
+], function (map) {
+ 
+    'use strict';
+
+});
