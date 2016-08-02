@@ -1,0 +1,9 @@
+[out:json][timeout:25];
+{{geocodeArea:hamburg}}->.searchArea;
+// gather results
+(
+  node["addr:housenumber"]["addr:street"="An der Falkenbek"]
+  way["addr:housenumber"]["addr:street"="An der Falkenbek"]
+);
+// print results
+out tags center;
