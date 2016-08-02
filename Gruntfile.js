@@ -162,4 +162,31 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-require-gettext');
     grunt.task.registerTask('default', ['bower',  'git-describe', 'eslint', 'jshint', 'create_pot', 
                                         'compile_po', 'requirejs', 'cssmin', 'copy:fonts', 'copy:dist', 'copy:i18n']);
+
+    grunt.registerTask('update-overpass', 'update-data from overpass api', function(arg1) {
+        var done = this.async(),
+            testmode = false,
+            requirejs = require('requirejs');
+
+        requirejs.config({
+            baseUrl: __dirname,
+        });
+	console.log(arg1);
+        if ((arg1 !== undefined) && (arg1 === 'test')) {
+            testmode = true;
+        }
+        requirejs(['js/common'], function () {
+            requirejs(['tempo30/app/update-overpass'], function(updateOverpass) {
+                console.log('loaded');
+                updateOverpass(testmode, done, done);
+            }, function(e) {
+                console.log('err',e);
+                done();
+            });
+        }, function (a) {
+            console.log('error', a);
+            done();
+        });
+    });
+
 };

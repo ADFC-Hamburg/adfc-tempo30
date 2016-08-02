@@ -9,11 +9,10 @@ define('tempo30/view/map', [
  
     'use strict';
 
-  var maxZoom = 18,
-    center = new L.LatLng(0, 0);
-    var map = new L.Map('map', {center: center, 
-                                zoom: 2, 
-                                maxZoom: maxZoom, 
+    var map = new L.Map('map', {
+                                zoom: 11, 
+				center: [ 53.56, 10.02],
+                                maxZoom: 18, 
                                 zoomControl: false,
                                 layers: [basemap], 
                                 attributionControl: true});

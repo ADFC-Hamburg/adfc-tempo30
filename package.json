@@ -31,6 +31,8 @@
     "osmtogeojson": "^2.2.5",
     "phantomjs": "^1.9.18",
     "request": "^2.67.0",
-    "requirejs": "^2.1.20"
+    "requirejs": "^2.1.20",
+    "rsvp": "^3.2.1",
+    "text": "git://github.com/requirejs/text"
   }
 }
