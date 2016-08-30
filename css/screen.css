@@ -1,0 +1,248 @@
+.osmLoading {
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    background-color: white;
+    border-color: green;
+    border-width: 2px;
+    border-style: outset;
+    padding: 20px;
+}
+#map {
+    width: 100%; 
+    height: 100%; 
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html, body, #map {
+    height: 100%;
+}
+.leaflet-control-minZoomIndicator {
+    border-color: red;
+    border-width: medium;
+    border-style: double;
+    background-color: white;
+}
+#filter-container {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 999;
+}
+
+.leaflet-control-attribution {
+    font: 9px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif !important;
+}
+
+form {
+    margin: 0 0 0;
+}
+
+.popup-content {
+    height: 350px;
+    min-width: 330px;
+    overflow-y: scroll;
+}
+
+.map-label {
+    z-index: 9000638;
+}
+
+.share {
+    font-size: large;
+}
+.share a {
+    padding-left: 7px;
+}
+div.newTag {
+    color: green;
+}
+
+s.wrongTag {
+    color: red;
+}
+
+#oldcomments {
+    max-height: 300px;
+    overflow-y: auto;
+}
+#clear {
+    display: inline-block;
+    position: relative;
+    z-index: 999999;
+    top: 3px;
+    right: -12px;
+    font-size:14pt;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+.search-what {
+    margin-left: 9px;
+}
+.search-box {
+    display: inline-block;
+    vertical-align:middle;
+    margin-bottom: 0;
+    border-radius: 14px;
+    background-color: #ddd ;
+    font-size: 10pt !important;
+}
+.input-append .add-on,.input-append .btn,.input-append .btn-group{
+    margin-left:-4px;
+}
+.search-box .btn {
+    border-radius: 0 14px 14px 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 4px;
+}
+.search-op {
+    display: none;
+}
+.search-value {
+    display: none;
+}
+.input-append {
+}
+
+.search-query {
+}
+.leaflet-tile-container img {
+ webkit-backface-visibility: hidden;
+}
+
+div#comment-from {
+    font-size: xx-small;
+}
+
+/*General marker style*/
+.mmap-marker {
+  position:absolute;
+  text-align: center;
+  font-weight: bold;
+  background: #444;
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  margin-top: -30px; /*Shift by arrow top+height*/
+  margin-left: -14px; /*Shift by half the marker width*/
+  line-height: 22px;
+  font-size: 22px;
+}
+
+.mmap-marker div.arrow {
+  position: relative;
+  border-style: solid;
+  border-color: #444 transparent transparent transparent;
+  left: 7px; /*(Marker width - arrow width)/2*/
+  border-width: 10px 6px 0 6px; /*Arrow w/h is defined by the borders*/
+  width: 0px; height: 0px;
+}
+
+.mmap-marker div.icon {
+  position: relative;
+  overflow: hidden;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-color: #ccc;
+  width: 22px; /*Same as marker width*/
+  height: 22px; /*Same as marker height*/
+  border-radius: 4px;
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+/*Marker content instances*/
+.mmap-marker.exclamation div.icon:before{
+  content: '!';
+}
+.mmap-marker.A div.icon:before{
+  content: 'A';
+}
+
+/*Marker color instances*/
+.mmap-marker.red div.icon{background: #ff2222;}
+.mmap-marker.orange div.icon{background: #ffa500;}
+.mmap-marker.yellow div.icon{background: #ffff00;}
+.mmap-marker.LightCyan div.icon{background: #e0ffff;}
+.mmap-marker.silver div.icon{background: #c0c0c0;}
+.mmap-marker.blue div.icon{background: #0000FF;}
+.mmap-marker.lightGreen div.icon{background: #bfff00;color: #fff;}
+.mmap-marker.green div.icon{background: #008800;color: #fff;}
+
+/*Marker states*/
+.map-marker.inactive {
+  opacity: 0.6;
+}
+
+tr.new-tag-required {
+    color: red;
+}
+tr.new-tag-recommended {
+    color: #ff6600;
+}
+.osmHint.unknownKey {
+    color: red;
+    text-decoration: underline;
+    -webkit-text-decoration-color: red;
+    -moz-text-decoration-color: red;  /* vendor prefix not required as of V36 */
+    text-decoration-color: red;
+}
+.td.fixme-tag {
+    text-decoration: line-through;
+    color: red;
+}
+.td.remove-deprecated {
+    text-decoration: line-through;
+    color: red;
+}
+.osmHint.fixme {
+    color: red;
+    text-decoration: underline;
+    -webkit-text-decoration-color: red;
+    -moz-text-decoration-color: red;  /* vendor prefix not required as of V36 */
+    text-decoration-color: red;
+}
+.badge.err-vali-count {
+    background-color: red;
+}
+.badge.warn-vali-count {
+    background-color: orange;
+}
+.badge.hint-vali-count {
+    background-color: yellow;
+    color: black;
+}
+.badge.succ-vali-count {
+    background-color: green;
+}
+
+.leaflet-control-command-interior
+{
+/*    background-image: url(images/command.png);*/
+    width: 100px;
+    height: 45px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+    padding: 3px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+    cursor: auto;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+.leaflet-control-command-interior:hover
+{
+    background-color: #F4F4F4;
+}
