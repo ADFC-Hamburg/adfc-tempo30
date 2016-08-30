@@ -8,3 +8,16 @@ script:
 before_install:
 - openssl aes-256-cbc -K $encrypted_b5c1912d5163_key -iv $encrypted_b5c1912d5163_iv
   -in travis-ssh-key.enc -out travis-ssh-key -d
+addons:
+  ssh_known_hosts:
+  - tools.adfc-hamburg.de
+
+before_deploy:
+- eval "$(ssh-agent -s)"
+- chmod 600 $TRAVIS_BUILD_DIR/travis-ssh-key
+- ssh-add $TRAVIS_BUILD_DIR/travis-ssh-key
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist travis@tools.adfc-hamburg.de:/var/www/html/tempo30/$TRAVIS_BRANCH
