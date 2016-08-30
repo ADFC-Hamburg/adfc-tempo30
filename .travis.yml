@@ -25,7 +25,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after --exclude $TRAVIS_BUILD_DIR/data --quiet $TRAVIS_BUILD_DIR/ travis@tools.adfc-hamburg.de:/var/www/html/tempo30/$TRAVIS_BRANCH
+  script: rsync -r --delete-after --exclude=$TRAVIS_BUILD_DIR/data/* --quiet $TRAVIS_BUILD_DIR/ travis@tools.adfc-hamburg.de:/var/www/html/tempo30/$TRAVIS_BRANCH
 
 after_deploy:
 - eval "$(ssh-agent -ks)"
