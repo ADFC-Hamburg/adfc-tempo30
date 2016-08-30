@@ -1,0 +1,273 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tempo30\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Sven Anders <poedit2014@sven.anders.im>\n"
+"Language-Team: Sven Anders <i18n-2016@sven.anders.hamburg>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#: js/tempo30/view/map.js:9 module:tempo30
+msgid "Map &copy; %1$s. (%2$s)"
+msgstr "Karte &copy; %1$s. (%2$s)"
+
+#: js/tempo30/view/map.js:11 module:tempo30
+msgid "about this map"
+msgstr "über diese Karte"
+
+#: js/tempo30/view/map.js:13 module:tempo30
+msgid "Diplomatic data of: %1$s"
+msgstr "Diplomatische-Daten von: %1$s."
+
+#: js/tempo30/view/map.js:25 module:tempo30
+msgid "Zoom in"
+msgstr "vergrößern"
+
+#: js/tempo30/view/map.js:26 module:tempo30
+msgid "Zoom out"
+msgstr "verkleinern"
+
+#~ msgid "Loading Open Diplomatic Map, please wait..."
+#~ msgstr "Lade Open Diplomatic Map, bitte warten..."
+
+#~ msgid "Loading..."
+#~ msgstr "Lade..."
+
+#~ msgid "clear maps"
+#~ msgstr "lösche Karten"
+
+#~ msgid "add data"
+#~ msgstr "Daten hinzufügen"
+
+#~ msgid "add layer"
+#~ msgstr "Ebene hinzufügen"
+
+#~ msgid "add map markers"
+#~ msgstr "Kartenmarkierungen hinzufügen"
+
+#~ msgid "open markers"
+#~ msgstr "öffne Markierungen"
+
+#~ msgid "Show %1$d of %2$d."
+#~ msgstr "Zeige %1$d von %2$s."
+
+#~ msgid "start"
+#~ msgstr "start"
+
+#~ msgid "Loading data..."
+#~ msgstr "Lade Daten...."
+
+#~ msgid "Loading data (%1$d of %2$d bytes)"
+#~ msgstr "Lade Daten (%1$d von %2$d Bytes)"
+
+#~ msgid "Error retrieving data"
+#~ msgstr "Fehler beim Empfang der Daten"
+
+#~ msgid "Parse JSON"
+#~ msgstr "Parse JSON"
+
+#~ msgid "GMT"
+#~ msgstr "GMT"
+
+#~ msgid "Add markers"
+#~ msgstr "Kartenmarkierungen hinzufügen"
+
+#~ msgid "searchbox create"
+#~ msgstr "Suchdialog erstellen"
+
+#~ msgid "consulate (led by a consul)"
+#~ msgstr "Konsulat (geleitet von einem Konsul)"
+
+#~ msgid "embassy (led by an ambassador)"
+#~ msgstr "Bootschaft (vom Botschafter geleitet)"
+
+#~ msgid "honorary consulate"
+#~ msgstr "Honorar Konsulat"
+
+#~ msgid "high commission"
+#~ msgstr "high commission"
+
+#~ msgid "permanent mission"
+#~ msgstr "permanent mission"
+
+#~ msgid "consulate general"
+#~ msgstr "General Konsulat"
+
+#~ msgid "delegation"
+#~ msgstr "delegation"
+
+#~ msgid "non diplomatic"
+#~ msgstr "non diplomatic"
+
+#~ msgid "residence of a head of a diplomatic mission"
+#~ msgstr "Wohnort des leitenden diplomatischen Angestellten"
+
+#~ msgid "Sending Country"
+#~ msgstr "Sendendes Land"
+
+#~ msgid "Receiving Country"
+#~ msgstr "Empfangendes Land"
+
+#~ msgid "Street"
+#~ msgstr "Straße"
+
+#~ msgid "Country"
+#~ msgstr "Land"
+
+#~ msgid "City"
+#~ msgstr "Stadt"
+
+#~ msgid "Housenumber"
+#~ msgstr "Hausnummer"
+
+#~ msgid "Postcode"
+#~ msgstr "Postleitzahl"
+
+#~ msgid "Website"
+#~ msgstr "Webseite"
+
+#~ msgid "Wheelchair"
+#~ msgstr "Rollstuhl"
+
+#~ msgid "Wheelchairs have full unrestricted access."
+#~ msgstr "Rollstühle haben unbegrenzten Zugang."
+
+#~ msgid "Wheelchairs have no unrestricted access."
+#~ msgstr "Rollstühle haben keinen Zugang."
+
+#~ msgid "Wheelchairs have partial access."
+#~ msgstr "Rollstühle haben teilweise Zugang."
+
+#~ msgid "The palce is designated or purpose built for wheelchairs."
+#~ msgstr ""
+#~ "Dieser Ort wurde extra für die Belange von Rollstuhlfahrern geschaffen."
+
+#~ msgid "Source"
+#~ msgstr "Quelle"
+
+#~ msgid "Soruce of the data"
+#~ msgstr "Quelle der Daten"
+
+#~ msgid "Phone"
+#~ msgstr "Telefon"
+
+#~ msgid "Opening hours"
+#~ msgstr "Öffnungszeiten"
+
+#~ msgid "Fimxe note"
+#~ msgstr "Fixme-Notiz"
+
+#~ msgid "OSM note"
+#~ msgstr "OSM Notiz"
+
+#~ msgid "E-Mail"
+#~ msgstr "E-Mail"
+
+#~ msgid "Fax"
+#~ msgstr "Fax"
+
+#~ msgid "%1$s (not documented tag)"
+#~ msgstr "%1$s (nicht dokumentierter Tag)"
+
+#~ msgid "Author: "
+#~ msgstr "Autor:"
+
+#~ msgid "Source Code: "
+#~ msgstr "Quelltext:"
+
+#~ msgid "Git Version: %1$s"
+#~ msgstr "Git Version: %1$s"
+
+#~ msgid "Software of: %1$s"
+#~ msgstr "Software von %1$s"
+
+#~ msgid ""
+#~ "Map data: Copyright <a href=\"https://www.openstreetmap.org/copyright\" "
+#~ "target=\"_blank\">&copy; OpenStreetMap and contributiors</a> under <a "
+#~ "href=\"http://www.opendatacommons.org/licenses/odbl\" target=\"_blank"
+#~ "\">Open Database Licence</a>"
+#~ msgstr ""
+#~ "Kartendaten: Copyright <a href=\"https://www.openstreetmap.org/copyright"
+#~ "\" target=\"_blank\">&copy; OpenStreetMap-Mittwirkende</a> under <a href="
+#~ "\"http://www.opendatacommons.org/licenses/odbl\" target=\"_blank\">Open "
+#~ "Database Lizenz</a>"
+
+#~ msgid "With help of: %1$s."
+#~ msgstr "Mit Hilfe  von: %1$s."
+
+#~ msgid "Thank you!"
+#~ msgstr "Danke!"
+
+#~ msgid "About Open Diplomatic Map"
+#~ msgstr "Über Open Diplomatic Map"
+
+#~ msgid "Close"
+#~ msgstr "Schließen"
+
+#~ msgid "share this marker"
+#~ msgstr "Diesen Marker teilen"
+
+#~ msgid "post on facebook"
+#~ msgstr "Auf Facebook teilen"
+
+#~ msgid "twitter this"
+#~ msgstr "twittern"
+
+#~ msgid "send via E-Mail"
+#~ msgstr "Per E-Mail verschicken"
+
+#~ msgid "Show in OSM"
+#~ msgstr "Zeige in OSM"
+
+#~ msgid "OSM History"
+#~ msgstr "OSM History"
+
+#~ msgid "OSM iD Editor"
+#~ msgstr "OSM iD Editor"
+
+#~ msgid "JOSM Editor"
+#~ msgstr "JOSM Editor"
+
+#~ msgid "deprecated: remove"
+#~ msgstr "veraltet: entfernen"
+
+#~ msgid "add this tag"
+#~ msgstr "dieses Tag hinzufügen"
+
+#~ msgid "unkown key"
+#~ msgstr "unbekannter Schlüssel"
+
+#~ msgid "fix and afterwards remove fixme tag"
+#~ msgstr "Fehler Beheben und dann das Fixme-Tag entfernen."
+
+#~ msgid "Validation"
+#~ msgstr "Validierung"
+
+#~ msgid "About"
+#~ msgstr "Über"
+
+#~ msgid "OSM-Data"
+#~ msgstr "OSM-Daten"
+
+#~ msgid "One validation error"
+#~ msgid_plural "%1$d validation errors"
+#~ msgstr[0] "Ein Validierungs-Fehler."
+#~ msgstr[1] "%1$d Validierungs-Fehler."
+
+#~ msgid "One validation warning"
+#~ msgid_plural "%1$d validation warnings"
+#~ msgstr[0] "Eine Validierungs-Warung."
+#~ msgstr[1] "%1$d Validierungs-Warungen."
+
+#~ msgid "One hint for better data"
+#~ msgid_plural "%1$d hints for better data"
+#~ msgstr[0] "Ein Hinweis für bessere Daten."
+#~ msgstr[1] "%1$d Hinweise für bessere Daten"
+
+#~ msgid "everything looks good"
+#~ msgstr "Alles sieht gut aus."

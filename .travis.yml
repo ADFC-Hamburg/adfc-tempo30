@@ -1,13 +1,17 @@
 language: node_js
 node_js:
 - '0.10'
+
 before_script:
 - npm install grunt-cli -g
+
 script:
 - grunt
+
 before_install:
 - openssl aes-256-cbc -K $encrypted_b5c1912d5163_key -iv $encrypted_b5c1912d5163_iv
   -in travis-ssh-key.enc -out travis-ssh-key -d
+
 addons:
   ssh_known_hosts:
   - tools.adfc-hamburg.de
@@ -20,4 +24,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r -e 'ssh -v' --delete-after --quiet $TRAVIS_BUILD_DIR/dist travis@tools.adfc-hamburg.de:/var/www/html/tempo30/$TRAVIS_BRANCH
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ travis@tools.adfc-hamburg.de:/var/www/html/tempo30/$TRAVIS_BRANCH
+
+after_deploy:
+- eval "$(ssh-agent -ks)"
