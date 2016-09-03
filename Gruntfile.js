@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                            'data/*',
 			   'update-overpass.js',
                            'bower_components/leaflet/dist/images/*',
-			   'node_modules/requirejs/*',
+			   'node_modules/requirejs/**',
                           ], 
                      dest: 'dist/', 
                      filter: 'isFile'},
