@@ -88,9 +88,18 @@ module.exports = function(grunt) {
                     baseUrl: 'js',
                     mainConfigFile: 'js/common.js',
                     out: 'dist/js/common.js',
-                    include: ['jquery', 'bootstrap'],
+                    include: ['jquery','bootstrap'],
                 }
             },
+	    common_nojq: {
+                options: {
+                    baseUrl: 'js',
+                    mainConfigFile: 'js/common.js',
+                    out: 'dist/js/common_nojq.js',
+		    include: ['text'],
+		    exclude: ['jquery','bootstrap'],
+                }
+	    },
             map: {
                 options: {
                     baseUrl: 'js',
@@ -100,6 +109,19 @@ module.exports = function(grunt) {
                     exclude: ['jquery', 'bootstrap'],
                 }
             },
+	    update_overpass: {
+                options: {
+                    baseUrl: 'js',
+		    paths: {
+                        'fs':'empty:',
+			'request': '../node_modules/request/request',
+                    },
+                    mainConfigFile: 'js/common.js',
+                    out: 'dist/tempo30/app/update-overpass.js',
+                    name: 'tempo30/app/update-overpass',
+                    exclude: ['jquery', 'bootstrap', 'request' ],
+                }
+	    },
         },
         watch: {
             scripts: {
