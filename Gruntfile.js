@@ -47,7 +47,7 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-                files: [
+		files: [
                     {expand: true, 
                      flatten: false, 
                      src: ['index.html', 
@@ -57,6 +57,7 @@ module.exports = function(grunt) {
                            'bower_components/requirejs/require.js',
                            'fonts/*',
                            'data/*',
+			   'update-overpass.js',
                            'bower_components/leaflet/dist/images/*'
                           ], 
                      dest: 'dist/', 
