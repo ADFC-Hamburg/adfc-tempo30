@@ -21,11 +21,12 @@ before_deploy:
 - eval "$(ssh-agent -s)"
 - chmod 600 $TRAVIS_BUILD_DIR/travis-ssh-key
 - ssh-add $TRAVIS_BUILD_DIR/travis-ssh-key
+- chmod 750 $TRAVIS_BUILD_DIR/script/deploy.sh
 
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after --exclude=$TRAVIS_BUILD_DIR/data/* --quiet $TRAVIS_BUILD_DIR/ travis@tools.adfc-hamburg.de:/var/www/html/tempo30/$TRAVIS_BRANCH
+  script: $TRAVIS_BUILD_DIR/script/deploy.sh
   on:
     all_branches: true
 
