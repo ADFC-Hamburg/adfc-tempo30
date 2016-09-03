@@ -4,7 +4,7 @@ done= function() {};
             baseUrl: __dirname,
         });
 	var testmode = false;
-        requirejs(['js/common'], function () {
+        requirejs(['js/common_nojq'], function () {
             requirejs(['tempo30/app/update-overpass'], function(updateOverpass) {
                 console.log('loaded');
                 updateOverpass(testmode, done, done);
