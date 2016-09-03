@@ -1,12 +1,13 @@
 define('tempo30/view/layer/laerm_tag', [
-  'leaflet',
-], function (L) {
+    'leaflet',
+    'tempo30/view/layer/t30mapurl',
+], function (L, mapurl) {
 
     'use strict';
     
     //var layer = L.tileLayer.wms("http://geodienste.hamburg.de/HH_WMS_Strassenverkehr?zufall=0.21", {
-// Alternativ: https://anders.hamburg/cgi-bin/map-tempo30?mode=tile&layers=Laerm_2012_Tag&tilemode=gmap&tile=69159+42364+17
-    var layer = L.tileLayer.wms("https://anders.hamburg/cgi-bin/map-tempo30", {
+
+    var layer = L.tileLayer.wms(mapurl, {
 	layers: 'Laerm_2012_Tag',
 	format: 'image/png',
 	crs: L.CRS.EPS4326,
