@@ -14,7 +14,7 @@ define('tempo30/app/update-overpass', [
     var osmPoiFile='/tmp/tempo30-osm-poi.json';
     var dataStrassenFile='data/strassenliste.json';
     var dataOsmPoiFile='data/osm-poi.json';
-    var refreshTime= 24*60*60;
+    var refreshTime= 20*60*60;
 
     // create_action is only executed if file is older than a time or it does not exists
     function fileIsOlderOrNotExists(file, time_in_sec, create_action) {
