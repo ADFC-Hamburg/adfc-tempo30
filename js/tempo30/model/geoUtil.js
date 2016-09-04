@@ -61,10 +61,10 @@ define('tempo30/model/geoUtil', [
 	    lon = parseFloat(lon, 10);
 	}
 	return [
-	    destVincenty(lat, lon, -90, distance)._lon,
 	    destVincenty(lat, lon, 180, distance)._lat,
-	    destVincenty(lat, lon,  90, distance)._lon,
+	    destVincenty(lat, lon, -90, distance)._lon,
 	    destVincenty(lat, lon,   0, distance)._lat,
+	    destVincenty(lat, lon,  90, distance)._lon,
 	];
     }
 
