@@ -8,6 +8,7 @@ before_script:
 
 script:
 - grunt
+- mkdir $TRAVIS_BUILD_DIR/dist/data
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_b5c1912d5163_key -iv $encrypted_b5c1912d5163_iv
