@@ -10,12 +10,12 @@ define('tempo30/view/map', [
     'use strict';
 
     var map = new L.Map('map', {
-                                zoom: 11, 
-				center: [ 53.56, 10.02],
-                                maxZoom: 18, 
-                                zoomControl: false,
-                                layers: [basemap], 
-                                attributionControl: true});
+        zoom: 11, 
+	center: [ 53.56, 10.02],
+        maxZoom: 18, 
+        zoomControl: false,
+        layers: [basemap()], 
+        attributionControl: true});
     new L.Hash(map);
     map.zoomControl = new L.Control.Zoom({
         zoomInTitle: gt('Zoom in'),
