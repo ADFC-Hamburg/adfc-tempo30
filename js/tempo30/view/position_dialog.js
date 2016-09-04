@@ -4,28 +4,32 @@ define('tempo30/view/position_dialog', [
     'bootstrap-dialog',
     'gettext!tempo30', 
     'tempo30/view/positionmap',
-    'tempo30/view/str_wahl_dialog',
-], function ($, bootstrap, BootstrapDialog, gt, createMap, strWahlDialog) {
+], function ($, bootstrap, BootstrapDialog, gt, createMap) {
 
     'use strict';
 
-    function getDialog(lat, lon) {
+    function getDialog(data, backCb, nextCb) {
+	var lat = data.lat, lon= data.lon;
 	var buttons=[
 	    {
 		id: 'back-btn',
 		label: gt('zurück'),
 		title: gt('zu Schritt 1'),
 		action: function (dialogRef) {
-		    alert('Not implemented yet');
+		    dialogRef.close();
+		    backCb();
 		}
 	    },
 	    {
 		id: 'next-btn',
 		label: gt('weiter'),
+		cssClass: 'btn-primary',
 		title: gt('Zeigt den Antragstext in einem neuen Fenster'),
 		action: function (dialogRef) {
 		    dialogRef.close();
-		    strWahlDialog(lat, lon).open();
+		    data.lat=lat;
+		    data.lon=lon;
+		    nextCb(data);
 		}
 	    }];
 	

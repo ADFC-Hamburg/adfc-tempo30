@@ -11,41 +11,46 @@ define('tempo30/view/str_wahl_dialog', [
 
     'use strict';
 
- var buttons=[
-     {
-         id: 'back-btn',
-         label: gt('zurück'),
-         title: gt('zu Schritt 1'),
-         action: function (dialogRef) {
-	     alert('Not implemented yet');
-	 }
-     },
-     {
-         id: 'next-btn',
-         label: gt('weiter'),
-         title: gt('Zeigt den Antragstext in einem neuen Fenster'),
-         action: function (dialogRef) {
-	     alert('Not implemented yet');
-	 }
-     }];
-    function getDialog(lat, lon) {
+    function getDialog(data, cbBack, cbNext, cbNotFound) {
+	var buttons=[
+	    {
+		id: 'back-btn',
+		label: gt('zurück'),
+		title: gt('zu Schritt 1'),
+		action: function (dialogRef) {
+		    dialogRef.close();
+		    cbBack(data);
+		}
+	    },
+	    {
+		id: 'next-btn',
+		label: gt('weiter'),
+		title: gt('Zeigt den Antragstext in einem neuen Fenster'),
+		cssClass: 'btn-primary',
+		action: function (dialogRef) {
+		    dialogRef.close();
+		    cbNext(data);
+		}
+	    }];
 
-	var bbox=geoUtil.bboxDist(lat, lon, 200);
-	console.log(lat,lon, bbox);	
+	var bbox=geoUtil.bboxDist(data.lat, data.lon, 200);
 	var dialog = new BootstrapDialog({
 	    'title': gt('Tempo 30 benatragen, Schritt 3: Für welche Straßen wollen Sie Tempo 30 benatragen?'),
-	    'message': gt('Bitte warten, Straßen in der nähe werden gesucht...'),
+	    'message': gt('Bitte warten, Straßen in der Nähe werden gesucht...'),
 	    'buttons': buttons,
 	    onshown: function(dialogRef){
-	
 	    },
 	    onhide: function(dialogRef){
 	    },
         });
+	dialog.realize();
+	dialog.getButton('next-btn').disable();
+	dialog.getButton('next-btn').spin();
 	opUtil.getResult(opUtil.replaceBBox(ovT50Query, bbox)).done(function (r) {
 	    console.log(r.elements);
 	    if (r.elements.length === 0) {
-		dialog.setMessage(gt('Keine Straßen mit hoher Geschwindigkeit gefunden'));
+		dialog.close();
+		cbNotFound(data);
 		// FIXME siehe Issue: #11
 		// es gibt keine Straßen in ihrer Nähe
 	    } else {
@@ -61,6 +66,8 @@ define('tempo30/view/str_wahl_dialog', [
 		    msg=msg+'<div class="checkbox"> <label><input type="checkbox" value="'+name+'" checked="1">'+name+'</label></div>';
 		});
 		dialog.setMessage(msg);
+		dialog.getButton('next-btn').stopSpin();
+		dialog.getButton('next-btn').enable();
 	    }
 
 	});
