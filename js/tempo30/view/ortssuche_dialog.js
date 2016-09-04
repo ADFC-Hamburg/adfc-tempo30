@@ -4,13 +4,25 @@ define('tempo30/view/ortssuche_dialog', [
     'bootstrap-dialog',
     'gettext!tempo30', 
     'text!tempo30/overpass/hausnummernsuche.txt',
+    'tempo30/view/position_dialog',
     'bootstraptypehead',
-], function ($, bootstrap, BootstrapDialog, gt, hausnummernsucheTxt) {
+], function ($, bootstrap, BootstrapDialog, gt, hausnummernsucheTxt, positionDialog) {
 
   'use strict';
 
-    var baseurl='https://overpass-api.de/api/interpreter';
+    function nominatimSearch(str, nr) {
+	var baseUrl='https://nominatim.openstreetmap.org/search';
+	var baseParam='?format=json&city=Hamburg&countrycodes=de&limit=1&accept-language=de&email=adfc-2016@sven.anders.hamburg';
+	var query=nr+" "+str;
+	var url= baseUrl + baseParam + '&street='+encodeURIComponent(query);
+	return $.ajax({
+	    'url': url,
+	    'dataType':'json'
+	});
+    }
+
     function getOverpassResult(query) {
+    var baseurl='https://overpass-api.de/api/interpreter';
 	var url = baseurl + '?data=' + 
 	    encodeURIComponent(query);
         console.log(url);
@@ -45,11 +57,19 @@ define('tempo30/view/ortssuche_dialog', [
                     return false;
                 }
 		dialogRef.close();
-		getHausnummerResult($.trim(str)).done(function (d) {
+		nominatimSearch(str, hausnr).done(function (d) {
+		    console.log(d);
+		    positionDialog(d[0].lat, d[0].lon).open();
+		}).fail(function (e) {
+		    console.error(e);
+		    alert('Fehler');
+		});
+
+	/*	getHausnummerResult($.trim(str)).done(function (d) {
 		    console.log(d);
 		}).fail(function (e) {
 		    console.error(e);
-		});
+		});*/
 
 //                window.open('http://overpass-turbo.eu/s/dWT', '_blank');
             }
