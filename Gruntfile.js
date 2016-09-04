@@ -47,17 +47,20 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-                files: [
+		files: [
                     {expand: true, 
                      flatten: false, 
                      src: ['index.html', 
                            'validator-test.html',
                            'lib/**',
                            'css/generated.css*',
+		           'css/images/*',
                            'bower_components/requirejs/require.js',
                            'fonts/*',
                            'data/*',
-                           'bower_components/leaflet/dist/images/*'
+			   'update-overpass.js',
+                           'bower_components/leaflet/dist/images/*',
+			   'node_modules/requirejs/**',
                           ], 
                      dest: 'dist/', 
                      filter: 'isFile'},
@@ -88,9 +91,18 @@ module.exports = function(grunt) {
                     baseUrl: 'js',
                     mainConfigFile: 'js/common.js',
                     out: 'dist/js/common.js',
-                    include: ['jquery', 'bootstrap'],
+                    include: ['jquery','bootstrap'],
                 }
             },
+	    common_nojq: {
+                options: {
+                    baseUrl: 'js',
+                    mainConfigFile: 'js/common.js',
+                    out: 'dist/js/common_nojq.js',
+		    include: ['text'],
+		    exclude: ['jquery','bootstrap'],
+                }
+	    },
             map: {
                 options: {
                     baseUrl: 'js',
@@ -100,6 +112,19 @@ module.exports = function(grunt) {
                     exclude: ['jquery', 'bootstrap'],
                 }
             },
+	    update_overpass: {
+                options: {
+                    baseUrl: 'js',
+		    paths: {
+                        'fs':'empty:',
+			'request': '../node_modules/request/request',
+                    },
+                    mainConfigFile: 'js/common.js',
+                    out: 'dist/tempo30/app/update-overpass.js',
+                    name: 'tempo30/app/update-overpass',
+                    exclude: ['jquery', 'bootstrap', 'request' ],
+                }
+	    },
         },
         watch: {
             scripts: {

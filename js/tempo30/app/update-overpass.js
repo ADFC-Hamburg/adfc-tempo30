@@ -10,8 +10,34 @@ define('tempo30/app/update-overpass', [
     'use strict';
 
     var baseurl='http://overpass-api.de/api/interpreter';
-    var strassenFile='data/strassenliste.json';
-    var osmPoiFile='data/osm-poi.json';
+    var strassenFile='/tmp/tempo30-strassenliste.json';
+    var osmPoiFile='/tmp/tempo30-osm-poi.json';
+    var dataStrassenFile='data/strassenliste.json';
+    var dataOsmPoiFile='data/osm-poi.json';
+    var refreshTime= 20*60*60;
+
+    // create_action is only executed if file is older than a time or it does not exists
+    function fileIsOlderOrNotExists(file, time_in_sec, create_action) {
+	return new RSVP.Promise(function(resolve, reject){
+	    fs.stat(file, function(err, stat) {
+		if(err === null) {
+		    var mstamp = new Date(stat.mtime).getTime() / 1000;
+		    var now = new Date().getTime() / 1000;
+		    if (time_in_sec < (now-mstamp)) {
+			create_action().then(resolve);
+		    } else {
+			console.log('skipping new creation of '+file);
+			resolve();
+		    }
+		} else if(err.code == 'ENOENT') {
+		    // file does not exist
+		    create_action().then(resolve).catch(err);
+		} else {
+		    reject(err);
+		}
+	    });
+	});
+    }
 
     function getOverpassResult(data) {
 	return new RSVP.Promise(function(resolve, reject){
@@ -39,7 +65,7 @@ define('tempo30/app/update-overpass', [
 	return query;
     }
 
-    function saveStrListenResult(testmode, o)  {
+    function saveStrListenResult(testmode, o, cb, cbErr)  {
 	var arr=o.split(/\r?\n/).sort();
 	var ret = [arr[0]];
 	for (var i = 1; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
@@ -56,41 +82,80 @@ define('tempo30/app/update-overpass', [
         }
         fs.writeFile(strassenFile, outStr, function(error) {
             if(error) {
-                err(error);
+		cbErr(error);
                 return;
             }
             console.log('The Street File was saved!');
+	    cb();
         });
     }
 
-    function saveOsmPoi(outStr) {
+    function saveOsmPoi(outStr, cb, errcb) {
 	fs.writeFile(osmPoiFile, outStr, function(error) {
             if(error) {
-                err(error);
+                errcb(error);
                 return;
             }
             console.log('The OSM-POI File was saved!');
+	    cb();
         });
     }
 
-    return function(testmode, done, err) {
+    function copyFile(source, target, cb) {
+	var cbCalled = false;
 
-	getOverpassResult(getOSMPoiOverpassQuery()).then(function (o) {
-	    saveOsmPoi(o);
-	    var opQuery;
-	    if (testmode) {
-		opQuery = opStrassenTest;
-	    } else {
-		opQuery = opStrassen;
+	var rd = fs.createReadStream(source);
+	rd.on("error", function(err) {
+	    done(err);
+	});
+	var wr = fs.createWriteStream(target);
+	wr.on("error", function(err) {
+	    done(err);
+	});
+	wr.on("close", function(ex) {
+	    done();
+	});
+	rd.pipe(wr);
+
+	function done(err) {
+	    console.log('copied '+source+' to '+target);
+	    if (!cbCalled) {
+		cb(err);
+		cbCalled = true;
 	    }
-	    console.log('Asking for Strassenliste', opQuery);
-	    
-	    getOverpassResult(opQuery).then(function (o) {
-		saveStrListenResult(testmode, o);
-		done();
-	    }).catch(function(reason){
-		console.log('err',reason);
-		err();
+	}
+    }
+    return function(testmode, done, err) {
+	fileIsOlderOrNotExists(osmPoiFile, refreshTime, function () {
+	    return new RSVP.Promise(function(resolve, reject){
+		getOverpassResult(getOSMPoiOverpassQuery()).then(function (o) {
+		    saveOsmPoi(o, resolve, reject);
+		});
+	    });
+	}).then(function () {
+	    copyFile(osmPoiFile, dataOsmPoiFile, function () {
+		fileIsOlderOrNotExists(strassenFile, refreshTime, function () {
+		    return new RSVP.Promise(function(resolve, reject){
+			var opQuery;
+			if (testmode) {
+			    opQuery = opStrassenTest;
+			} else {
+			    opQuery = opStrassen;
+			}
+			console.log('Asking for Strassenliste', opQuery);
+			return getOverpassResult(opQuery).then(function (o) {
+			    saveStrListenResult(testmode, o, resolve, reject);
+			});
+		    });
+
+		}).then( function() {
+		    copyFile(strassenFile, dataStrassenFile, function () {
+			done();
+		    });
+		}).catch(function(reason){
+		    console.log('err',reason);
+		    err();
+		});
 	    });
 	}).catch(function(reason){
 	    console.log('err',reason);

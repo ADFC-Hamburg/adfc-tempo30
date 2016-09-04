@@ -1,0 +1,11 @@
+*~
+bower_components/
+css/generated.css
+css/generated.css.map
+data/
+dist/
+i18n/tempo30.pot
+js/i18n/
+js/tempo30/model/version.js
+lib/
+node_modules/
