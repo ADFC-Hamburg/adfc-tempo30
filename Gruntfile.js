@@ -54,6 +54,7 @@ module.exports = function(grunt) {
                            'validator-test.html',
                            'lib/**',
                            'css/generated.css*',
+		           'css/images/*',
                            'bower_components/requirejs/require.js',
                            'fonts/*',
                            'data/*',
