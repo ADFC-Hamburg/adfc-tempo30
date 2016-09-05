@@ -31,6 +31,7 @@ define('tempo30/view/positionmap', [
 	map.addControl(map.zoomControl);
 	map.on('click', function (e) {
 	    circle.setLatLng(e.latlng);
+	    map.fireEvent('posChange', e.latlng);
 	});
 	return map;
 
