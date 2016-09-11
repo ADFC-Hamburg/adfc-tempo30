@@ -19,6 +19,7 @@ define('tempo30/view/ortssuche_dialog', [
                 var str = dialogRef.getModalBody().find('#str').val();
                 var name = dialogRef.getModalBody().find('#name').val();
                 var hausnr = dialogRef.getModalBody().find('#hausnr').val();
+		var plz = dialogRef.getModalBody().find('#plz').val();
                 if($.trim(str) === '') {
                     alert('Bitte geben Sie eine Straße an');
                     return false;
@@ -31,11 +32,16 @@ define('tempo30/view/ortssuche_dialog', [
                     alert('Bitte geben Sie eine Hausnummer an');
                     return false;
                 }
+                if($.trim(plz) === '') {
+                    alert('Bitte geben Sie eine PLZ an');
+                    return false;
+                }
 		dialogRef.close();
 		callback({
 		    str:str,
 		    name:name,
 		    hausnr:hausnr,
+		    plz:plz,
 		});
             }
 	}];
@@ -45,13 +51,13 @@ define('tempo30/view/ortssuche_dialog', [
             'message': gt('Bitte geben Sie Ihre Anschrift an:')+'<b>ACHTUNG NOCH NICHT FERTIG</b>'+
                 '\n\n'+
                 gt('Name')+
-		'<input type="text" id="name" class="form-control">'+
-                '\n'+
+		'<input type="text" id="name" class="form-control">\n'+
                 gt('Straße')+
-		'<input type="text" id="str" class="form-control">'+
-                '\n'+
+		'<input type="text" id="str" class="form-control">\n'+
                 gt('Hausnummer')+
-		'<input type="text" id="hausnr" class="form-control">',
+		'<input type="text" id="hausnr" class="form-control">\n'+
+                gt('PLZ')+
+		'<input type="text" id="plz" class="form-control">',
             'buttons': buttons,
 	    onshown: function(dialogRef){
 		dialogRef.getModalBody().find('#str').prop('disabled', true);

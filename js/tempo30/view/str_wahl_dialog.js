@@ -28,6 +28,11 @@ define('tempo30/view/str_wahl_dialog', [
 		title: gt('Zeigt den Antragstext in einem neuen Fenster'),
 		cssClass: 'btn-primary',
 		action: function (dialogRef) {
+		    data.antrag = [];
+		    dialogRef.getModalBody().find('input:checked').each(
+			function (idx,obj) { 
+			    data.antrag.push($(obj).prop('value'));
+			});
 		    dialogRef.close();
 		    cbNext(data);
 		}
