@@ -29,7 +29,7 @@ define('tempo30/view/download_dialog', [
 	var dialog = new BootstrapDialog({
             'title': gt('Tempo 30 benatragen, Schritt 4: Antrag herunterladen, bearbeiten, unterschreiben und abschicken.'),
             'message': gt('<ol><li>. Laden Sie unseren Antragsentwurf herunter:')+
-		'<form action="https://tools.adfc-hamburg.de/tempo30-backend/antrag.php" method="POST" target="_blank"><input type="hidden" id="data" name="data" value=""/><button type="submit" class="btn btn-primary" id="next-btn">Antrag speichern</button></form></li>'+
+		'<form action="https://tools.adfc-hamburg.de/tempo30-backend/master/antrag.php" method="POST" accept-charset="UTF-8" target="_blank"><input type="hidden" id="data" name="data" value=""/><button type="submit" class="btn btn-primary" id="next-btn">Antrag speichern</button></form></li>'+
 		gt('<li>Bitte bearbeiten Sie den Antrag. Der Antrag ist so NICHT FERTIG, passen Sie ihn bitte an die Situation vor Ort an.</li>')+
 		gt('<li>Unterschreiben -> Abschicken (sollten Sie den Antrag persönlich abgeben, zweimal ausdrucken und den Empfang auf dem einen exemplar bestätigen)</li>')+
 		gt('<li>(Optional) Den Antrag bitte auch an uns schicken</li>')+ //FIXME

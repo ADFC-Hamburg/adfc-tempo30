@@ -39,7 +39,7 @@ define('tempo30/app/antrag', [
     }
     function step3(data) {
 	$.ajax({
-	    'url': 'https://tools.adfc-hamburg.de/tempo30-backend/geodaten.php?lat='+data.lat+'&lon='+data.lon,
+	    'url': 'https://tools.adfc-hamburg.de/tempo30-backend/master/geodaten.php?lat='+data.lat+'&lon='+data.lon,
 	    'dataType':'json'
 	}).done( function (geodata) {
 	    data=$.extend(data,geodata);
