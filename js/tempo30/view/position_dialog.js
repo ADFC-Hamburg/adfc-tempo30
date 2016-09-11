@@ -17,7 +17,7 @@ define('tempo30/view/position_dialog', [
 		title: gt('zu Schritt 1'),
 		action: function (dialogRef) {
 		    dialogRef.close();
-		    backCb();
+		    backCb(data);
 		}
 	    },
 	    {
