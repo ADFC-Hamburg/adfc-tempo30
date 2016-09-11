@@ -38,7 +38,7 @@ define('tempo30/view/str_wahl_dialog', [
 		}
 	    }];
 
-	var bbox=geoUtil.bboxDist(data.lat, data.lon, 200);
+	var bbox=geoUtil.bboxDist(data.lat, data.lon, 100);
 	var dialog = new BootstrapDialog({
 	    'title': gt('Tempo 30 benatragen, Schritt 3: Für welche Straßen wollen Sie Tempo 30 benatragen?'),
 	    'message': gt('Bitte warten, Straßen in der Nähe werden gesucht...'),
