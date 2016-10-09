@@ -42,6 +42,11 @@ form {
     margin: 0 0 0;
 }
 
+#strwahlerr {
+    color: red;
+    font-weight: bold;
+}
+
 .popup-content {
     height: 350px;
     min-width: 330px;

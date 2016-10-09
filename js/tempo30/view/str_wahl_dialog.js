@@ -33,12 +33,16 @@ define('tempo30/view/str_wahl_dialog', [
 			function (idx,obj) { 
 			    data.antrag.push($(obj).prop('value'));
 			});
-		    dialogRef.close();
-		    cbNext(data);
+		    if (data.antrag.length>0) {
+			dialogRef.close();
+			cbNext(data);
+		    } else {
+			dialogRef.getModalBody().find('#strwahlerr').text(gt('Fehler: Keine Straße ausgewählt'));
+		    }
 		}
 	    }];
 
-	var bbox=geoUtil.bboxDist(data.lat, data.lon, 200);
+	var bbox=geoUtil.bboxDist(data.lat, data.lon, 100);
 	var dialog = new BootstrapDialog({
 	    'title': gt('Tempo 30 benatragen, Schritt 3: Für welche Straßen wollen Sie Tempo 30 benatragen?'),
 	    'message': gt('Bitte warten, Straßen in der Nähe werden gesucht...'),
@@ -59,7 +63,8 @@ define('tempo30/view/str_wahl_dialog', [
 		// FIXME siehe Issue: #11
 		// es gibt keine Straßen in ihrer Nähe
 	    } else {
-		var msg=gt('Für welche Straßen wollen Sie Tempo 30 benatragen?');
+		var msg=gt('Sie können nur für Straßen Tempo 30 beantragen, die direkt an Ihrer Wohnung liegen (auch wenn Sie durch eine weiter entfernte  Straße evtl. Einschränkungen (z.B. Lärm) haben). Bitte die Auswahl ernst nehmen, da wir wollen, dass die Anträge die Aussicht auf Erfolg haben schnell geprüft werden.\n Für welche Straßen wollen Sie Tempo 30 benatragen?');
+		msg=msg+ '<div id="strwahlerr"></div>';
 		var str={};
 		$.each(r.elements, function (idx, obj) {
 		    if (obj.type === 'way') {
@@ -67,8 +72,13 @@ define('tempo30/view/str_wahl_dialog', [
 			str[name] =1;
 		    }
 		});
+		var checked='';
+		if (Object.keys(str).length ==1) {
+		    checked=' checked="1"';
+		}
 		$.each(str,function (name) {
-		    msg=msg+'<div class="checkbox"> <label><input type="checkbox" value="'+name+'" checked="1">'+name+'</label></div>';
+		    msg=msg+'<div class="checkbox"> <label><input type="checkbox" value="'+name+'"'+checked+'>'+name+'</label></div>';
+		    checked="";
 		});
 		dialog.setMessage(msg);
 		dialog.getButton('next-btn').stopSpin();

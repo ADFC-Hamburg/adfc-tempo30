@@ -80,8 +80,50 @@ define('gettext', ['jed'], function () {
                             return out;
                         };
                         onload(gt);
-                    });        
-            }
+                    },function (msg) {
+                        console.error('i18n not found'+name+' '+lang);
+                        var i18n = new Jed({
+                            // This callback is called when a key is missing
+                            'missing_key_callback': function(key) {
+                                // Do something with the missing key
+                                // e.g. send key to web service or
+                                console.error('missing_i18n_key', key);
+                            },
+			    locale_data: {
+				'messages': {
+				    '': {
+					'domain': name,
+					'lang': lang,
+					'plural_forms': 'nplurals=2; plural=(n!=1);'
+				    },
+
+				}
+			    }
+                        });
+                        
+                        function gt(id) {
+                            var out;
+                            if (arguments.length<2) {
+                                out=i18n.translate(id).fetch();
+                            } else {
+                                var arg=[];
+                                for (var i=1;i<arguments.length;i++) {
+                                    arg.push(arguments[i]);
+                                }
+                                console.log(arg);
+                                out=i18n.translate(id).fetch(arg);
+                            }
+                            return out;
+                        }
+                        gt.ngettext = function (singular, plural, num) {
+                            var out= i18n.translate(singular)
+                                .ifPlural( num, plural )
+                                .fetch( num );
+                            return out;
+                        };
+                        onload(gt);
+		    });        
+	    }
         }
     };
 
