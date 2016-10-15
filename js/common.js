@@ -13,6 +13,7 @@ requirejs.config({
         'leaflethash': '../lib/leaflet-hash/leaflet-hash',
 	'leaflet-layer-overpass': '../bower_components/leaflet-layer-overpass/dist/OverPassLayer',
 	'rsvp': '../node_modules/rsvp/dist/rsvp',
+	'lib': '../lib',
     },
     shim: {
 	'jquery': {

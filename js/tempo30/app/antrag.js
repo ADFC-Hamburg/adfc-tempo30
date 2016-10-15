@@ -7,7 +7,9 @@ define('tempo30/app/antrag', [
     'tempo30/view/str_not_found_dialog',
     'tempo30/view/fehler_melden_dialog',
     'tempo30/view/download_dialog',
-], function ($, version, step1dialog, step2dialog, step3dialog, strNfDialog, errorDialog, step4dialog) {
+    //
+    'tempo30/app/create-word',
+], function ($, version, step1dialog, step2dialog, step3dialog, strNfDialog, errorDialog, step4dialog, createWord) {
 
     function nominatimSearch(str, nr) {
 	var baseUrl='https://nominatim.openstreetmap.org/search';
@@ -21,6 +23,7 @@ define('tempo30/app/antrag', [
     }
 
     function step1() {
+	createWord.download();
 	step1dialog(step2).open();
     }
     
