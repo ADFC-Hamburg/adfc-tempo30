@@ -3,13 +3,12 @@ define('tempo30/app/antrag', [
     'tempo30/model/version',
     'tempo30/view/ortssuche_dialog',
     'tempo30/view/position_dialog',
-    'tempo30/view/str_wahl_dialog',
+    'tempo30/view/result_dialog',
     'tempo30/view/str_not_found_dialog',
     'tempo30/view/fehler_melden_dialog',
     'tempo30/view/download_dialog',
     //
-    'tempo30/app/create-word',
-], function ($, version, step1dialog, step2dialog, step3dialog, strNfDialog, errorDialog, step4dialog, createWord) {
+], function ($, version, step1dialog, step2dialog, step3dialog, strNfDialog, errorDialog, step4dialog) {
 
     function nominatimSearch(str, nr) {
 	var baseUrl='https://nominatim.openstreetmap.org/search';
@@ -23,7 +22,6 @@ define('tempo30/app/antrag', [
     }
 
     function step1() {
-	createWord.download();
 	step1dialog(step2).open();
     }
     
@@ -41,18 +39,7 @@ define('tempo30/app/antrag', [
 	});
     }
     function step3(data) {
-	$.ajax({
-	    'url': 'https://tools.adfc-hamburg.de/tempo30-backend/master/geodaten.php?lat='+data.lat+'&lon='+data.lon,
-	    'dataType':'json'
-	}).done( function (geodata) {
-	    data=$.extend(data,geodata);
-	    step3dialog(data, step2, step4, strNotFound).open();
-	}).fail( function (e) {
-	    console.error('error',e);
-	    // FIXME
-	    alert('Fehler');
-
-	});
+	step3dialog(data, step2, step4, strNotFound).open();
     }
     function step4(data) {
 	step4dialog(data, step3).open();
