@@ -25,8 +25,7 @@ define('tempo30/app/create-word', [
 			 }); 
             doc.render(); 
             out=doc.getZip().generate({type:"blob"}); 
-	    saveAs(out,"tempo30-antrag.docx")
-	    debugger;
+	    saveAs(out,"tempo30-antrag.docx");
 	});
     }
 
