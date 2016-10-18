@@ -60,6 +60,7 @@ module.exports = function(grunt) {
                            'fonts/*',
                            'data/*',
 			   'img/*',
+			   'docx/*',
 			   'update-overpass.js',
                            'bower_components/leaflet/dist/images/*',
 			   'node_modules/requirejs/**',
