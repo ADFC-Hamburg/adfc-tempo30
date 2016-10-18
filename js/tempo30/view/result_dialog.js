@@ -43,16 +43,16 @@ define('tempo30/view/result_dialog', [
 	var grenzwert='undef';
 	var dist='';
 	if (val!=='undef') {
-	    var dist='Ein Messergebniss '+Number(value[0].st_distance).toFixed(1)+' m von ihrem Haus entfernt zeigt: ';
+	    dist='Ein Messergebniss '+Number(value[0].st_distance).toFixed(1)+' m von ihrem Haus entfernt zeigt: ';
 	    grenzwert=0;
 	    $.each(dataStruct, function (k,v) {
 		if (k !== 'undef') {
 		    if ((k<=val) && (grenzwert <k)) {
 			grenzwert=k;
 		    }
-		};
+		}
 	    });
-	};
+	}
 	return {
 	    val_short: val,
 	    img: dataStruct[grenzwert][0], 
@@ -92,7 +92,7 @@ define('tempo30/view/result_dialog', [
 			no2: no2,
 			pm10: pm10,
 			pm25: pm25,
-		    }
+		    };
 		    nextCb(data);
 		}
 	    }];
