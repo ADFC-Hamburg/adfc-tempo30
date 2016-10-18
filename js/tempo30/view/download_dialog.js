@@ -33,7 +33,7 @@ define('tempo30/view/download_dialog', [
 		}
 	    }];
 	var dialog = new BootstrapDialog({
-            'title': gt('Tempo 30 benatragen, Schritt 4: Antrag herunterladen, bearbeiten, unterschreiben und abschicken.'),
+            'title': gt('Tempo 30 benatragen, Schritt 4: Antrag vorbereiten.'),
             'message': gt('Noch ein Schritt, dann wird ihnen ein Antragsentwurf zu Download angeboten. Bitte ergänzen Sie folgende Daten:')+
 	        '\n\n'+
 	        gt('Straße für die Sie Tempo 30 beantragen (die Straße muss an Ihr Haus angrenzen)')+
