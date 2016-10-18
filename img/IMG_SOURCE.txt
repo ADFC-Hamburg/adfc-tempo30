@@ -1,0 +1,10 @@
+wget http://hassankhan.me/emojify.js/images/emoji/smiley.png
+wget http://hassankhan.me/emojify.js/images/emoji/mask.png
+wget http://hassankhan.me/emojify.js/images/emoji/fearful.png
+
+CC BY 4.0
+
+wget http://emojione.com/wp-content/uploads/assets/emojis/263a.svg
+wget http://emojione.com/wp-content/uploads/assets/emojis/1f621.svg 
+wget http://emojione.com/wp-content/uploads/assets/emojis/1f610.svg
+wget http://emojione.com/wp-content/uploads/assets/emojis/2049.svg
