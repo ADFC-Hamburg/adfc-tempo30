@@ -15,6 +15,8 @@ requirejs.config({
 	'rsvp': '../node_modules/rsvp/dist/rsvp',
 	'lib': '../lib',
 	'data': '../data',
+	'img': '../img',
+	'docx': '../docx',
     },
     shim: {
 	'jquery': {

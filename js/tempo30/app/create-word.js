@@ -7,7 +7,7 @@ define('tempo30/app/create-word', [
 
     function download(data) {
 	console.log('jszip');
-	JSZipUtils.getBinaryContent('docx/antrag-tempo30-template.docx',function(err,content){
+	JSZipUtils.getBinaryContent(requirejs.toUrl('docx/antrag-tempo30-template.docx'),function(err,content){
 	    console.log('a');
             if (err) { throw e;}
             doc=new Docxtemplater(content);
