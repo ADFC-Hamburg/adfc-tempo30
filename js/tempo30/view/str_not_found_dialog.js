@@ -40,7 +40,7 @@ define('tempo30/view/str_not_found_dialog', [
 
 	var dialog = new BootstrapDialog({
 	    'type': BootstrapDialog.TYPE_WARNING,
-	    'title': gt('Tempo 30 benatragen, Keine Hauptstraßen gefunden'),
+	    'title': gt('Tempo 30 beantragen, Keine Hauptstraßen gefunden'),
 	    'message': gt('Für einen erfolgreichen Antrag ist es nötig, dass sie in der Nähe einer Straße mit Tempo 50 wohnen. Wir konnten leider keine finden. Bitte melden Sie einen Fehler, wenn es doch eine Tempo 50 Straße in der Nähe gibt.'),
 	    'buttons': buttons,
         });

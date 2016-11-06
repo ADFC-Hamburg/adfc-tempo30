@@ -98,7 +98,7 @@ define('tempo30/view/result_dialog', [
 	    }];
 	
 	var dialog = new BootstrapDialog({
-            'title': gt('Tempo 30 benatragen, Schritt 3: Ergebnisse'),
+            'title': gt('Tempo 30 beantragen, Schritt 3: Ergebnisse'),
             'message': gt('Bitte warten, wir prüfen die Grenzwerte....'),
             'buttons': buttons,
 	    onshown: function(dialogRef){
