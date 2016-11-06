@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         clean: ['fonts', 
                 'css/generated.css', 
+                'css/generated-wo-bs.css',
                 'js/generated.js', 
                 'bower_components', 
                 'js/i18n/**',
@@ -55,6 +56,7 @@ module.exports = function(grunt) {
                            'validator-test.html',
                            'lib/**',
                            'css/generated.css*',
+			   'css/generated-wo-bs.css*',
 		           'css/images/*',
                            'bower_components/requirejs/require.js',
                            'fonts/*',
@@ -83,6 +85,14 @@ module.exports = function(grunt) {
                         'lib/bootstrap3-dialog/bootstrap-dialog.min.css',
                         'bower_components/font-awesome/css/font-awesome.css',
                         'bower_components/bootstrap/dist/css/bootstrap.css',
+                        'css/screen.css'
+                    ],
+                    'css/generated-wo-bs.css': [
+                        'lib/leaflet/leaflet.css',
+                        'lib/leaflet.markercluster/dist/MarkerCluster.css',
+                        'lib/leaflet.markercluster/dist/MarkerCluster.Default.css',
+                        'lib/bootstrap3-dialog/bootstrap-dialog.min.css',
+                        'bower_components/font-awesome/css/font-awesome.css',
                         'css/screen.css'
                     ]
                 }
