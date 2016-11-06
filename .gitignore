@@ -1,7 +1,7 @@
 *~
 bower_components/
-css/generated.css
-css/generated.css.map
+css/generated*.css
+css/generated*.css.map
 data/
 dist/
 i18n/tempo30.pot

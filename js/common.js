@@ -14,6 +14,9 @@ requirejs.config({
 	'leaflet-layer-overpass': '../bower_components/leaflet-layer-overpass/dist/OverPassLayer',
 	'rsvp': '../node_modules/rsvp/dist/rsvp',
 	'lib': '../lib',
+	'data': '../data',
+	'img': '../img',
+	'docx': '../docx',
     },
     shim: {
 	'jquery': {

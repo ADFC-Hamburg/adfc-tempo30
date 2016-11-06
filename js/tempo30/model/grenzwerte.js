@@ -1,9 +1,10 @@
 define('tempo30/model/grenzwerte', [
 ], function () {
-    var img_neutral='<img src="img/1f610.svg" alt="neutraler Smiley" style="width:100px"/>';
-    var img_boese='<img src="img/1f621.svg" alt="böser Smiley" style="width:100px"/>';
-    var img_lachend='<img src="img/263a.svg" alt="lachender Smiley" style="width:100px"/>';
-    var img_undef='<img src="img/2049.svg" alt="?!" style="width:100px"/>';
+    var imgUrl=requirejs.toUrl('img');
+    var img_neutral='<img src="'+imgUrl+'/1f610.svg" alt="neutraler Smiley" style="width:100px"/>';
+    var img_boese='<img src="'+imgUrl+'/1f621.svg" alt="böser Smiley" style="width:100px"/>';
+    var img_lachend='<img src="'+imgUrl+'/263a.svg" alt="lachender Smiley" style="width:100px"/>';
+    var img_undef='<img src="'+imgUrl+'/2049.svg" alt="?!" style="width:100px"/>';
     var laermTag= {
 	'undef': [img_undef, 'Keine Daten', 'Wir haben keine Lärmdaten für diese Position'],
 	1: [img_neutral,'55-60 dB','Die Lärmwerte sind noch unter der Grenze bei der nachweislich gesundheitliche Beschwerden auftreten. Allerdings hat die Behörde genauere Messerverfahren und kommt evtl. zu anderen Werten. Wenn Sie das Gefühl haben, dass der Lärmpegl hoch ist, stellen Sie gerne einen Antrag.'],
