@@ -17,7 +17,7 @@ define('tempo30/app/create-word', [
 	    var antwortBis = datum.getDate()+ "." + (datum.getMonth()+ 1)+"." + datum.getFullYear();
             doc.setData( {'AntragStr':data.antrag_str,
 			  'Name': data.name,
-			  'Bezirk':'Hamburg-Mitte',
+			  'Bezirk':data.ort[0].bezirk_name,
 			  'AdrStr':data.str+' '+data.hausnr,
 			  'AdrPLZ':data.plz,
 			  'AdrOrt':'Hamburg',
