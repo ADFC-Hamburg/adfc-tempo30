@@ -44,7 +44,7 @@ define('tempo30/view/str_wahl_dialog', [
 
 	var bbox=geoUtil.bboxDist(data.lat, data.lon, 100);
 	var dialog = new BootstrapDialog({
-	    'title': gt('Tempo 30 benatragen, Schritt 3: Für welche Straßen wollen Sie Tempo 30 benatragen?'),
+	    'title': gt('Tempo 30 beantragen, Schritt 3: Für welche Straßen wollen Sie Tempo 30 beantragen?'),
 	    'message': gt('Bitte warten, Straßen in der Nähe werden gesucht...'),
 	    'buttons': buttons,
 	    onshown: function(dialogRef){
@@ -63,7 +63,7 @@ define('tempo30/view/str_wahl_dialog', [
 		// FIXME siehe Issue: #11
 		// es gibt keine Straßen in ihrer Nähe
 	    } else {
-		var msg=gt('Sie können nur für Straßen Tempo 30 beantragen, die direkt an Ihrer Wohnung liegen (auch wenn Sie durch eine weiter entfernte  Straße evtl. Einschränkungen (z.B. Lärm) haben). Bitte die Auswahl ernst nehmen, da wir wollen, dass die Anträge die Aussicht auf Erfolg haben schnell geprüft werden.\n Für welche Straßen wollen Sie Tempo 30 benatragen?');
+		var msg=gt('Sie können nur für Straßen Tempo 30 beantragen, die direkt an Ihrer Wohnung liegen (auch wenn Sie durch eine weiter entfernte  Straße evtl. Einschränkungen (z.B. Lärm) haben). Bitte die Auswahl ernst nehmen, da wir wollen, dass die Anträge die Aussicht auf Erfolg haben schnell geprüft werden.\n Für welche Straßen wollen Sie Tempo 30 beantragen?');
 		msg=msg+ '<div id="strwahlerr"></div>';
 		var str={};
 		$.each(r.elements, function (idx, obj) {

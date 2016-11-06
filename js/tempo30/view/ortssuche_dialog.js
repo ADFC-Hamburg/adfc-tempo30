@@ -42,7 +42,7 @@ define('tempo30/view/ortssuche_dialog', [
 	}];
 
 	var dialog = new BootstrapDialog({
-            'title': gt('Tempo 30 benatragen, Schritt 1: Ort Suchen'),
+            'title': gt('Tempo 30 beantragen, Schritt 1: Ort Suchen'),
             'message': gt('Bitte geben Sie Ihre Anschrift an:')+
                 '\n\n'+
                 gt('Straße')+

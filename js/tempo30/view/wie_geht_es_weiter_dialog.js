@@ -26,12 +26,12 @@ define('tempo30/view/wie_geht_es_weiter_dialog', [
 		}
 	    }];
 	var dialog = new BootstrapDialog({
-            'title': gt('Tempo 30 benatragen, Schritt 5: Antrag herunterladen, bearbeiten, unterschreiben und abschicken.'),
+            'title': gt('Tempo 30 beantragen, Schritt 5: Antrag herunterladen, bearbeiten, unterschreiben und abschicken.'),
             'message': 'Sie sollten den Antrag soeben heruntergalden haben.<ol>'+
 		gt('<li>Bitte bearbeiten Sie den Antrag. Der Antrag ist so NICHT FERTIG, passen Sie ihn bitte an die Situation vor Ort an.</li>')+
 		gt('<li>Ausdrucken</li>')+
-		gt('<li>Unterschreiben</li><li>Abschicken (sollten Sie den Antrag persönlich abgeben, zweimal ausdrucken und den Empfang auf dem einen Exemplar bestätigen)</li>')+
-		gt('<li>(Optional) Den Antrag (oder alles was sie uns erzählen mögen, z.B. die Straße oder den Ort) bitte auch an uns schicken</li>')+ //FIXME
+		gt('<li>Unterschreiben</li><li>Abschicken (sollten Sie den Antrag persönlich abgeben, zweimal ausdrucken und den Empfang auf dem einen Exemplar bestätigen lassen)</li>')+
+		gt('<li>(Optional) Den Antrag (oder alles, was Sie uns erzählen mögen, z.B. die Straße oder den Ort) bitte auch an uns schicken</li>')+ //FIXMEa
 		gt('<li>(Optional) Erzählen Sie es weiter, z.B. auf Twitter oder Facebook</li>')+ //FIXME
 		gt('<li>(Optional) Bitte schreiben Sie uns, ob/wie wir den Antrags-Prozess noch besser machen können.</li>')+ //FIXME
 

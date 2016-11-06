@@ -34,7 +34,7 @@ define('tempo30/view/position_dialog', [
 	    }];
 	
 	var dialog = new BootstrapDialog({
-            'title': gt('Tempo 30 benatragen, Schritt 2: Bestätigen Sie Ihren Wohnort'),
+            'title': gt('Tempo 30 beantragen, Schritt 2: Bestätigen Sie Ihren Wohnort'),
             'message': gt('Bitte kontrollieren Sie die Position und verschieben Sie ggf. den Marker an Ihren Wohnort durch einen Klick')+
 		'<div id="positionmap" style="width:100%; height: 400px;"></div>',
             'buttons': buttons,
