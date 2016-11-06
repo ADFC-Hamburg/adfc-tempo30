@@ -54,7 +54,6 @@ define('tempo30/view/ortssuche_dialog', [
             'buttons': buttons,
 	    onshown: function(dialogRef){
 		dialogRef.getModalBody().find('#str').prop('disabled', true);
-		debugger;
 		var url=requirejs.toUrl('data/strassenliste.json');
 		$.get(url).done(function (strassenListe) {
 		    dialogRef.getModalBody().find('#str').typeahead({source:strassenListe});
