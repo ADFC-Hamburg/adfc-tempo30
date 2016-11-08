@@ -26,23 +26,23 @@ define('tempo30/app/antrag', [
 	{
             return 'Opera';
 	} 
-	else if(navigator.userAgent.indexOf("Chromium") != -1 )
+	else if(navigator.userAgent.indexOf("Chromium") !== -1 )
 	{
             return 'Chromium';
 	}
-	else if(navigator.userAgent.indexOf("Chrome") != -1 )
+	else if(navigator.userAgent.indexOf("Chrome") !== -1 )
 	{
             return 'Chrome';
 	}
-	else if(navigator.userAgent.indexOf("Safari") != -1)
+	else if(navigator.userAgent.indexOf("Safari") !== -1)
 	{
             return 'Safari';
 	}
-	else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+	else if(navigator.userAgent.indexOf("Firefox") !== -1 ) 
 	{
             return 'Firefox';
 	}
-	else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+	else if((navigator.userAgent.indexOf("MSIE") !== -1 ) || (document.documentMode === true )) //IF IE > 10
 	{
 	    return 'IE'; 
 	}  
@@ -112,6 +112,7 @@ define('tempo30/app/antrag', [
     function step5(data) {
 	console.log(data);
 	createWord.download(data);
+	
 	step5dialog(data, step4).open();
     }
     return start;
