@@ -54,7 +54,7 @@ define('gettext', ['jed'], function () {
                             'missing_key_callback': function(key) {
                                 // Do something with the missing key
                                 // e.g. send key to web service or
-                                console.error('missing_i18n_key', key);
+                                //console.error('missing_i18n_key', key);
                             },
                             'locale_data': msg
                         });
@@ -81,13 +81,13 @@ define('gettext', ['jed'], function () {
                         };
                         onload(gt);
                     },function (msg) {
-                        console.error('i18n not found'+name+' '+lang);
+                        //console.error('i18n not found'+name+' '+lang);
                         var i18n = new Jed({
                             // This callback is called when a key is missing
                             'missing_key_callback': function(key) {
                                 // Do something with the missing key
                                 // e.g. send key to web service or
-                                console.error('missing_i18n_key', key);
+                                //console.error('missing_i18n_key', key);
                             },
 			    locale_data: {
 				'messages': {

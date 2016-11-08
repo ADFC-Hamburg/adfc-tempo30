@@ -21,9 +21,49 @@ define('tempo30/app/antrag', [
 	    'dataType':'json'
 	});
     }
-
+    function getBrowser() { 
+	if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
+	{
+            return 'Opera';
+	} 
+	else if(navigator.userAgent.indexOf("Chromium") !== -1 )
+	{
+            return 'Chromium';
+	}
+	else if(navigator.userAgent.indexOf("Chrome") !== -1 )
+	{
+            return 'Chrome';
+	}
+	else if(navigator.userAgent.indexOf("Safari") !== -1)
+	{
+            return 'Safari';
+	}
+	else if(navigator.userAgent.indexOf("Firefox") !== -1 ) 
+	{
+            return 'Firefox';
+	}
+	else if((navigator.userAgent.indexOf("MSIE") !== -1 ) || (document.documentMode === true )) //IF IE > 10
+	{
+	    return 'IE'; 
+	}  
+	else 
+	{
+	    return 'unknown';
+	}
+    }
     function start() {
-	step1();
+	var browser= getBrowser();
+
+	if (browser === 'Safari') {
+	    alert('Es gibt ein Problem mit dem Safari Browser. Bitte benutzen Sie Chrome oder Firefox.');
+
+	} else if ((browser !== 'Chrome') && (browser !== 'Firefox')) {
+	    alert('Ihr Browser wird evtl. nicht unterstützt. Sicher getestet sind: Firefox, Chrome und Chromium. Testen Sie gerne die Anwendung und geben Sie uns Rückmeldung ob es funktioniert hat. Insbesondere der Download des Word-Dokuments kann evtl. fehlschlagen.');
+
+	    step1();
+	} else {
+	    step1();
+	}
 
 /*	var data={};
 	//data.lat=53.4733698;
@@ -72,6 +112,7 @@ define('tempo30/app/antrag', [
     function step5(data) {
 	console.log(data);
 	createWord.download(data);
+	
 	step5dialog(data, step4).open();
     }
     return start;
