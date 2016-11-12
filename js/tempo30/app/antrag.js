@@ -151,7 +151,7 @@ define('tempo30/app/antrag', [
 		alert('Fehler bei der Datenübertragung zum ADFC');
 		//FIXME bessere Fehlerbehandlung!
 	    });
-	};
+	}
 	step5dialog(data, step4).open();
     }
     return start;
