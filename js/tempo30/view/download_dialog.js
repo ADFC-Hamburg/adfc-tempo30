@@ -24,13 +24,21 @@ define('tempo30/view/download_dialog', [
 		title: gt('Zeigt den Antragstext in einem neuen Fenster'),
 		action: function (dialogRef) {
 		    data.antrag_str = $.trim(dialogRef.getModalBody().find('#antrag_str').val());
-		    data.name = $.trim(dialogRef.getModalBody().find('#name').val());
+		    m(dialogRef.getModalBody().find('#name').val());
 		    data.email = $.trim(dialogRef.getModalBody().find('#email').val());
 		    data.newsletter = dialogRef.getModalBody().find('#newsletter').prop('checked');
 		    data.adfc_mail_contact = dialogRef.getModalBody().find('#adfc').prop('checked');
 		    data.adfc_anschrift = dialogRef.getModalBody().find('#strasse').prop('checked');
 		    data.adfc_map = dialogRef.getModalBody().find('#position').prop('checked');
 		    data.adfc_all = dialogRef.getModalBody().find('#freigabe').prop('checked');
+		    if(data.antrag_str === '') {
+			alert(gt('Bitte geben Sie eine Straße für den Antrag an'));
+			return false;
+                    }
+		    if ((data.email === '') && (data.adfc_mail_contact || data.newsletter || data.adfc_all)) {
+			alert(gt('Bitte geben Sie eine eMail-Adresse an'));
+			return false;
+                    }
 		    dialogRef.close();
 		    nextCb(data);
 		}
