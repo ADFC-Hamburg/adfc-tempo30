@@ -7,9 +7,10 @@ define('tempo30/app/antrag', [
     'tempo30/view/fehler_melden_dialog',
     'tempo30/view/download_dialog',
     'tempo30/app/create-word',
-    'tempo30/view/wie_geht_es_weiter_dialog'
+    'tempo30/view/wie_geht_es_weiter_dialog',
+    'tempo30/view/bmu_daten_anfrage'
     //
-], function ($, version, step1dialog, step2dialog, step3dialog, errorDialog, step4dialog, createWord, step5dialog) {
+], function ($, version, step1dialog, step2dialog, step3dialog, errorDialog, step4dialog, createWord, step5dialog, bmuDatenAnfrage) {
 
     function nominatimSearch(str, nr) {
 	var baseUrl='https://nominatim.openstreetmap.org/search';
@@ -115,7 +116,19 @@ define('tempo30/app/antrag', [
 	});
     }
     function step4(data) {
-	step4dialog(data, step3, step5).open();
+	var dlg=function (data) {
+	    step4dialog(data, step3, step5).open();
+	};
+	if (
+	    ((data.laerm_nacht.length===0) && (data.laerm_tag.length===0)) ||
+	    (data.luftdaten.length===0) 
+	   ) {
+	    
+	    bmuDatenAnfrage(data,dlg).open();
+	} else {
+	    dlg(data);
+	}
+
     }
     function step5(data) {
 	console.log(data);
