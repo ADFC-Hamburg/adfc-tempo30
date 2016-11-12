@@ -31,6 +31,14 @@ define('tempo30/view/download_dialog', [
 		    data.adfc_anschrift = dialogRef.getModalBody().find('#strasse').prop('checked');
 		    data.adfc_map = dialogRef.getModalBody().find('#position').prop('checked');
 		    data.adfc_all = dialogRef.getModalBody().find('#freigabe').prop('checked');
+		    if(data.antrag_str === '') {
+			alert(gt('Bitte geben Sie eine Straße für den Antrag an'));
+			return false;
+                    }
+		    if ((data.email === '') && (data.adfc_mail_contact || data.newsletter || data.adfc_all)) {
+			alert(gt('Bitte geben Sie eine eMail-Adresse an'));
+			return false;
+                    }
 		    dialogRef.close();
 		    nextCb(data);
 		}
@@ -44,8 +52,8 @@ define('tempo30/view/download_dialog', [
                 gt('Ihr Name (optional):')+
 		'<input type="text" id="name" class="form-control">\n'+
 		'<div class="checkbox"><label><input type="checkbox" id="newsletter" value="">Ich möchte den ADFC Newsletter erhalten</label></div>'+
-		'<div class="checkbox"><label><input type="checkbox" id="adfc" value="">Der ADFC darf meine E-Mailaddresse speichern und mich für Rückfragen zum Antrag kontaktieren und statistisch auswerten (Anzahl Anträge im Bezirk / in Hamburg).</label></div>'+
-		'<div class="checkbox"><label><input type="checkbox" id="strasse" value="">Der ADFC darf meinen Namen, und die Anschrift speichern (hilfreich um z.B. Mitstreiter in der Nachbarschaft zu finden).</label></div>'+
+		'<div class="checkbox"><label><input type="checkbox" id="adfc" value="">Der ADFC darf meine E-Mailaddresse und den Bezirk speichern und mich für Rückfragen zum Antrag kontaktieren und den Antrag statistisch auswerten.</label></div>'+
+		'<div class="checkbox"><label><input type="checkbox" id="strasse" value="">Der ADFC darf meinen Namen, und die Anschrift speichern (hilfreich um z.B. (nach Rückfrage) Mitstreiter in der Nachbarschaft zu finden).</label></div>'+
 		'<div class="checkbox"><label><input type="checkbox" id="position" value="">Auf einer Tempo30-Antrags-Landkarte darf die Position des Antrags angezeigt werden (ohne Namensnennung).</label></div>'+
 		'<div class="checkbox"><label><input type="checkbox" id="freigabe" value="">Ich erlaube dem ADFC, meinen Namen, die Anschrift und E-Mail ohne Rückfrage zu veröffentlichen.</label></div>\n'+
 		gt('Ihre E-Mailaddresse:')+

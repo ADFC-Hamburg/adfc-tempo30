@@ -21,6 +21,14 @@ define('tempo30/app/antrag', [
 	    'dataType':'json'
 	});
     }
+
+    function isEmpty(obj) {
+	for (var key in obj) {
+            if (hasOwnProperty.call(obj, key)) return false;
+	}
+	return true;
+    }
+      
     function getBrowser() { 
 	if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
 	{
@@ -112,7 +120,38 @@ define('tempo30/app/antrag', [
     function step5(data) {
 	console.log(data);
 	createWord.download(data);
-	
+	var sendToAdfc={};
+
+	if (data.adfc_mail_contact || data.adfc_all) {
+	    sendToAdfc.email = data.email;
+	    sendToAdfc.bezirk = data.ort[0].bezirk_name;
+	}
+
+	if (data.adfc_anschrift || data.adfc_all) {
+	    sendToAdfc.antrag_strasse = data.antrag_str;
+	    sendToAdfc.hausnr = data.hausnr;
+	    sendToAdfc.strasse = data.str;
+	    sendToAdfc.plz = data.plz;
+	    sendToAdfc.name = data.name;
+	    sendToAdfc.bezirk = data.ort[0].bezirk_name;
+	}
+
+	if (data.adfc_map || data.adfc_all) {
+	    sendToAdfc.lat = data.lat;
+	    sendToAdfc.lon = data.lon;
+	}
+
+	if (isEmpty(sendToAdfc) === false) {
+	    sendToAdfc.newsletter = data.newsletter;
+	    sendToAdfc.saveAnschrift = data.adfc_anschrift;
+	    sendToAdfc.showInMap = data.adfc_map;
+	    sendToAdfc.noLimit = data.adfc_all;
+	    $.post('https://tools.adfc-hamburg.de/tempo30-backend/master/save.php', sendToAdfc).fail(function (e) {
+		console.error(e);
+		alert('Fehler bei der Datenübertragung zum ADFC');
+		//FIXME bessere Fehlerbehandlung!
+	    });
+	}
 	step5dialog(data, step4).open();
     }
     return start;
