@@ -8,10 +8,17 @@ define('tempo30/view/position_dialog', [
 
     'use strict';
 
-    function getDialog(data, backCb, nextCb) {
+    function getDialog(data, backCb, nextCb, errorDialog) {
 	var lat = data.lat, lon= data.lon;
 	var buttons=[
-	    {
+            {
+                id: 'btn-err',
+	        cssClass: 'btn-link adfc-antrag-btn-err',
+                label: gt('Fehler/Problem melden'),
+                action: function (dialogRef) {
+                    errorDialog('Problem mit dem Tempo30 Antrag 2', '(Schritt 2:'+JSON.stringify(data)+')').open();
+                }
+            }, {
 		id: 'back-btn',
 		label: gt('zurück'),
 		title: gt('zu Schritt 1'),
