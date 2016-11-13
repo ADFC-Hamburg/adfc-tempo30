@@ -27,7 +27,6 @@ define('tempo30/view/ortssuche_dialog', [
                 var hausnr = dialogRef.getModalBody().find('#hausnr').val();
 		var plz = dialogRef.getModalBody().find('#plz').val();
                 var tracking = dialogRef.getModalBody().find('#tracking').prop('checked');
-                debugger;
                 if (tracking) {
                     tracking = 	Math.floor(Math.random() *10000000)+1;
                 } else {

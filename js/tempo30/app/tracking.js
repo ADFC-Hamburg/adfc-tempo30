@@ -8,7 +8,6 @@ define('tempo30/app/tracking', [
     var url="https://tools.adfc-hamburg.de/tempo30-backend/master/track.php?";
     var first=0;
     function track(data, step) {
-        debugger;
         if (data.tracking === 0) {
             return;
         }
