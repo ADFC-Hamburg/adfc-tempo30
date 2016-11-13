@@ -30,7 +30,7 @@ define('tempo30/view/polizeireview_ermitteln_fehler_dialog', [
 	var dialog = new BootstrapDialog({
 	    'type': BootstrapDialog.TYPE_WARNING,
 	    'title': gt('Konnten das Polizeirevier nicht ermitteln'),
-	    'message': gt('Leider konnten wir das Polizeirevier nicht ermitteln. Wir werden an dieser Stelle im Antrag einen Platzhalter einfügen, den sie manuell ersetzen müssen. Sie finden das Polizeirevier z.B. über den <a href="'+url+'" target="_blank">Behördenfinder der Stadt Hamburg</a>. Wenn Ihre Adresse wirklich in Hamburg liegt, melden Sie uns gerne einen Fehler, damit wir unser Tool verbessern können.')+gt('Vielen Dank!'),
+	    'message': gt('Leider konnten wir das Polizeirevier nicht ermitteln. Wir werden an dieser Stelle im Antrag einen Platzhalter einfügen, den sie manuell ersetzen müssen. Sie finden das Polizeirevier z.B. über den ')+'<a href="'+url+'" target="_blank">'+gt('Behördenfinder der Stadt Hamburg')+'</a>. '+gt('Wenn Ihre Adresse wirklich in Hamburg liegt, melden Sie uns gerne einen Fehler, damit wir unser Tool verbessern können.')+gt('Vielen Dank!'),
 	    'buttons': buttons
         });
 	return dialog;
