@@ -26,6 +26,13 @@ define('tempo30/view/ortssuche_dialog', [
                 var str = dialogRef.getModalBody().find('#str').val();
                 var hausnr = dialogRef.getModalBody().find('#hausnr').val();
 		var plz = dialogRef.getModalBody().find('#plz').val();
+                var tracking = dialogRef.getModalBody().find('#tracking').prop('checked');
+                debugger;
+                if (tracking) {
+                    tracking = 	Math.floor(Math.random() *10000000)+1;
+                } else {
+                    tracking = 0;
+                }
                 if($.trim(str) === '') {
                     alert('Bitte geben Sie eine Straße an');
                     return false;
@@ -41,9 +48,9 @@ define('tempo30/view/ortssuche_dialog', [
 		dialogRef.close();
 		callback({
 		    str:str,
-		    name:name,
 		    hausnr:hausnr,
 		    plz:plz,
+                    tracking: tracking,
 		});
             }
 	}];
@@ -57,7 +64,10 @@ define('tempo30/view/ortssuche_dialog', [
                 gt('Hausnummer')+
 		'<input type="text" id="hausnr" class="form-control">\n'+
                 gt('PLZ')+
-		'<input type="text" id="plz" class="form-control">',
+		'<input type="text" id="plz" class="form-control">\n'+
+                '<div class="checkbox"><label><input type="checkbox" id="tracking" value="">'+
+                gt('Meine Surfverhalten im Tempo30-Antrag darf für Verbesserungen aufgezeichnet werden.')+
+                '</label></div>',
             'buttons': buttons,
 	    onshown: function(dialogRef){
 		dialogRef.getModalBody().find('#str').prop('disabled', true);
