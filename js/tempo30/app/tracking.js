@@ -26,6 +26,6 @@ define('tempo30/app/tracking', [
             });
 
         }
-    };
+    }
     return track;
 });
