@@ -165,12 +165,12 @@ define('tempo30/app/antrag', [
 		//FIXME bessere Fehlerbehandlung!
 	    });
 	}
-        debugger;
+
 	step5dialog(data, step4, step6, errorDialog).open();
     }
     function step6( data) {
         // do nothing
-    };
+    }
     return start;
 
 //{"str":"Cuxhavener Straße","name":"Max Mustermann","hausnr":"78","plz":"21149","lat":"53.4715402","lon":"9.90065095","antrag":["Waltershofer Straße","Cuxhavener Straße"],polizei:[{"bemerkung":"PK-Grenzen","region":"Harburg","pk":"PK 47","vd":"VD 4","polizeirev":"47","name":"PK47 Neugraben","strasse":"Neugrabener Markt 3","plz":"21149","ort":"Hamburg","tel":"040 428 65-4710"},],ort:[{"bezirk_name":"Harburg","stadtteil":"Hausbruch","ortsteilnummer":"714","bezirk":"7"},],laerm_tag:[{"klasse":"5"},],laerm_nacht:[{"klasse":"5"},],luftdaten:[{"gid":"2183","name_12":"Bundesstrae B73","no2_i1_gb":"30.15055","pm10_i1_gb":"25.4","pm25_i1_gb":"18.7","st_astext":"MULTILINESTRING((9.89456688524801 53.4717257209532,9.89706589630153 53.4716198843808,9.89755441490041 53.4715843238093,9.89812061423444 53.4715334425004,9.89875985895506 53.4714404078619))","st_distance":"4.47805368471465"},]}
