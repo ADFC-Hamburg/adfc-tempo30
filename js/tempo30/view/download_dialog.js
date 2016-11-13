@@ -7,11 +7,20 @@ define('tempo30/view/download_dialog', [
 
   'use strict';
 
-    function getDialog(data, backCb, nextCb) {	var buttons=[
+    function getDialog(data, backCb, nextCb, errorDialog) {
+	var buttons=[
+                {
+                id: 'btn-err',
+	        cssClass: 'btn-link adfc-antrag-btn-err',
+                label: gt('Fehler/Problem melden'),
+                action: function (dialogRef) {
+                    errorDialog('Problem mit dem Tempo30 Antrag 4', '(Schritt 4:'+JSON.stringify(data)+')').open();
+                }
+            },
 	    {
 		id: 'back-btn',
 		label: gt('zurück'),
-		title: gt('zu Schritt 1'),
+		title: gt('zu Schritt 3'),
 		action: function (dialogRef) {
 		    dialogRef.close();
 		    backCb(data);

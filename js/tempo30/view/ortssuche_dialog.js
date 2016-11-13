@@ -9,8 +9,15 @@ define('tempo30/view/ortssuche_dialog', [
 
   'use strict';
 
-    function getDialog(callback) {
+    function getDialog(callback, errorDialog) {
 	var buttons=[{
+            id: 'btn-err',
+	    cssClass: 'btn-link adfc-antrag-btn-err',
+            label: gt('Fehler/Problem melden'),
+            action: function (dialogRef) {
+                errorDialog('Problem mit dem Tempo30 Antrag', '(Schritt 1)').open();
+            }
+        },{
 	    id: 'btn-more',
 	    cssClass: 'btn-primary',
             label: gt('weiter'),
