@@ -126,7 +126,8 @@ define('tempo30/app/antrag', [
 	};
 	if (
 	    ((data.laerm_nacht.length===0) && (data.laerm_tag.length===0)) ||
-	    (data.luftdaten.length===0) 
+                (data.luftdaten===false)  ||
+	        (data.luftdaten.length===0) 
 	   ) {
 	    
 	    bmuDatenAnfrage(data, dlg, errorDialog).open();
