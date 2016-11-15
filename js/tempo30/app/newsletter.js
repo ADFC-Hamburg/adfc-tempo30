@@ -13,7 +13,7 @@ define('tempo30/app/newsletter', [
             .append(btn);
         
         btn.on('click', function () {
-            form.replaceWith($('<b>').text('Sie haben sich zum Newsletter angemeldet'));
+            form.replaceWith($('<b>').text('Bitte bestätigen Sie die E-Mail für den Newsletter-Empfang'));
         });
       return form;
     }

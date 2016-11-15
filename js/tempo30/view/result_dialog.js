@@ -148,7 +148,7 @@ define('tempo30/view/result_dialog', [
 			      '</td><td>'+
 			      laermNacht.description+
 			      '</td></tr>'+
-			      '<tr><td>No2</td><td>'+
+			      '<tr><td>Stickstoffdioxid NO<sub>2</sub></td><td>'+
 			      no2.val_short + 
 			      ' ('+ 
 			      no2.val_long+
@@ -158,7 +158,7 @@ define('tempo30/view/result_dialog', [
 			      '</td><td>'+
 			      no2.description+
 			      '</td></tr>'+
-			      '<td>PM2.5</td><td>'+
+			      '<td>Feinstaub PM<sub>2.5</sub></td><td>'+
 			      pm25.val_short + 
 			      ' ('+ 
 			      pm25.val_long+
@@ -168,7 +168,7 @@ define('tempo30/view/result_dialog', [
 			      '</td><td>'+
 			      pm25.description+
 			      '</td></tr>'+
-			      '<td>PM10</td><td>'+
+			      '<td>Feinstaub PM<sub>10</sub></td><td>'+
 			      pm10.val_short + 
 			      ' ('+ 
 			      pm10.val_long+
