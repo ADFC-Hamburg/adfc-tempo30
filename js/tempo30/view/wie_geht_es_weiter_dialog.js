@@ -45,8 +45,8 @@ define('tempo30/view/wie_geht_es_weiter_dialog', [
 		gt('<li>Ausdrucken</li>')+
 		gt('<li>Unterschreiben</li><li>Abschicken (sollten Sie den Antrag persönlich abgeben, zweimal ausdrucken und den Empfang auf dem einen Exemplar bestätigen lassen)</li>')+
 		gt('<li id="newsletter"></li>')+
-		gt('<li>Erzählen Sie es weiter, z.B. auf Twitter oder Facebook</li>')+ //FIXME
-		gt('<li>Bitte schreiben Sie uns, ob/wie wir den Antrags-Prozess noch besser machen können.</li>')+ //FIXME
+		gt('<li>Erzählen Sie es weiter, z.B. auf Twitter oder Facebook</li>')+
+		gt('<li>Bitte schreiben Sie uns, ob/wie wir den Antrags-Prozess noch besser machen können.</li>')+ 
                 '</ol>',
             'buttons': buttons,
 	    onshown: function(dialogRef){
