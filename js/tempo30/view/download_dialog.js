@@ -53,10 +53,10 @@ define('tempo30/view/download_dialog', [
 		}
 	    }];
 	var dialog = new BootstrapDialog({
-            'title': gt('Tempo 30 benatragen, Schritt 4: Antrag vorbereiten.'),
+            'title': gt('Tempo 30 beantragen, Schritt 4: Antrag vorbereiten.'),
             'message': gt('Noch ein Schritt, dann wird ihnen ein Antragsentwurf zu Download angeboten. Bitte ergänzen Sie folgende Daten:')+
 	        '\n\n'+
-	        gt('Straße für die Sie Tempo 30 beantragen (die Straße muss an Ihr Haus angrenzen)')+
+	        gt('Straße, für die Sie Tempo 30 beantragen (die Straße muss an Ihr Haus angrenzen)')+
 		'<input type="text" id="antrag_str" class="form-control">\n'+
                 gt('Ihr Name (optional):')+
 		'<input type="text" id="name" class="form-control">\n'+
