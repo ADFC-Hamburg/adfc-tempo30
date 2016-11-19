@@ -1,7 +1,8 @@
 define('tempo30/view/layer/luft-pm10', [
     'leaflet',
     'tempo30/view/layer/t30tmsurl',
-], function (L, mapurl) {
+    'tempo30/view/layer/bounds'
+], function (L, mapurl, bounds) {
 
     'use strict';
 
@@ -9,6 +10,9 @@ define('tempo30/view/layer/luft-pm10', [
 	layers: 'luft-pm10',
 	attribution: "Luftdaten: https://fragdenstaat.de/a/17206",
         subdomains: mapurl.subdomains,
+        bounds: bounds.bounds,
+        minZoom: bounds.minZoom,
     });
+    
     return layer;
 });
