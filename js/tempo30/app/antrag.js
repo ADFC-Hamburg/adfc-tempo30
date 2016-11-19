@@ -86,11 +86,15 @@ define('tempo30/app/antrag', [
 	console.log(data);
         track(data,'nominatim');
 	nominatimSearch(data.str, data.hausnr).done(function (d) {
-	    console.log(d);
-	    data.lat=d[0].lat;
-	    data.lon=d[0].lon;
-            track(data,'step2');
-	    step2dialog(data, step1, step3, errorDialog).open();
+            if (d.length===0) {
+                track(data,'step2strNotFound');
+                errorOccDialog('Fehler: Straße nicht gefunden', JSON.stringify(data)).open();
+            } else {
+	        data.lat=d[0].lat;
+	        data.lon=d[0].lon;
+                track(data,'step2');
+	        step2dialog(data, step1, step3, errorDialog).open();
+            }
 	}).fail(function (e) {
             track(data,'step2err');
             errorOccDialog('Fehler bei der Suche mit Nominatim', JSON.stringify(e)+JSON.stringify(data)).open();
@@ -101,6 +105,7 @@ define('tempo30/app/antrag', [
         track(data,'step3');
 	var dialog=step3dialog(data, step2, step4, errorDialog);
 	dialog.open();
+        dialog.startSpin();
 	$.ajax({
 	    'url': 'https://tools.adfc-hamburg.de/tempo30-backend/master/geodaten.php?lat='+data.lat+'&lon='+data.lon,
 	    'dataType':'json'
@@ -171,11 +176,18 @@ define('tempo30/app/antrag', [
 
 	if (isEmpty(sendToAdfc) === false) {
 	    sendToAdfc.newsletter = data.newsletter;
+            sendToAdfc.mailContact = data.adfc_mail_contact;
 	    sendToAdfc.saveAnschrift = data.adfc_anschrift;
 	    sendToAdfc.showInMap = data.adfc_map;
 	    sendToAdfc.noLimit = data.adfc_all;
             track(data,'save');                    
-	    $.post('https://tools.adfc-hamburg.de/tempo30-backend/master/save.php', sendToAdfc).fail(function (e) {
+	    $.post('https://tools.adfc-hamburg.de/tempo30-backend/master/save.php', sendToAdfc).done(function (d) {
+                if (d.startsWith('OK ') === false) {
+                    track(data,'saveErrRes');                    
+		    errorOccDialog('Fehler bei der Datenübertragung an den ADFC', d+JSON.stringify(sendToAdfc)+JSON.stringify(data)).open();
+
+                }
+            }).fail(function (e) {
                 track(data,'saveErr');                    
 		errorOccDialog('Fehler bei der Datenübertragung an tools', JSON.stringify(e)+JSON.stringify(data)).open();
 

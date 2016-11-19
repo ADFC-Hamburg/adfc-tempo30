@@ -1,3 +1,15 @@
+/* usage:
+
+   var btn = new AntragButton({onClick: function () {
+	require(['tempo30/app/antrag'], function (startAntrag) {
+	    startAntrag();
+	});
+    }});
+
+    btn.addTo(map);
+
+*/
+
 define('tempo30/view/antragButton', [
     'leaflet',
     'gettext!tempo30'

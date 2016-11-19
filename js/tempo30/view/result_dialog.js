@@ -90,7 +90,7 @@ define('tempo30/view/result_dialog', [
 	    {
 		id: 'next-btn',
 		label: gt('Antrag vorbereiten'),
-		cssClass: 'btn-primary',
+		cssClass: 'btn-disabled',
 		title: gt('Zeigt den Antragstext in einem neuen Fenster'),
 		action: function (dialogRef) {
 		    dialogRef.close();
@@ -115,6 +115,10 @@ define('tempo30/view/result_dialog', [
             },
         });
 
+        dialog.startSpin = function () {
+            dialog.getButton('next-btn').disable();
+            dialog.getButton('next-btn').spin();
+        };
 	dialog.setGeoData= function (data) {
 	    console.log(data);
 	    laermTag=getLaermResult(data.laerm_tag, grenzwerte.laerm_tag);
@@ -122,7 +126,11 @@ define('tempo30/view/result_dialog', [
 	    no2=getLuftResult(data.luftdaten, 'no2_i1_gb', grenzwerte.no2);
 	    pm10=getLuftResult(data.luftdaten,'pm10_i1_gb', grenzwerte.pm10);
 	    pm25=getLuftResult(data.luftdaten,'pm25_i1_gb', grenzwerte.pm25);
-	    dialog.setMessage('<p>Zuständig: '+
+	    dialog.setMessage('<p>Addresse: '+
+                              data.str+' '+
+                              data.hausnr+', '+
+                              data.plz+' Hamburg '+
+                              '\nZuständig: '+
 			      data.polizei[0].name+', '+
 			      data.polizei[0].strasse+', '+
 			      data.polizei[0].plz+
@@ -179,7 +187,15 @@ define('tempo30/view/result_dialog', [
 			      pm10.description+
 			      '</td></tr>'+
 			      '</table>');
-
+            dialog.getButton('next-btn').stopSpin();
+            dialog.getButton('next-btn').enable();
+            $(dialog.getButton('next-btn')).removeClass('btn-disabled').addClass('btn-primary');
+            if (((data.laerm_nacht.length===0) && (data.laerm_tag.length===0)) ||
+                (data.luftdaten===false)  ||
+	        (data.luftdaten.length===0) 
+	       ) {
+                $(dialog.getButton('next-btn')).text('weiter');
+            }
 	};
 	return dialog;
     }

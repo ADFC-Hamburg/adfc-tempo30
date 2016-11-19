@@ -8,7 +8,6 @@ define('tempo30/view/bmu_daten_anfrage', [
     'use strict';
 
     var mailadr='transparenzgesetz@bue.hamburg.de';
-    var githubUrl='https://github.com/tabacha/adfc-tempo30/issues/new';
     
     function getDialog(data, next, errorDialog) {
         
@@ -45,6 +44,19 @@ define('tempo30/view/bmu_daten_anfrage', [
                 action: function (dialogRef) {
                     errorDialog('Problem mit dem Tempo30 Antrag BMU-Dialog', '(Schritt Bmu-Dialog:'+JSON.stringify(data)+')').open();
                 }
+             },
+                 {
+                id: 'btn-mail',
+                label:'Mail an '+mailadr,
+                cssClass: 'btn-diabled',
+            },
+            {
+                id: 'fragDenStaat',
+                label: 'Zu FragDenStaat',
+                cssClass: 'btn-info',
+                action: function (dialogRef) {
+                    window.open('https://fragdenstaat.de/anfrage-stellen/an/behorde-fur-umwelt-und-energie-hamburg/', '_blank');
+                }
             },
 	    {
 		id: 'cancel-btn',
@@ -59,12 +71,13 @@ define('tempo30/view/bmu_daten_anfrage', [
 	var dialog = new BootstrapDialog({
 	    'type': BootstrapDialog.TYPE_WARNING,
 	    'title': gt('Fehlende Umweltdaten'),
-	    'message': gt('Leider fehlen uns für Ihre Position Lärm und/oder Schadstoffdaten, da diese bislang nicht veröffentlicht wurden. Sie können einen Antrag auch ohne diese Daten stellen. In diesem Fall streichen Sie einfach den Umweltdatenblock aus dem Antrag. Wir empfehlen allerdings die Daten bei der Behörde für Umwelt und Energie zu erfragen. Das sollte kostenlos sein. Dazu schicken Sie eine E-Mail an ')+
-		'<a href="mailto:'+mailadr+'?subject='+escape(subject)+'&body='+escape(msg)+'">'+mailadr+'</a> '+
-		gt('oder erstellen Sie eine Anfrage auf <a href="https://fragdenstaat.de/anfrage-stellen/an/behorde-fur-umwelt-und-energie-hamburg/" target="_blank">frag-den-staat.de</a>.')+gt('Hier ein Textvorschlag:')+'<br/><b>Betreff: </b>'+subject+'<br/><textarea id="txt" style="width:100%; height:200px;">'+msg+'</textarea></br>'+gt('Vielen Dank!'),
+	    'message': gt('Leider fehlen uns für Ihre Position Lärm und/oder Schadstoffdaten, da diese bislang nicht veröffentlicht wurden. Sie können einen Antrag auch ohne diese Daten stellen. In diesem Fall streichen Sie einfach den Umweltdatenblock aus dem Antrag. Wir empfehlen allerdings die Daten bei der Behörde für Umwelt und Energie zu erfragen. Das sollte kostenlos sein. Dazu schicken Sie eine E-Mail an die Behörde für Umwelt und Energie (')+mailadr+gt(') oder erstellen Sie eine Anfrage auf FragDenStaat.de.')+' '+gt('Hier ein Textvorschlag:')+'<br/><b>Betreff: </b>'+subject+'<br/><textarea id="txt" style="width:100%; height:200px;" readonly>'+msg+'</textarea></br>'+gt('Vielen Dank!'),
 	    'buttons': buttons,
 	    onshown: function(dialogRef){
                 dialogRef.getModalBody().find('#txt').text(msg);
+                $(dialogRef.getButton('btn-mail')).replaceWith(
+                    $('<a class="btn btn-primary">').prop("href", "mailto:"+mailadr+'&subject='+escape(subject)+'&body='+escape(msg))
+                        .text(gt('Mail an BMU')));
 	    }
         });
 	return dialog;
