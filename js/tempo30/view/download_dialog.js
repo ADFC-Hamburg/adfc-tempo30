@@ -39,12 +39,16 @@ define('tempo30/view/download_dialog', [
 		    data.adfc_mail_contact = dialogRef.getModalBody().find('#adfc').prop('checked');
 		    data.adfc_anschrift = dialogRef.getModalBody().find('#strasse').prop('checked');
 		    data.adfc_map = dialogRef.getModalBody().find('#position').prop('checked');
-		    data.adfc_all = dialogRef.getModalBody().find('#freigabe').prop('checked');
+		    data.adfc_all = false;
 		    if(data.antrag_str === '') {
 			alert(gt('Bitte geben Sie eine Straße für den Antrag an'));
 			return false;
                     }
-		    if ((data.email === '') && (data.adfc_mail_contact || data.newsletter || data.adfc_all)) {
+                    if ((data.name === '') && (data.adfc_anschrift)) {
+			alert(gt('Bitte geben Sie einen Namen an'));
+			return false;
+                    }
+		    if ((data.email === '') && (data.adfc_mail_contact || data.newsletter)) {
 			alert(gt('Bitte geben Sie eine eMail-Adresse an'));
 			return false;
                     }
@@ -60,11 +64,10 @@ define('tempo30/view/download_dialog', [
 		'<input type="text" id="antrag_str" class="form-control">\n'+
                 gt('Ihr Name (optional):')+
 		'<input type="text" id="name" class="form-control">\n'+
-		'<div class="checkbox"><label><input type="checkbox" id="newsletter" value="">Ich möchte den ADFC Newsletter erhalten</label></div>'+
-		'<div class="checkbox"><label><input type="checkbox" id="adfc" value="">Der ADFC darf meine E-Mailaddresse und den Bezirk speichern und mich für Rückfragen zum Antrag kontaktieren und den Antrag statistisch auswerten.</label></div>'+
-		'<div class="checkbox"><label><input type="checkbox" id="strasse" value="">Der ADFC darf meinen Namen, und die Anschrift speichern (hilfreich um z.B. (nach Rückfrage) Mitstreiter in der Nachbarschaft zu finden).</label></div>'+
-		'<div class="checkbox"><label><input type="checkbox" id="position" value="">Auf einer Tempo30-Antrags-Landkarte darf die Position des Antrags angezeigt werden (ohne Namensnennung).</label></div>'+
-		'<div class="checkbox"><label><input type="checkbox" id="freigabe" value="">Ich erlaube dem ADFC, meinen Namen, die Anschrift und E-Mail ohne Rückfrage zu veröffentlichen.</label></div>\n'+
+		'<div class="checkbox"><label><input type="checkbox" id="newsletter" value="">Ich möchte über Neuigkeiten zu Tempo30 informiert werden</label></div>'+
+		'<div class="checkbox"><label><input type="checkbox" id="adfc" value="" checked>Der ADFC darf meine E-Mailaddresse und den Bezirk speichern und mich für Rückfragen zum Antrag kontaktieren und den Antrag statistisch auswerten.</label></div>'+
+		'<div class="checkbox"><label><input type="checkbox" id="strasse" value="">Der ADFC darf meinen Namen, und die Anschrift speichern um z.B. (nach Rückfrage) Mitstreiter in der Nachbarschaft zu finden.</label></div>'+
+		'<div class="checkbox"><label><input type="checkbox" id="position" value="">Auf einer Tempo30-Antrags-Landkarte darf die Position des Antrags angezeigt werden (ohne Namensnennung).</label></div>\n'+
 		gt('Ihre E-Mailaddresse:')+
 		'<input type="email" id="email" class="form-control">'+
 
@@ -73,16 +76,19 @@ define('tempo30/view/download_dialog', [
 	    onshown: function(dialogRef){
 		var body=dialogRef.getModalBody();
 		body.find('#antrag_str').prop('value', data.str);
-		body.find('#email').prop('disabled', true);
 		function changeEmailStatus () {
 		    body.find('#email').prop('disabled',
 					     (!(body.find('#newsletter').prop('checked') ||
-						body.find('#adfc').prop('checked') ||
-						body.find('#freigabe').prop('checked')
+						body.find('#adfc').prop('checked') 
 					       )));
 		}
 		body.find('#newsletter').change(changeEmailStatus);
-		body.find('#adfc').change(changeEmailStatus);
+		body.find('#adfc').change( function () {
+                    if (body.find('#adfc').prop('checked') === false) {
+                        alert('Wenn Sie diesen Haken entfernen, können wir Sie nicht mehr über wichtige Ereignisse (z.B. dass man noch etwas beantragen muss, Fehler im Antragstext etc.)  benachrichtigen.');
+                    }
+                    changeEmailStatus();
+                });
 		body.find('#freigabe').change(changeEmailStatus);
 
 	    },
