@@ -90,7 +90,7 @@ define('tempo30/view/result_dialog', [
 	    {
 		id: 'next-btn',
 		label: gt('Antrag vorbereiten'),
-		cssClass: 'btn-primary',
+		cssClass: 'btn-primary btn-disabled',
 		title: gt('Zeigt den Antragstext in einem neuen Fenster'),
 		action: function (dialogRef) {
 		    dialogRef.close();
@@ -179,6 +179,8 @@ define('tempo30/view/result_dialog', [
 			      pm10.description+
 			      '</td></tr>'+
 			      '</table>');
+            debugger;
+            $(dialog.getButton('next-btn')).removeClass('btn-disabled');
 
 	};
 	return dialog;
