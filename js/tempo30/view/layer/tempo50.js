@@ -5,9 +5,10 @@ define('tempo30/view/layer/tempo50', [
 
     'use strict';
 
-    var layer = L.tileLayer(mapurl, {
+    var layer = L.tileLayer(mapurl.base, {
 	layers: 'osm-roads',
-	attribution: "Tempo50 Daten: Openstreetmap (ODbl)"
+	attribution: "Tempo50 Daten: Openstreetmap (ODbl)",
+        subdomains: mapurl.subdomains,
     });
     return layer;
 });

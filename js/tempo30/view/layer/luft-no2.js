@@ -5,9 +5,10 @@ define('tempo30/view/layer/luft-no2', [
 
     'use strict';
 
-    var layer = L.tileLayer(mapurl, {
+    var layer = L.tileLayer(mapurl.base, {
 	layers: 'luft-no2',
-	attribution: "Luftdaten: https://fragdenstaat.de/a/17206"
+	attribution: "Luftdaten: https://fragdenstaat.de/a/17206",
+        subdomains: mapurl.subdomains,
     });
     return layer;
 });
