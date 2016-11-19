@@ -190,7 +190,12 @@ define('tempo30/view/result_dialog', [
             dialog.getButton('next-btn').stopSpin();
             dialog.getButton('next-btn').enable();
             $(dialog.getButton('next-btn')).removeClass('btn-disabled').addClass('btn-primary');
-
+            if (((data.laerm_nacht.length===0) && (data.laerm_tag.length===0)) ||
+                (data.luftdaten===false)  ||
+	        (data.luftdaten.length===0) 
+	       ) {
+                $(dialog.getButton('next-btn')).text('weiter');
+            }
 	};
 	return dialog;
     }

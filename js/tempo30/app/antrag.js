@@ -176,6 +176,7 @@ define('tempo30/app/antrag', [
 
 	if (isEmpty(sendToAdfc) === false) {
 	    sendToAdfc.newsletter = data.newsletter;
+            sendToAdfc.mailContact = data.adfc_mail_contact;
 	    sendToAdfc.saveAnschrift = data.adfc_anschrift;
 	    sendToAdfc.showInMap = data.adfc_map;
 	    sendToAdfc.noLimit = data.adfc_all;
