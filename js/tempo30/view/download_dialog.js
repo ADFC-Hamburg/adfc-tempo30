@@ -85,7 +85,7 @@ define('tempo30/view/download_dialog', [
 		body.find('#newsletter').change(changeEmailStatus);
 		body.find('#adfc').change( function () {
                     if (body.find('#adfc').prop('checked') === false) {
-                        alert('Wenn Sie diesen Haken entfernen, können wir Sie nicht mehr über wichtige Ereignisse (z.B. dass man noch etwas beantragen muss, Fehler im Antragstext etc.)  benachrichtigen.');
+                        alert('Wenn Sie diesen Haken entfernen, können wir Sie nicht durch aktuelle Informationen zum Antragsverfahren unterstützen.');
                     }
                     changeEmailStatus();
                 });
