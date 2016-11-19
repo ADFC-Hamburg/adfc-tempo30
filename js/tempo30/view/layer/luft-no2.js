@@ -1,13 +1,17 @@
 define('tempo30/view/layer/luft-no2', [
     'leaflet',
     'tempo30/view/layer/t30tmsurl',
-], function (L, mapurl) {
+    'tempo30/view/layer/bounds'
+], function (L, mapurl, bounds) {
 
     'use strict';
 
-    var layer = L.tileLayer(mapurl, {
+    var layer = L.tileLayer(mapurl.base, {
 	layers: 'luft-no2',
-	attribution: "Luftdaten: https://fragdenstaat.de/a/17206"
+	attribution: "Luftdaten: https://fragdenstaat.de/a/17206",
+        subdomains: mapurl.subdomains,
+        bounds: bounds.bounds,
+        minZoom: bounds.minZoom,
     });
     return layer;
 });
