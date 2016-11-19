@@ -181,7 +181,13 @@ define('tempo30/app/antrag', [
 	    sendToAdfc.showInMap = data.adfc_map;
 	    sendToAdfc.noLimit = data.adfc_all;
             track(data,'save');                    
-	    $.post('https://tools.adfc-hamburg.de/tempo30-backend/master/save.php', sendToAdfc).fail(function (e) {
+	    $.post('https://tools.adfc-hamburg.de/tempo30-backend/master/save.php', sendToAdfc).done(function (d) {
+                if (d.startsWith('OK ') === false) {
+                    track(data,'saveErrRes');                    
+		    errorOccDialog('Fehler bei der Datenübertragung an den ADFC', d+JSON.stringify(sendToAdfc)+JSON.stringify(data)).open();
+
+                }
+            }).fail(function (e) {
                 track(data,'saveErr');                    
 		errorOccDialog('Fehler bei der Datenübertragung an tools', JSON.stringify(e)+JSON.stringify(data)).open();
 
