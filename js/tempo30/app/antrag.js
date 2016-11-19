@@ -105,6 +105,7 @@ define('tempo30/app/antrag', [
         track(data,'step3');
 	var dialog=step3dialog(data, step2, step4, errorDialog);
 	dialog.open();
+        dialog.startSpin();
 	$.ajax({
 	    'url': 'https://tools.adfc-hamburg.de/tempo30-backend/master/geodaten.php?lat='+data.lat+'&lon='+data.lon,
 	    'dataType':'json'
