@@ -86,11 +86,15 @@ define('tempo30/app/antrag', [
 	console.log(data);
         track(data,'nominatim');
 	nominatimSearch(data.str, data.hausnr).done(function (d) {
-	    console.log(d);
-	    data.lat=d[0].lat;
-	    data.lon=d[0].lon;
-            track(data,'step2');
-	    step2dialog(data, step1, step3, errorDialog).open();
+            if (d.length===0) {
+                track(data,'step2strNotFound');
+                errorOccDialog('Fehler: Straße nicht gefunden', JSON.stringify(data)).open();
+            } else {
+	        data.lat=d[0].lat;
+	        data.lon=d[0].lon;
+                track(data,'step2');
+	        step2dialog(data, step1, step3, errorDialog).open();
+            }
 	}).fail(function (e) {
             track(data,'step2err');
             errorOccDialog('Fehler bei der Suche mit Nominatim', JSON.stringify(e)+JSON.stringify(data)).open();
