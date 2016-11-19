@@ -1,9 +1,10 @@
 define('tempo30/view/layer/osm-points-offline', [
+    'jquery',
     'leaflet',
     'gettext!tempo30',
     'tempo30/model/osm-points-tags',
     'leaflet-layer-overpass',
-], function (L, gt, osmTags) {
+], function ($, L, gt, osmTags) {
    
     'use strict';
 
@@ -22,7 +23,7 @@ define('tempo30/view/layer/osm-points-offline', [
     var url= endpoint + 'interpreter',
         request = new XMLHttpRequest();
 
-    url = "data/osm-poi.json";
+    url = requirejs.toUrl('data/osm-poi.json');
 
     request.open("POST", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
