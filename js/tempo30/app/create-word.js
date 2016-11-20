@@ -35,7 +35,10 @@ define('tempo30/app/create-word', [
 			  'antwortDatum': antwortBis,
 			 }); 
             doc.render(); 
-            out=doc.getZip().generate({type:"blob"}); 
+            out=doc.getZip().generate({
+		type:"blob",
+		mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+	    });   
 	    saveAs(out,"tempo30-antrag.docx");
 	});
     }
