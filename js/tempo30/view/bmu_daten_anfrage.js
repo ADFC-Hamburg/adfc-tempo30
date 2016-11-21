@@ -42,7 +42,7 @@ define('tempo30/view/bmu_daten_anfrage', [
 	        cssClass: 'btn-link adfc-antrag-btn-err',
                 label: gt('Fehler/Problem melden'),
                 action: function (dialogRef) {
-                    errorDialog('Problem mit dem Tempo30 Antrag BMU-Dialog', '(Schritt Bmu-Dialog:'+JSON.stringify(data)+')').open();
+                    errorDialog('Problem mit dem Tempo30 Antrag BUE-Dialog', '(Schritt Bue-Dialog:'+JSON.stringify(data)+')').open();
                 }
              },
                  {
@@ -76,8 +76,8 @@ define('tempo30/view/bmu_daten_anfrage', [
 	    onshown: function(dialogRef){
                 dialogRef.getModalBody().find('#txt').text(msg);
                 $(dialogRef.getButton('btn-mail')).replaceWith(
-                    $('<a class="btn btn-primary">').prop("href", "mailto:"+mailadr+'&subject='+escape(subject)+'&body='+escape(msg))
-                        .text(gt('Mail an BMU')));
+                    $('<a class="btn btn-primary">').prop("href", "mailto:"+mailadr+'?subject='+escape(subject)+'&body='+escape(msg))
+                        .text(gt('Mail an BUE')));
 	    }
         });
 	return dialog;
