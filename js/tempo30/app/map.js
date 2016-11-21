@@ -23,7 +23,7 @@ define('tempo30/app/map', [
 	'Lärm Tag': laermTag,
 	'Lärm Nacht': laermNacht,
 	'POI': osmPoints,
-	'Luft NO<sub>2</sub>': luftNo2,
+	'Stickstoffdioxid NO<sub>2</sub>': luftNo2,
 	'Feinstaub PM<sub>10</sub>': luftPm10,
 	'Feinstaub PM<sub>2.5</sub>': luftPm25,
     };
