@@ -76,7 +76,7 @@ define('tempo30/view/bmu_daten_anfrage', [
 	    onshown: function(dialogRef){
                 dialogRef.getModalBody().find('#txt').text(msg);
                 $(dialogRef.getButton('btn-mail')).replaceWith(
-                    $('<a class="btn btn-primary">').prop("href", "mailto:"+mailadr+'?subject='+escape(subject)+'&body='+escape(msg))
+                    $('<a class="btn btn-primary" target="_blank">').prop("href", "mailto:"+mailadr+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(msg))
                         .text(gt('Mail an BUE')));
 	    }
         });
