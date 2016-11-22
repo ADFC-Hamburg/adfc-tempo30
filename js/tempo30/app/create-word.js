@@ -77,7 +77,6 @@ define('tempo30/app/create-word', [
 		type:"blob",
                 mimeType: "application/octet-stream",
 	    });
-            debugger;
             var antragDocHref=dialogRef.getModalBody().find('#antragdoc');
             var reader = new window.FileReader();
             reader.readAsDataURL(out); 
