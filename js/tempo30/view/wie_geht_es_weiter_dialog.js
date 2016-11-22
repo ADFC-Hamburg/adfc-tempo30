@@ -41,7 +41,7 @@ define('tempo30/view/wie_geht_es_weiter_dialog', [
         }
 	var dialog = new BootstrapDialog({
             'title': gt('Tempo 30 beantragen, Schritt 5: Antrag herunterladen, bearbeiten, unterschreiben und abschicken.'),
-            'message': 'Sie sollten den Antrag soeben heruntergeladen haben (Dateiname: tempo30-antrag.docx).<ol>'+
+            'message': 'Unser System hat soeben einen Download (Dateiname: tempo30-antrag.docx) angestoßen. Je nach Browsereinstellung ist der Download schon erfolgt oder Sie müssen ihm in einem Fenster noch zustimmen.<ol>'+
 		verifyMsg+
 		gt('<li>Bitte vervollständigen Sie den Antrag an den gekennzeichneten Stellen. Wollen Sie die Bearbeitung in einem Schreibprogramm vornehmen, müssen Sie den Antrag zunächst speichern.</li>')+
 		gt('<li>Ausdrucken</li>')+

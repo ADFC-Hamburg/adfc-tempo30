@@ -44,7 +44,7 @@ define('tempo30/view/fehler_global_dialog', [
              onshown: function(dialogRef){
                  dialogRef.getModalBody().find('#errtxt').text(msg);
                  $(dialogRef.getButton('btn-mail')).replaceWith(
-                     $('<a class="btn btn-primary">').prop("href", "mailto:"+mailadr+'&subject='+escape(subject)+'&body='+escape(msg))
+                     $('<a class="btn btn-primary" target="_blank">').prop("href", "mailto:"+mailadr+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(msg))
                          .text('Mail an '+mailadr));
 	    }
         });
