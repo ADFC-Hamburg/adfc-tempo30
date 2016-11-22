@@ -169,8 +169,6 @@ define('tempo30/app/antrag', [
     }
     function step5(data) {
 	console.log(data);
-        track(data,'createWord');                    
-	createWord.download(data);
 	var sendToAdfc={};
 
 	if (data.adfc_mail_contact || data.adfc_all) {
@@ -211,8 +209,20 @@ define('tempo30/app/antrag', [
 
 	    });
 	}
-        track(data,'step5');                    
-	step5dialog(data, step4, step6, errorDialog).open();
+        var browser=getBrowser();
+	if ((browser === 'iPod') || (browser === 'iPad') || (browser === 'iPhone') || (browser === 'Safari')) {
+            track(data,'safari');
+            var step5dlg= step5dialog(data, step4, step6, errorDialog, false);
+            step5dlg.open();
+            createWord.dialog(data, step5dlg);
+        } else {
+            track(data,'createWord');                    
+	    createWord.download(data);
+
+            track(data,'step5');                    
+	    step5dialog(data, step4, step6, errorDialog, true).open();
+        } 
+        
     }
     function step6( data) {
         track(data,'step6');                    

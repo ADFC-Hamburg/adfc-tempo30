@@ -7,7 +7,7 @@ define('tempo30/view/wie_geht_es_weiter_dialog', [
 
   'use strict';
 
-    function getDialog(data, backCb, nextCb,errorDialog) {
+    function getDialog(data, backCb, nextCb, errorDialog, downloadLink) {
 	var buttons=[
                 {
                 id: 'btn-err',
@@ -43,9 +43,13 @@ define('tempo30/view/wie_geht_es_weiter_dialog', [
         if (data.askFeedback) {
             askFeedback=gt("<li><b>Sie haben mit einen uns unbekannten Browser unsere Anwendung getestet. Bitte geben Sie uns Rückmeldung, indem Sie auf den Button: 'Fehler/Problem melden' klicken.</b></li>");
         }
+        var downloadMsg=gt('Unser System hat soeben einen Download (Dateiname: tempo30-antrag.docx) angestoßen. Je nach Browsereinstellung ist der Download schon erfolgt oder Sie müssen ihm in einem Fenster noch zustimmen.');
+        if (downloadLink === false) {
+            downloadMsg='Bitte laden Sie <a id="antragdoc" download="tempo30-antrag.docx">... BITTE WARTEN ...</a> herunter.';
+        }
 	var dialog = new BootstrapDialog({
             'title': gt('Tempo 30 beantragen, Schritt 5: Antrag herunterladen, bearbeiten, unterschreiben und abschicken.'),
-            'message': 'Unser System hat soeben einen Download (Dateiname: tempo30-antrag.docx) angestoßen. Je nach Browsereinstellung ist der Download schon erfolgt oder Sie müssen ihm in einem Fenster noch zustimmen.<ol>'+
+            'message': downloadMsg+'<ol>'+
 		verifyMsg+
 		gt('<li>Bitte vervollständigen Sie den Antrag an den gekennzeichneten Stellen. Wollen Sie die Bearbeitung in einem Schreibprogramm vornehmen, müssen Sie den Antrag zunächst speichern.</li>')+
 		gt('<li>Ausdrucken</li>')+
