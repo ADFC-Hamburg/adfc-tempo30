@@ -9,13 +9,13 @@ define('tempo30/view/ortssuche_dialog', [
 
   'use strict';
 
-    function getDialog(callback, errorDialog) {
+    function getDialog(data, callback, errorDialog) {
 	var buttons=[{
             id: 'btn-err',
 	    cssClass: 'btn-link adfc-antrag-btn-err',
             label: gt('Fehler/Problem melden'),
             action: function (dialogRef) {
-                errorDialog('Problem mit dem Tempo30 Antrag', '(Schritt 1)').open();
+                errorDialog('Problem mit dem Tempo30 Antrag', '(Schritt 1)'+JSON.stringify(data)).open();
             }
         },{
 	    id: 'btn-more',
@@ -45,12 +45,11 @@ define('tempo30/view/ortssuche_dialog', [
                     return false;
                 }
 		dialogRef.close();
-		callback({
-		    str:str,
-		    hausnr:hausnr,
-		    plz:plz,
-                    tracking: tracking,
-		});
+                data.str=str;
+                data.hausnr=hausnr;
+                data.plz=plz;
+                data.tracking=tracking;
+		callback(data);
             }
 	}];
 

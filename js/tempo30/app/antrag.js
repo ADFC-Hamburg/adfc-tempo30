@@ -13,8 +13,9 @@ define('tempo30/app/antrag', [
     'tempo30/view/polizeireview_ermitteln_fehler_dialog',
     'gettext!tempo30',
     'tempo30/app/tracking',
+    'tempo30/view/browser_warnung_dialog',
     //
-], function ($, version, step1dialog, step2dialog, step3dialog, errorDialog, errorOccDialog, step4dialog, createWord, step5dialog, bmuDatenAnfrage, polizeiRvErr, gt, track) {
+], function ($, version, step1dialog, step2dialog, step3dialog, errorDialog, errorOccDialog, step4dialog, createWord, step5dialog, bmuDatenAnfrage, polizeiRvErr, gt, track, browserWarnungDialog) {
 
     function nominatimSearch(str, nr) {
 	var baseUrl='https://nominatim.openstreetmap.org/search';
@@ -39,6 +40,22 @@ define('tempo30/app/antrag', [
 	{
             return 'Opera';
 	} 
+	else if(navigator.userAgent.indexOf("iPad") !== -1 )
+	{
+            return 'iPad';
+	}
+	else if(navigator.userAgent.indexOf("iPod") !== -1 )
+	{
+            return 'iPod';
+	}
+        else if(navigator.userAgent.indexOf("iPhone") !== -1 )
+	{
+            return 'iPhone';
+	}
+        else if(navigator.userAgent.indexOf("Android") !== -1 )
+	{
+            return 'Android';
+	}
 	else if(navigator.userAgent.indexOf("Chromium") !== -1 )
 	{
             return 'Chromium';
@@ -64,22 +81,23 @@ define('tempo30/app/antrag', [
 	    return 'unknown';
 	}
     }
+    function doNothing() {
+    }
     function start() {
 	var browser= getBrowser();
 
-	if (browser === 'Safari') {
-	    alert(gt('Es gibt ein Problem mit dem Safari Browser. Bitte benutzen Sie Chrome oder Firefox.'));
-
-	} else if ((browser !== 'Chrome') && (browser !== 'Firefox')) {
-	    alert(gt('Ihr Browser wird evtl. nicht unterstützt. Sicher getestet sind: Firefox, Chrome und Chromium. Testen Sie gerne die Anwendung und geben Sie uns Rückmeldung ob es funktioniert hat. Insbesondere der Download des Word-Dokuments kann evtl. fehlschlagen.'));
-
-	    step1();
+	if ((browser === 'iPod') || (browser === 'iPad') || (browser === 'iPhone')) {
+            browserWarnungDialog.ios({}, step1, doNothing).open();
+	} else if ((browser === 'Safari')) {
+            browserWarnungDialog.safari({}, step1, doNothing).open();
+        } else if ((browser !== 'Chrome') && (browser !== 'Chromium') && (browser !== 'Firefox')) {
+            browserWarnungDialog.unknown({}, step1, doNothing).open();
 	} else {
-	    step1();
+	    step1({});
 	}
     }
-    function step1() {
-	step1dialog(step2, errorDialog).open();
+    function step1(data) {
+	step1dialog(data, step2, errorDialog).open();
     }
     
     function step2(data) {
