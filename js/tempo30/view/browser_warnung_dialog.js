@@ -49,9 +49,12 @@ define('tempo30/view/browser_warnung_dialog', [
     
     function safariDialog(data, cbNext, cbCancel) {
         return getDialog(data, cbNext, cbCancel,
-                         'Unter Safari funktioniert dieses Antragswerkzeug nicht.',
-                         'Unter Safari mit MacOS funktioniert dieses Antragswerkzeug nicht. Verwenden '+
-                         'Sie bitte z. B. mit Firefox oder Chrome.',
+                         'Unter Safari funktioniert dieses Antragswerkzeug nicht immer.',
+                         'Unter Safari mit MacOS funktioniert dieses Antragswerkzeug nicht immer. Verwenden '+
+                         'Sie bitte z. B. mit Firefox oder Chrome.\n'+
+                         'Sie können uns helfen und Ihren Browser testen und uns im Anschluß das Ergebniss zussenden.\n'+
+                         'Bitte erwähnen Sie dabei folgenden Browser-Identifkations-String\n<pre readonly>'+
+                         navigator.userAgent+'</pre>',
                          'trotzdem probieren'
                         );
     }
