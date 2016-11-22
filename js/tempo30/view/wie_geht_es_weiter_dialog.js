@@ -41,7 +41,7 @@ define('tempo30/view/wie_geht_es_weiter_dialog', [
         }
         var askFeedback="";
         if (data.askFeedback) {
-            askFeedback=gt("<li><b>Sie haben mit einen uns unbekannten Browser unsere Anwendung getestet. Bitte geben Sie uns Rückmeldung, indem Sie auf den Button: 'Fehler/Problem melden' klicken.</b></li>");
+            askFeedback=gt("<li><b>Sie haben mit einem uns unbekannten Browser unsere Anwendung getestet. Bitte geben Sie uns Rückmeldung, indem Sie auf den Button: 'Fehler/Problem melden' klicken.</b></li>");
         }
         var downloadMsg=gt('Unser System hat soeben einen Download (Dateiname: tempo30-antrag.docx) angestoßen. Je nach Browsereinstellung ist der Download schon erfolgt oder Sie müssen ihm in einem Fenster noch zustimmen.');
         if (downloadLink === false) {
