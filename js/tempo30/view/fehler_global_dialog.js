@@ -12,7 +12,9 @@ define('tempo30/view/fehler_global_dialog', [
     var githubUrl='https://github.com/tabacha/adfc-tempo30/issues/new';
     function getDialog(subject, msg, title, startmsg) {
         subject = '('+version.revision+') '+subject;
-        msg = msg+' Version:'+version.revision;
+        msg = msg+' Version:'+version.revision+'\n';
+        msg = msg+' Browser-Agent String:'+navigator.userAgent+'\n';
+        
 	var buttons=[
             {
                 id: 'btn-mail',
