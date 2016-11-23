@@ -15,6 +15,10 @@ define('tempo30/app/create-word', [
 	    var datum = new Date();
 	    datum.setDate(datum.getDate()+30);
 	    var antwortBis = datum.getDate()+ "." + (datum.getMonth()+ 1)+"." + datum.getFullYear();
+            var luft= '-';
+            if (data.luftdaten.length >0) {
+                luft=Number(data.luftdaten[0].st_distance).toFixed(1);
+            }
             doc.setData( {'AntragStr':data.antrag_str,
 			  'Name': data.name,
 			  'Bezirk':data.ort[0].bezirk_name,
@@ -25,9 +29,11 @@ define('tempo30/app/create-word', [
 			  'PolizeiStr':data.polizei[0].strasse,
 			  'PolizeiPLZ':data.polizei[0].plz,
 			  'PolizeiOrt':'Hamburg',
-			  'NO2':data.umweltdaten.no2.val_short,
-			  'PM10':data.umweltdaten.pm10.val_short,
-			  'PM25':data.umweltdaten.pm25.val_short,
+			  'NO2': data.umweltdaten.no2.val_short,
+			  'PM10': data.umweltdaten.pm10.val_short,
+			  'PM25': data.umweltdaten.pm25.val_short,
+                          'entfernungLuft': luft,
+                          'Grenzwertueberschreitungen': '',
 			  'LaermTagKl':data.umweltdaten.laerm_tag.val_short,
 			  'LaermNachtKl': data.umweltdaten.laerm_nacht.val_short,
 			  'LaermTagWertebereich': data.umweltdaten.laerm_tag.val_long,
