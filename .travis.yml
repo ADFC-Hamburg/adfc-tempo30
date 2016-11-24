@@ -12,8 +12,9 @@ script:
 - mkdir $TRAVIS_BUILD_DIR/dist/css/screen.css
 
 before_install:
-- openssl aes-256-cbc -K $encrypted_b5c1912d5163_key -iv $encrypted_b5c1912d5163_iv
-  -in travis-ssh-key.enc -out travis-ssh-key -d
+- if [[ $TRAVIS_PULL_REQUEST == "false" ]] ; then 
+  openssl aes-256-cbc -K $encrypted_b5c1912d5163_key -iv $encrypted_b5c1912d5163_iv
+  -in travis-ssh-key.enc -out travis-ssh-key -d ; fi
 
 addons:
   ssh_known_hosts:
