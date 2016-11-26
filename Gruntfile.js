@@ -51,8 +51,8 @@ module.exports = function(grunt) {
 		files: [
                     {expand: true, 
                      flatten: false, 
-                     src: ['index.html', 
-			   'antrag.html',
+                     src: [
+			   '*.html',
                            'validator-test.html',
                            'lib/**',
                            'css/generated.css*',
@@ -134,6 +134,15 @@ module.exports = function(grunt) {
                     exclude: ['jquery', 'bootstrap'],
 		},
 	    },
+	    antragEdit: {
+		options: {
+	  	    baseUrl: 'js',
+                    mainConfigFile: 'js/common.js',
+                    out: 'dist/tempo30/app/antragEdit.js',
+                    name: 'tempo30/app/antragEdit',
+                    exclude: ['jquery', 'bootstrap'],
+		}
+	    },	
 	    update_overpass: {
                 options: {
                     baseUrl: 'js',

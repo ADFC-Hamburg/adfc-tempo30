@@ -13,6 +13,7 @@ requirejs.config({
         'leafletmarker': '../lib/leaflet.markercluster/dist/leaflet.markercluster',
         'leaflethash': '../lib/leaflet-hash/leaflet-hash',
         'normalize': '../lib/require-less/normalize',
+        'css-builder': '../lib/require-css/css-builder',
         'lessc': '../lib/require-less/lessc',
         'less': '../lib/require-less/less',
         'css': '../lib/require-css/css',
