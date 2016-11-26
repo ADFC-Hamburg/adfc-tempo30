@@ -97,7 +97,7 @@ define('tempo30/view/antragEditView', [
             hideIfInArray(div, statusVal, arr, 'widerspruchEingang');
             arr.push('widerspruch');
             hideIfInArray(div, statusVal, arr, 'widerspruchAntwort');
-            arr.push('widerspruch-postiv');
+            arr.push('widerspruch-positiv');
             arr.push('widerspruch-abgelehnt');
             hideIfInArray(div, statusVal, arr, 'klageDatum');
             arr.push('klage');
