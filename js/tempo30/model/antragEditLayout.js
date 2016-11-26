@@ -18,14 +18,17 @@ define('tempo30/model/antragEditLayout', [
                 id: 'vorbereitung',
                 text: gt('Der Antrag ist noch nicht abgeschickt.')
             },{
+                id: 'abgeschickt',
+                text: gt('Der Antrag ist abgeschickt, noch keine Entscheidung')
+            },{
                 id: 'doch_nicht',
-                text: gt('Der Antrag ist abgeschickt, noch keine Antwort')
+                text: gt('Ich will im Moment doch keinen Antrag stellen')
             },{
                 id: 'antrag-positiv',
-                text: gt('Mein Antrag wurde erfolgreich beantwortet.')
+                text: gt('Mein Antrag wurde erfolgreich entschieden.')
             },{
                 id: 'antrag-negativ',
-                text: gt('Der Antrag wurde abgelehnt')
+                text: gt('Der Antrag wurde abgelehnt, bislang kein Widerspruch eingelegt')
             },{
                 id: 'widerspruch',
                 text: gt('Ich habe Widerspurch gegen eine ablehende Antwort eingelgt')
@@ -69,12 +72,16 @@ define('tempo30/model/antragEditLayout', [
             label: gt('Wann ging der Widerspruch bei der Behörde ein?')
         },{
             type: 'datepicker',
-            id: 'widerspruchEingang',
-            label: gt('Wann ging der Widerspruch bei der Behörde ein?')
+            id: 'widerspruchAntwort',
+            label: gt('Wann wurde auf den Widerspruch geantwortet?')
         },{
             type: 'datepicker',
-            id: 'widerspruchAntwort',
-            label: gt('Wann wurde der Widerspruch beantwortet?')
+            id: 'klageDatum',
+            label: gt('Wann wurde Klage eingereicht?')
+        },{
+            type: 'datepicker',
+            id: 'urteilDatum',
+            label: gt('Wann wurde das Urteil gesprochen?')
         },{
             type: 'button',
             subtype: 'save',
@@ -83,6 +90,11 @@ define('tempo30/model/antragEditLayout', [
         id: 'bestandsDaten',
         headline: gt('Hier können Sie Ihre Daten noch einmal ansehen und ggf. ändern/korrigieren'),
         elements: [{
+            type: 'text',
+            subtype: 'text',
+            id: 'name',
+            label: gt('Ihr Name'),
+        },{
             type: 'text',
             subtype: 'email',
             id: 'email',

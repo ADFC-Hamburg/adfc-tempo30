@@ -25,31 +25,31 @@ define('tempo30/view/antragEditView', [
             );
         },
         'datepicker': function (element) {
-            var input=$('<input type="text" class="form-control">').prop('id',element.id);
+            var input=$('<input type="text" class="form-control">')
             input.datepicker({
                 language: "de",
                 format: "dd.mm.yyyy",
                 todayBtn: "linked",
                 orientation: "left"
             });
-            return $('<div class="form-group">')
-                .append($('<label>').prop('for',element.id).text(element.label))
+            return $('<div class="form-group">').attr('for',element.id)
+                .append($('<label>').attr('for',element.id).text(element.label))
                 .append(input);
             
         },
         'text': function (element) {
-            return $('<div class="form-group">')
-                .append($('<label>').prop('for',element.id).text(element.label))
+            return $('<div class="form-group">').attr('for',element.id)
+                .append($('<label>').attr('for',element.id).text(element.label))
                 .append($('<input type="text" class="form-control">').prop('id',element.id));
         },
         'select': function (element) {
-            var div=$('<div class="form-group">');
+            var div=$('<div class="form-group">').attr('for',element.id);
             var selectDiv= $('<select class="form-control">').prop('id',element.id);
             $.each(element.options, function (index,option) {
                 selectDiv.append($('<option>').prop('value', option.id).text(option.text));
             });
 
-            div.append($('<label>').prop('for',element.id).text(element.label))
+            div.append($('<label>').attr('for',element.id).text(element.label))
                 .append(selectDiv);
             return div;
         }
@@ -59,20 +59,52 @@ define('tempo30/view/antragEditView', [
             sectionDiv.append(viewElements[element.type](element));
         });
     }
+
+    function hideIfInArray(div, statusVal, array, id) {
+        var ele=div.find('.form-group[for='+id+']');
+        var found=false;
+        $.each(array, function (idx, ele) {
+            if (ele===statusVal) {
+                found = true;
+            }
+        });
+        if (found)  {
+            ele.hide();
+        } else {
+            ele.show();
+        }
+    }
     function getView() {
         var div = $('<div>');
         function appendSection(idx,section) {
-            var sectionDiv=$('<div class="section">').prop('id','section_'+section.id).prop('idx',idx);
+            var sectionDiv=$('<div class="section">').prop('id','section_'+section.id).attr('idx',idx);
             div.append($('<h3>').text(section.headline));
             appendElements(sectionDiv, section.elements);
             div.append(sectionDiv);
         }
         $.each(layout, appendSection);
 
-        $('#status').click(function(){
-            alert($('#status').val());
-        });
-
+        function enableDisableBoxes() {
+            var statusVal=div.find('#status').val();
+            var arr=['vorbereitung', 'doch_nicht']
+            hideIfInArray(div, statusVal, arr, 'antragEingang');
+            hideIfInArray(div, statusVal, arr, 'kostenBezahlt');
+            hideIfInArray(div, statusVal, arr, 'kostenErwartet');
+            arr.push('abgeschickt');
+            hideIfInArray(div, statusVal, arr, 'antwortAufAntragEingang');
+            arr.push('antrag-positiv');
+            arr.push('antrag-negativ');
+            hideIfInArray(div, statusVal, arr, 'widerspruchEingang');
+            arr.push('widerspruch');
+            hideIfInArray(div, statusVal, arr, 'widerspruchAntwort');
+            arr.push('widerspruch-postiv');
+            arr.push('widerspruch-abgelehnt');
+            hideIfInArray(div, statusVal, arr, 'klageDatum');
+            arr.push('klage');
+            hideIfInArray(div, statusVal, arr, 'urteilDatum');
+        }
+        div.find('#status').change(enableDisableBoxes);
+        enableDisableBoxes();
         
         return div;
     }
