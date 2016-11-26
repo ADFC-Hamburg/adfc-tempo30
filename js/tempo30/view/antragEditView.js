@@ -25,7 +25,7 @@ define('tempo30/view/antragEditView', [
             );
         },
         'datepicker': function (element) {
-            var input=$('<input type="text" class="form-control">')
+            var input=$('<input type="text" class="form-control">');
             input.datepicker({
                 language: "de",
                 format: "dd.mm.yyyy",
@@ -86,7 +86,7 @@ define('tempo30/view/antragEditView', [
 
         function enableDisableBoxes() {
             var statusVal=div.find('#status').val();
-            var arr=['vorbereitung', 'doch_nicht']
+            var arr=['vorbereitung', 'doch_nicht'];
             hideIfInArray(div, statusVal, arr, 'antragEingang');
             hideIfInArray(div, statusVal, arr, 'kostenBezahlt');
             hideIfInArray(div, statusVal, arr, 'kostenErwartet');
