@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>ADFC Hamburg Tempo 30 Antrag</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="http-equiv" content="Content-type: text/html; charset=UTF-8"/>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="css/generated.css" />
+  <link rel="stylesheet" href="css/screen.css" />
+</head>
+<body>
+  <h1>Tempo 30 Antrag</h1>
+  <p>Dies ist eine Testseite fuer den Tempo30-Antrag. Sie ist nur für Tester des ADFCs konzipiert.
+    Die lauffähige Version des Tools finden Sie unter:
+    <a href="http://hamburg.adfc.de/verkehr/themen-a-z/tempo-30/laeuft/ihr-antrag-fuer-tempo-30/">
+      http://hamburg.adfc.de/
+      </a>
+  </p>
+
+  <h6>Bitte warten...</h6>
+  
+    <script src="lib/requirejs/require.js"></script>
+    <script> 
+      var doit=function () {
+         alert('Error on load');
+      };
+      requirejs(['./js/common'], function (common) {
+         requirejs(['tempo30/app/antragEdit'], function (start) {
+             start();
+         });
+      });
+    </script>
+</body>
+</html>

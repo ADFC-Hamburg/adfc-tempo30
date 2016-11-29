@@ -40,10 +40,14 @@ define('tempo30/view/browser_warnung_dialog', [
     }
     function iosDialog(data, cbNext, cbCancel) {
         return getDialog(data, cbNext, cbCancel,
-                         'Unter IOS funktioniert dieses Antragswerkzeug nicht.',
-                         'Unter IOS funktioniert dieses Antragswerkzeug nicht. Verwenden Sie bitte einen '+
-                         'Computer z.B. mit Mac OS und Firefox oder einen Windows/Linux Rechner mit Chrome oder Firefox.',
-                         'trotzdem probieren'
+                         'Unter IOS gibt es probleme mit dem Antragswerkzeug',
+                         'Manche Benutzer haben Unter IOS Probleme mit diesem Antragswerkzeug. Verwenden Sie bitte einen '+
+                         'Computer z.B. mit Mac OS und Firefox oder einen Windows/Linux Rechner mit Chrome oder Firefox.\n'+
+                         'Sie können uns helfen und Ihren Browser testen und uns im Anschluß das Ergebniss zussenden.\n'+
+                         'Bitte erwähnen Sie dabei folgenden Browser-Identifkations-String\n<pre readonly>'+
+                         navigator.userAgent+'</pre>',
+
+                         'ich probiere es aus'
                         );
     }
     
@@ -51,11 +55,11 @@ define('tempo30/view/browser_warnung_dialog', [
         return getDialog(data, cbNext, cbCancel,
                          'Unter Safari funktioniert dieses Antragswerkzeug nicht immer.',
                          'Unter Safari mit MacOS funktioniert dieses Antragswerkzeug nicht immer. Verwenden '+
-                         'Sie bitte z. B. mit Firefox oder Chrome.\n'+
+                         'Sie bitte z. B. mit Firefox oder Chrome wenn Sie Probleme haben.\n'+
                          'Sie können uns helfen und Ihren Browser testen und uns im Anschluß das Ergebniss zussenden.\n'+
                          'Bitte erwähnen Sie dabei folgenden Browser-Identifkations-String\n<pre readonly>'+
                          navigator.userAgent+'</pre>',
-                         'trotzdem probieren'
+                         'ich probiere es aus'
                         );
     }
     

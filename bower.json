@@ -23,5 +23,10 @@
     "leaflet.markercluster": "0.4.0",
     "requirejs": "~2.3.1",
     "requirejs-plugins": "~1.0.3"
+  },
+  "devDependencies": {
+    "bootstrap-datepicker": "~1.6.4",
+    "require-css": "~0.1.8",
+    "require-less": "~0.1.5"
   }
 }
