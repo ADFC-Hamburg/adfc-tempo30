@@ -52,20 +52,20 @@ define('tempo30/model/grenzwerte', [
     var no = { 
 	'undef': [img_undef, 'Keine Daten', 'Wir haben keine Stickoxid Daten für diese Position'],
 	0: [ img_lachend, '<31', 'Es ist wenig Stickoxid hier zu finden. Kein Grund einen Antrag zu stellen.'],
-	31: [img_neutral, '>31', 'Der Grenzwert von 40 mg wurde noch nicht erreicht, es ist aber schon viel Stickoxid in der Luft. Mit einem Antrag kann man erreichen, dass die Straßenverkehrsbehörde das ganze genauer prüfen muss.'],
-	40: [img_boese,'>40', 'Der Grenzwert von 40 mg wurde erreicht oder überschritten. Die Straßenverkehrsbehörde ist zum Einschreiten verpflichtet.']
+	31: [img_neutral, '>31', 'Der Grenzwert von 40 &mu;g wurde noch nicht erreicht, es ist aber schon viel Stickoxid in der Luft. Mit einem Antrag kann man erreichen, dass die Straßenverkehrsbehörde das ganze genauer prüfen muss.'],
+	40: [img_boese,'>40', 'Der Grenzwert von 40 &mu;g wurde erreicht oder überschritten. Die Straßenverkehrsbehörde ist zum Einschreiten verpflichtet.']
     };
     var pm10 = { 
 	'undef': [img_undef, 'Keine Daten', 'Wir haben keine Feinstaubdaten für diese Position'],
 	0: [ img_lachend, '<20', 'Es ist wenig Feinstaub hier zu finden. Kein Grund einen Antrag zu stellen.'],
-	20: [img_neutral, '>20', 'Der Grenzwert von 40 mg wurde noch nicht erreicht, es ist aber schon viel Feinstaub in der Luft. Mit einem Antrag kann man erreichen, dass die Straßenverkehrsbehörde das ganze genauer prüft.'],
-	40: [img_boese,'>40', 'Der Grenzwert von 40 mg wurde erreicht oder überschritten. Die Straßenverkehrsbehörde ist zum Einschreiten verpflichtet.']
+	20: [img_neutral, '>20', 'Der Grenzwert von 40 &mu;g wurde noch nicht erreicht, es ist aber schon viel Feinstaub in der Luft. Mit einem Antrag kann man erreichen, dass die Straßenverkehrsbehörde das ganze genauer prüft.'],
+	40: [img_boese,'>40', 'Der Grenzwert von 40 &mu;g wurde erreicht oder überschritten. Die Straßenverkehrsbehörde ist zum Einschreiten verpflichtet.']
     };
     var pm25 = { 
 	'undef': [img_undef, 'Keine Daten', 'Wir haben keine Feinstaubdaten für diese Position'],
 	0: [ img_lachend, '<16', 'Es ist wenig Feinstaub hier zu finden. Kein Grund einen Antrag zu stellen.'],
-	16: [img_neutral, '>16', 'Der Grenzwert von 20 mg wurde noch nicht erreicht, es ist aber schon viel Feinstaub in der Luft. Mit einem Antrag kann man erreichen, dass die Straßenverkehrsbehörde das ganze genauer prüft. Insbesondere da ab 2020 ein Grenzwerte von 20 mg gelten würde und Sie dann zum einschreiten verpflichtet wäre.'],
-	25: [img_boese,'>25', 'Der Grenzwert von 25 mg wurde erreicht oder überschritten. Die Straßenverkehrsbehörde ist zum Einschreiten verpflichtet.']
+	16: [img_neutral, '>16', 'Der Grenzwert von 25 &mu;g wurde noch nicht erreicht, es ist aber schon viel Feinstaub in der Luft. Mit einem Antrag kann man erreichen, dass die Straßenverkehrsbehörde das ganze genauer prüft. Insbesondere da ab 2020 ein Grenzwerte von 20 &mu;g gelten würde und Sie dann zum einschreiten verpflichtet wäre.'],
+	25: [img_boese,'>25', 'Der Grenzwert von 25 &mu;g wurde erreicht oder überschritten. Die Straßenverkehrsbehörde ist zum Einschreiten verpflichtet.']
     };
 
     var grenzwerte={
