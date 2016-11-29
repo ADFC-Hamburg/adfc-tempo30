@@ -10,6 +10,8 @@ define('tempo30/app/antragEdit', [
     'use strict';
 
     function start() {
+        var anker = window.location.hash;
+        console.log(anker);
         antragEditView().replaceAll('h6:first');
     }
     return start;

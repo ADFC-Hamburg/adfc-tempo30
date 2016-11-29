@@ -9,13 +9,12 @@ define('tempo30/app/antrag', [
     'tempo30/view/download_dialog',
     'tempo30/app/create-word',
     'tempo30/view/wie_geht_es_weiter_dialog',
-    'tempo30/view/bmu_daten_anfrage',
     'tempo30/view/polizeireview_ermitteln_fehler_dialog',
     'gettext!tempo30',
     'tempo30/app/tracking',
     'tempo30/view/browser_warnung_dialog',
     //
-], function ($, version, step1dialog, step2dialog, step3dialog, errorDialog, errorOccDialog, step4dialog, createWord, step5dialog, bmuDatenAnfrage, polizeiRvErr, gt, track, browserWarnungDialog) {
+], function ($, version, step1dialog, step2dialog, step3dialog, errorDialog, errorOccDialog, step4dialog, createWord, step5dialog, polizeiRvErr, gt, track, browserWarnungDialog) {
 
     function nominatimSearch(str, nr) {
 	var baseUrl='https://nominatim.openstreetmap.org/search';
@@ -160,8 +159,15 @@ define('tempo30/app/antrag', [
                 (data.luftdaten===false)  ||
 	        (data.luftdaten.length===0) 
 	   ) {
-	    track(data,'bmu');
-	    bmuDatenAnfrage(data, dlg, errorDialog).open();
+	    track(data,'bmu-alert');
+            alert('Zu Ihrer Position liegen (evtl. zum Teil) keine Daten vor oder die Daten sind so unter der Erfassungschwelle. '+
+                  'Ein Antrag kann aber trotzdem gestellt werden, wenn man der Meinung ist persönlich unter besonderen '+
+                  'Verkehrslärm oder Luftverschmutzung zu leiden. Sie müssen im Antrag darlegen, warum Sie glauben, dass Ihre '+
+                  'Straße belastet ist. z.b. weil in der Straße wo man wohnt Kopfsteinpflaster ist oder sie Nachts häufig '+
+                  'als Abkürzung genutzt wird .. oder..\nBitte entfernen Sie den Schadstoff-Block aus Ihren Antragsvordruck.');
+             dlg(data);
+
+
 	} else {
 	    dlg(data);
 	}
