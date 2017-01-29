@@ -27,12 +27,21 @@ define('tempo30/view/layer/tempo30-antraege', [
             for(var i=0;i<data.length;i++) {
                 var e = data[i];
                 var color='blue';
+                var status='Antragstools benutzt';
+                if (e.status==='1') {
+		            color='green';
+                    status='Antrag wird doch nicht mehr gestellt';
+		        }
+		        if (e.status==='2') {
+		            color='red';
+                    status='Antrag bei Behörde gestellt';
+		        }
                 var pos = new L.LatLng(e.lat, e.lon);
                 var popup;
-                popup='<div>Nr. '+e.id+'</div>';
+                popup='<div>Nr. '+e.id+'<br>'+status+'</div>';
                 var circle = L.circle(pos, 50, {
                     color: color,
-                    fillColor: 'blue',
+                    fillColor: color,
                     fillOpacity: 0.4
                 }).bindPopup(popup);
                 opl.addLayer(circle);
