@@ -30,6 +30,10 @@ requirejs.config({
 	'jquery': {
 	    exports: '$',
 	},
+	'jqueryjquery': {
+	    deps: ['jquery'],
+	    exports: 'jquery',
+	},
         jquerycookie: {
             deps: ['jquery'],
             exports: '$.cookie',
@@ -53,11 +57,10 @@ requirejs.config({
 	    deps: ['leaflet'],
 	},
 	'bootstrap-datepicker': {
-	    deps: ['jquery'],
-	    exports: 'jquery',
+	    deps: ['jquery','bootstrap','jqueryjquery'],
 	},
 	 'bootstrap-datepicker-de': {
-	    deps: ['jquery', 'bootstrap-datepicker'],
+	    deps: ['jqueryjquery', 'bootstrap-datepicker'],
 	 }
     }
 });
