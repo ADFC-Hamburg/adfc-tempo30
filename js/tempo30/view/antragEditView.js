@@ -41,12 +41,12 @@ define('tempo30/view/antragEditView', [
         }
         return $("input[name='"+element.id+"']:checked").val();
       }
-    }
+    };
     var viewElements= {
         'button': function (element) {
           if (element.subtype=== 'save') {
             var btn=$('<button type="submit" class="btn btn-primary">')
-            .text('Speichern')
+            .text('Speichern');
             btn.click(function () {
               btn.addClass('disabled');
               var data = {};
@@ -169,7 +169,7 @@ define('tempo30/view/antragEditView', [
             var eleData=null;
             if (element.dbid) {
               eleData=data[element.dbid];
-            } else if (data[element.id] != null) {
+            } else if (data[element.id] !== undefined) {
               eleData=data[element.id];
             }
             sectionDiv.append(viewElements[element.type](element, eleData));
