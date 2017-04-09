@@ -8,6 +8,7 @@ requirejs.config({
         'bootstraptypehead': '../lib/bootstrap3-typeahead/bootstrap3-typeahead',
         'bootstrap-dialog': '../lib/bootstrap3-dialog/bootstrap-dialog.min',
         'bootstrap-datepicker': '../lib/bootstrap-datepicker/bootstrap-datepicker.min',
+	'bootstrap-datepicker-de': '../bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.de',
         'leaflet': '../lib/leaflet/leaflet',
 	'text': '../lib/requirejs-plugins/text',
         'leafletmarker': '../lib/leaflet.markercluster/dist/leaflet.markercluster',
@@ -17,6 +18,7 @@ requirejs.config({
         'lessc': '../lib/require-less/lessc',
         'less': '../lib/require-less/less',
         'css': '../lib/require-css/css',
+	'moment': '../lib/moment/moment',
 	'leaflet-layer-overpass': '../bower_components/leaflet-layer-overpass/dist/OverPassLayer',
 	'rsvp': '../node_modules/rsvp/dist/rsvp',
 	'lib': '../lib',
@@ -49,7 +51,9 @@ requirejs.config({
         },
 	'leaflet-layer-overpass': {
 	    deps: ['leaflet'],
-	}
-
+	},
+	 'bootstrap-datepicker-de': {
+	    deps: ['bootstrap-datepicker'],
+	 }
     }
 });
