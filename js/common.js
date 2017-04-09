@@ -53,10 +53,11 @@ requirejs.config({
 	    deps: ['leaflet'],
 	},
 	'bootstrap-datepicker': {
-	    exports: '$.fn.datepicker',
+	    deps: ['jquery'],
+	    exports: 'jquery',
 	},
 	 'bootstrap-datepicker-de': {
-	    deps: ['bootstrap-datepicker'],
+	    deps: ['jquery', 'bootstrap-datepicker'],
 	 }
     }
 });
