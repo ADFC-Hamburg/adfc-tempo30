@@ -52,6 +52,9 @@ requirejs.config({
 	'leaflet-layer-overpass': {
 	    deps: ['leaflet'],
 	},
+	'bootstrap-datepicker': {
+	    exports: '$.fn.datepicker',
+	},
 	 'bootstrap-datepicker-de': {
 	    deps: ['bootstrap-datepicker'],
 	 }
