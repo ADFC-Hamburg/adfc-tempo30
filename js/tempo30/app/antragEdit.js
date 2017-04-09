@@ -25,7 +25,7 @@ function getQueryVariable(variable) {
          var secret=getQueryVariable('secret');
          var loadFunc= function () {
             return     $.ajax({
-                  'url': 'https://tools.adfc-hamburg.de/tempo30-backend/test/get.php',
+                  'url': 'https://tools.adfc-hamburg.de/tempo30-backend/master/get.php',
                   'dataType':'json',
                   data:{
                     id: id,
@@ -44,7 +44,7 @@ function getQueryVariable(variable) {
               savData.id= id;
               savData.secret = secret;
               $.ajax({
-                   'url': 'https://tools.adfc-hamburg.de/tempo30-backend/test/status-update.php',
+                   'url': 'https://tools.adfc-hamburg.de/tempo30-backend/master/status-update.php',
                    'dataType': 'json',
                    'method': 'POST',
                    'data': savData
