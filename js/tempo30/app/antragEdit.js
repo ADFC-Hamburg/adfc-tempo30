@@ -32,7 +32,7 @@ function getQueryVariable(variable) {
                     secret: secret,
                   }
               });
-         }
+         };
          loadFunc().done(function (data) {
           console.log(data);
           if (data===false) {
@@ -59,7 +59,6 @@ function getQueryVariable(variable) {
                    viewDiv = antragEditView(data);
                    viewDiv.replaceAll(placeHolder);
                    viewDiv.on('save', saveFunc );
-                   debugger;
                    $('html, body').animate({
                      scrollTop:$(viewDiv).offset().top-10
                    },'slow');
