@@ -8,7 +8,8 @@ define('tempo30/view/antragEditView', [
     'tempo30/model/antragEditLayout',
     //
     'bootstrap',
-    'css!lib/bootstrap-datepicker/bootstrap-datepicker3'
+    'css!lib/bootstrap-datepicker/bootstrap-datepicker3',
+    'css!tempo30/css/datepickerfix'
 ], function ($, moment, version, errorMsgDialog, errorOccDialog, gt, layout) {
 
     'use strtict';
