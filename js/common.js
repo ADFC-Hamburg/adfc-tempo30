@@ -13,10 +13,11 @@ requirejs.config({
         'leafletmarker': '../lib/leaflet.markercluster/dist/leaflet.markercluster',
         'leaflethash': '../lib/leaflet-hash/leaflet-hash',
         'normalize': '../lib/require-less/normalize',
-        'css-builder': '../lib/require-css/css-builder',
+        'css-builder': '../bower_components/require-css/css-builder',
         'lessc': '../lib/require-less/lessc',
         'less': '../lib/require-less/less',
         'css': '../lib/require-css/css',
+	'moment': '../lib/moment/moment',
 	'leaflet-layer-overpass': '../bower_components/leaflet-layer-overpass/dist/OverPassLayer',
 	'rsvp': '../node_modules/rsvp/dist/rsvp',
 	'lib': '../lib',
@@ -27,6 +28,10 @@ requirejs.config({
     shim: {
 	'jquery': {
 	    exports: '$',
+	},
+	'jqueryjquery': {
+	    deps: ['jquery'],
+	    exports: 'jQuery',
 	},
         jquerycookie: {
             deps: ['jquery'],
@@ -49,7 +54,9 @@ requirejs.config({
         },
 	'leaflet-layer-overpass': {
 	    deps: ['leaflet'],
-	}
-
+	},
+	'bootstrap-datepicker': {
+	    deps: ['jquery','bootstrap'],
+	},
     }
 });
