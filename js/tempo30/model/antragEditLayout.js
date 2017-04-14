@@ -32,7 +32,7 @@ define('tempo30/model/antragEditLayout', [
                 text: gt('Der Antrag wurde abgelehnt, bislang kein Widerspruch eingelegt.')
             },{
                 id: '5',
-                text: gt('Ich habe Widerspurch gegen eine ablehende Antwort eingelgt.')
+                text: gt('Ich habe Widerspurch gegen eine ablehnende Antwort eingelgt.')
             },{
               id:'6',
               text: gt('Der Antrag wurde abgelehnt, ich will dagegen nichts unternehmen.')
@@ -41,16 +41,16 @@ define('tempo30/model/antragEditLayout', [
               text: gt('Der Antrag wurde abgelehnt, die Frist für einen Widerspruch ist abgelaufen.')
             },{
                 id: '9',
-                text: gt('Meinen Widerspruch wurde stattgegeben.')
+                text: gt('Meinem Widerspruch wurde stattgegeben.')
             },{
                 id: '8',
-                text: gt('Meinen Widerspruch wurde abgelehnt.')
+                text: gt('Mein Widerspruch wurde abgelehnt.')
             },{
               id: '10',
               text: gt('Ich habe wegen überschrittener Fristen Untätigkeitsklage eingereicht.')
             },{
               id: '11',
-              text: gt('Ich habe entschieden nicht gegen die Ablehnung des Widerspruchs zu Klagen.')
+              text: gt('Ich habe entschieden, nicht gegen die Ablehnung des Widerspruchs zu klagen.')
             },{
               id: '12',
               text: gt('Eine Klage gegen die Ablehnung des Widerspruchs ist nicht mehr möglich.')
@@ -78,14 +78,17 @@ define('tempo30/model/antragEditLayout', [
         {
           type: 'datepicker',
           id: 'urteildatum',
+          nachId: 'klagedatum',
           label: gt('Wann wurde das Urteil gesprochen?')
         },{
           type: 'datepicker',
           id: 'klagedatum',
+          nachId: 'widerspruchantwort',
           label: gt('Wann wurde Klage eingereicht?')
         },{
             type: 'datepicker',
             id: 'widerspruchantwort',
+            nachId: 'widersprucheingang',
             label: gt('Wann wurde auf den Widerspruch geantwortet?')
         },{
             type: 'checkbox',
@@ -94,10 +97,12 @@ define('tempo30/model/antragEditLayout', [
         },{
             type: 'datepicker',
             id: 'widersprucheingang',
+            nachId: 'antwortaufantrag',
             label: gt('Wann ging der Widerspruch bei der Behörde ein?')
         },{
             type: 'datepicker',
             id: 'antwortaufantrag',
+            nachId: 'antragdate',
             label: gt('Wann wurde Ihnen auf den Antrag geantwortet?')
         },{
             type: 'checkbox',
@@ -198,7 +203,7 @@ define('tempo30/model/antragEditLayout', [
           },]
     }, {
               id: 'interneDaten',
-              headline: gt('Diese Datgen speichern wir intern über dich, sie können nicht geändert werden'),
+              headline: gt('Diese Daten speichern wir intern über dich, sie können nicht geändert werden'),
               elements: [{
                 type: 'text',
                 id: 'id',

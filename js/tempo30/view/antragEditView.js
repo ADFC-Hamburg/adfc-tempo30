@@ -96,7 +96,7 @@ define('tempo30/view/antragEditView', [
             if (value) {
               value=value.replace(dateFromatRegEx,'$3.$2.$1');
             }
-            var input=$('<input type="text" class="form-control">')
+            var input=$('<input type="text" class="form-control datepicker">')
             .prop('id', element.id)
             .prop('value', value );
 
@@ -106,9 +106,52 @@ define('tempo30/view/antragEditView', [
                 todayBtn: "linked",
                 orientation: "left"
             });
-            return $('<div class="form-group col-sm-6">').attr('for',element.id)
-                .append($('<label>').attr('for',element.id).text(element.label))
-                .append(input);
+            var formGroup=$('<div class="form-group col-sm-6">').attr('for', element.id);
+            var helpBlock=$('<span class="help-block">').attr('for', element.id);
+            var isRegisterdNachVal=false;
+            var changeFunc= function () {
+              console.log(input.val());
+              var datumVal=moment(input.val(),"DD.MM.YYYY")
+              if (input.val() === '') {
+                formGroup.removeClass('has-error');
+                helpBlock.text('');
+              } else
+              if (datumVal.isValid()) {
+                if (datumVal.isAfter()) {
+                  formGroup.addClass('has-error');
+                  helpBlock.text('Termin liegt in der Zukunft');
+                } else {
+                  if (element.nachId) {
+                    var nachValInput=formGroup.parent().find('input#'+element.nachId);
+                    console.log(nachValInput);
+                    if ((isRegisterdNachVal === false) && (nachValInput.length >0)) {
+                      nachValInput.on('change', changeFunc);
+                      isRegisterdNachVal = true;
+                    }
+                    var nachVal=moment(nachValInput.val(), "DD.MM.YYYY");
+                    if (nachVal.isValid() && datumVal.isBefore(nachVal)) {
+                      formGroup.addClass('has-error');
+                      helpBlock.text('Liegt vor dem '+ nachValInput.val() + '!');
+                    } else {
+                      formGroup.removeClass('has-error');
+                      helpBlock.text('');
+                    }
+                  } else {
+                    formGroup.removeClass('has-error');
+                    helpBlock.text('');
+                  }
+                }
+              } else {
+                formGroup.addClass('has-error');
+                helpBlock.text('Falsches Datumsformat');
+              }
+            };
+            input.on('change', changeFunc);
+
+            return formGroup.append($('<label>').attr('for',element.id).text(element.label))
+                .append(input)
+                .append(helpBlock);
+
 
         },
         'text': function (element, value) {
@@ -174,6 +217,7 @@ define('tempo30/view/antragEditView', [
             }
             sectionDiv.append(viewElements[element.type](element, eleData));
         });
+
     }
 
     function hideIfInArray(div, statusVal, array, id) {
@@ -231,7 +275,7 @@ define('tempo30/view/antragEditView', [
         }
         div.find('input[name=status]').change(enableDisableBoxes);
         enableDisableBoxes();
-        div.find('#section_status').after($('<hr>')).after($('<div class="alert alert-info">').text('Du hast Fragen oder möchtest uns etwas mitteilen was hier im Formular keinen Raum findet? Schreibe uns an ').
+        div.find('#section_status').after($('<hr>')).after($('<div class="alert alert-info">').text('Du hast Fragen oder möchtest uns etwas mitteilen, was hier im Formular keinen Raum findet? Schreibe uns an ').
         append($('<strong>').append($('<a href="mailto:laeuft@hamburg.adfc.de?subject=Tempo30-Antrag-Daten-Id-'+data.id+'">').text('laeuft@hamburg.adfc.de')))).after($('<hr>'));
 
         if (data.lastchanged !== null) {
@@ -239,8 +283,8 @@ define('tempo30/view/antragEditView', [
           if (mLastChange.add(1,'M').isBefore()) {
             mLastChange = moment(data.lastchanged);
             div.prepend($('<div class="alert alert-warning">')
-            .text(' Die Daten wurden das letzte mal am '+mLastChange.format('DD.MM.YYYY')+
-            ' in der Datenbank aktualisiert. Bitte drücken Sie auch bei keiner Änderung auf den "Speichern" Button um uns mitzuteilen, dass es keine Änderung des Statuses gab ')
+            .text(' Die Daten wurden das letzte Mal am '+mLastChange.format('DD.MM.YYYY')+
+            ' in der Datenbank aktualisiert. Bitte drücken Sie auch bei keiner Änderung auf den "Speichern" Button um uns mitzuteilen, dass es keine Änderung des Status gab ')
             .prepend(
               $('<strong>').text('Achtung')));
           }
@@ -260,9 +304,9 @@ define('tempo30/view/antragEditView', [
           .prepend(
             $('<strong>').text('Vielen Dank')));
         }
+        div.find('input.datepicker').trigger('change');
         return div;
     }
-
     return getView;
 
 });

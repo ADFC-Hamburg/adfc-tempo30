@@ -21,7 +21,7 @@ function getQueryVariable(variable) {
   alert('Query Variable ' + variable + ' not found');
 }
     function start() {
-         var id=getQueryVariable('id');
+         var id=getQueryVariable('aid');
          var secret=getQueryVariable('secret');
          var loadFunc= function () {
             return     $.ajax({
