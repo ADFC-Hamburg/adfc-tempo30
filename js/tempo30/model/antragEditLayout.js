@@ -171,10 +171,16 @@ define('tempo30/model/antragEditLayout', [
             label: gt('Geokoordinate Latitude'),
         },{
             type: 'text',
-                  id: 'lon',
-                  dbid: 'lon',
-                  readonly: true,
-                  label: gt('Geokoordinate Longitude'),
+            id: 'lon',
+            dbid: 'lon',
+            readonly: true,
+            label: gt('Geokoordinate Longitude'),
+        },{
+            type: 'text',
+            id: 'bezirk',
+            dbid: 'bezirk',
+            readonly: true,
+            label: gt('Bezirk'),
         },
         {
               type: 'checkbox',

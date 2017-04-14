@@ -111,7 +111,7 @@ define('tempo30/view/antragEditView', [
             var isRegisterdNachVal=false;
             var changeFunc= function () {
               console.log(input.val());
-              var datumVal=moment(input.val(),"DD.MM.YYYY")
+              var datumVal=moment(input.val(),"DD.MM.YYYY");
               if (input.val() === '') {
                 formGroup.removeClass('has-error');
                 helpBlock.text('');
