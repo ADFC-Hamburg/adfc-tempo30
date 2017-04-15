@@ -97,18 +97,22 @@ define('tempo30/view/antragEditView', [
             if (value) {
               value=value.replace(dateFromatRegEx,'$3.$2.$1');
             }
-            var input=$('<input type="text" class="form-control datepicker">')
+            var input=$('<input type="text" class="form-control date-input">')
             .prop('id', element.id)
             .prop('value', value );
+            var colSm = $('<div class="col-sm-6">');
+            var formGroup=$('<div class="form-group">').attr('for', element.id);
+            var inputGroup=$('<div class="input-group date">').append(input)
+            .append($('<span class="input-group-addon">').append(
+              $('<span class="glyphicon glyphicon-calendar">')));
+            var helpBlock=$('<span class="help-block">').attr('for', element.id);
 
-            input.datepicker({
+            inputGroup.datepicker({
                 language: "de",
                 format: "dd.mm.yyyy",
                 todayBtn: "linked",
                 orientation: "left"
             });
-            var formGroup=$('<div class="form-group col-sm-6">').attr('for', element.id);
-            var helpBlock=$('<span class="help-block">').attr('for', element.id);
             var isRegisterdNachVal=false;
             var changeFunc= function () {
               console.log(input.val());
@@ -123,8 +127,7 @@ define('tempo30/view/antragEditView', [
                   helpBlock.text('Termin liegt in der Zukunft');
                 } else {
                   if (element.nachId) {
-                    var nachValInput=formGroup.parent().find('input#'+element.nachId);
-                    console.log(nachValInput);
+                    var nachValInput=colSm.parent().find('input#'+element.nachId);
                     if ((isRegisterdNachVal === false) && (nachValInput.length >0)) {
                       nachValInput.on('change', changeFunc);
                       isRegisterdNachVal = true;
@@ -149,9 +152,9 @@ define('tempo30/view/antragEditView', [
             };
             input.on('change', changeFunc);
 
-            return formGroup.append($('<label>').attr('for',element.id).text(element.label))
-                .append(input)
-                .append(helpBlock);
+            return colSm.append(formGroup.append($('<label>').attr('for',element.id).text(element.label))
+                .append(inputGroup)
+                .append(helpBlock));
 
 
         },
@@ -175,7 +178,7 @@ define('tempo30/view/antragEditView', [
                 .append(ipt);
         },
         'radio': function (element, value) {
-                var div=$('<div class="form-group col-sm-5">').attr('for',element.id);
+                var div=$('<div class="form-group col-sm-6">').attr('for',element.id);
                 div.append($('<label>').attr('for', element.id).text(element.label));
             $.each(element.options, function (index, option) {
               var radioInput=  $('<input type="radio">')
@@ -191,6 +194,9 @@ define('tempo30/view/antragEditView', [
               div.append(radioDiv);
             });
               return div;
+        },
+        'hr': function (element) {
+            return $('<div class="form-group col-sm-12">').append($('<hr>'));
         },
         'select': function (element, value) {
             var div=$('<div class="form-group">').attr('for',element.id);
@@ -305,7 +311,7 @@ define('tempo30/view/antragEditView', [
           .prepend(
             $('<strong>').text('Vielen Dank')));
         }
-        div.find('input.datepicker').trigger('change');
+        div.find('input.date-input').trigger('change');
         return div;
     }
     return getView;
