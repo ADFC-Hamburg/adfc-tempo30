@@ -14,31 +14,44 @@ define('tempo30/model/antragEditLayout', [
             type: 'radio',
             id: 'status',
             dbid: 'status',
-            label: gt('Status des Antrags'),
+            label: gt('Der Antrag ist noch nicht abgeschickt.'),
             options: [{
                 id: '0',
-                text: gt('Der Antrag ist noch nicht abgeschickt.')
-            },{
-                id: '2',
-                text: gt('Der Antrag ist abgeschickt, noch keine Entscheidung.')
+                text: gt('Ich habe den Antrag noch nicht abgeschickt.')
             },{
                 id: '1',
                 text: gt('Ich will im Moment doch keinen Antrag stellen.')
+            } ],
+          },{
+            type: 'radio',
+            id: 'status',
+            dbid: 'status',
+            label: gt('Ich habe einen Antrag gestellt.'),
+            options: [
+            {
+                id: '2',
+                text: gt('Der Antrag ist abgeschickt, noch keine Entscheidung.')
             },{
                 id: '4',
                 text: gt('Mein Antrag wurde erfolgreich entschieden.')
             },{
-                id: '3',
-                text: gt('Der Antrag wurde abgelehnt, bislang kein Widerspruch eingelegt.')
-            },{
-                id: '5',
-                text: gt('Ich habe Widerspurch gegen eine ablehnende Antwort eingelgt.')
-            },{
               id:'6',
               text: gt('Der Antrag wurde abgelehnt, ich will dagegen nichts unternehmen.')
             },{
+                id: '3',
+                text: gt('Der Antrag wurde abgelehnt, bislang kein Widerspruch eingelegt.')
+            },{
               id:'7',
               text: gt('Der Antrag wurde abgelehnt, die Frist für einen Widerspruch ist abgelaufen.')
+            }],
+          },{
+            type: 'radio',
+            id: 'status',
+            dbid: 'status',
+            label: gt('Ich habe Widerspurch eingelgt.'),
+            options: [{
+                id: '5',
+                text: gt('Ich habe Widerspurch gegen eine ablehnende Antwort eingelgt.')
             },{
                 id: '9',
                 text: gt('Meinem Widerspruch wurde stattgegeben.')
@@ -46,14 +59,20 @@ define('tempo30/model/antragEditLayout', [
                 id: '8',
                 text: gt('Mein Widerspruch wurde abgelehnt.')
             },{
-              id: '10',
-              text: gt('Ich habe wegen überschrittener Fristen Untätigkeitsklage eingereicht.')
-            },{
               id: '11',
               text: gt('Ich habe entschieden, nicht gegen die Ablehnung des Widerspruchs zu klagen.')
             },{
               id: '12',
               text: gt('Eine Klage gegen die Ablehnung des Widerspruchs ist nicht mehr möglich.')
+            },],
+          },{
+            type: 'radio',
+            id: 'status',
+            dbid: 'status',
+            label: gt('Ich klage vor Gericht.'),
+            options: [{
+              id: '10',
+              text: gt('Ich habe wegen überschrittener Fristen Untätigkeitsklage eingereicht.')
             },{
                 id: '13',
                               text: gt('Ich klage vor Gericht gegen den Bescheid.')
@@ -64,6 +83,9 @@ define('tempo30/model/antragEditLayout', [
                 id: '14',
                 text: gt('Meine Klage war erfolglos.')
             }]
+        },
+        {
+          type: 'hr',
         },/*{
             type: 'text',
             subtype: 'betrag',
