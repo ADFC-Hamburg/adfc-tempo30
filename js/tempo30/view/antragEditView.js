@@ -41,12 +41,19 @@ define('tempo30/view/antragEditView', [
           return null;
         }
         return $("input[name='"+element.id+"']:checked").val();
-      }
+      },
+      'text': function (element, section) {
+          return $("input#"+element.id).val();
+      },
+    'select': function (element, section) {
+      return $("select#"+element.id).val();
+    }
     };
     var viewElements= {
         'button': function (element) {
           if (element.subtype=== 'save') {
             var btn=$('<button type="submit" class="btn btn-primary">')
+            .attr('evT', element.trigger)
             .text('Speichern');
             btn.click(function () {
               btn.addClass('disabled');
@@ -168,14 +175,43 @@ define('tempo30/view/antragEditView', [
               if (value === null) {
                 value="0.00";
               }
+            } else if (element.subtype === 'lat')  {
+              ipt.prop('type','number')
+              .prop('step','0.00000001')
+              .prop('min', '53.1')
+              .prop('max', '53.7');
+
+              if (value === null) {
+                value="";
+              }
+            } else if (element.subtype === 'lon')  {
+              ipt.prop('type','number')
+              .prop('step','0.00000001')
+              .prop('min', '9.7')
+              .prop('max', '10.4');
+
+              if (value === null) {
+                value="";
+              }
+
+          } else if (element.subtype === 'plz')  {
+            ipt.prop('type','number')
+            .prop('step','1')
+            .prop('min', '20000')
+            .prop('max', '29999');
+
+            if (value === null) {
+              value="";
             }
+          };
             ipt.prop('value', value);
             if (element.readonly === true) {
               ipt.prop('readonly',true);
             }
             return $('<div class="form-group col-sm-6">').attr('for',element.id)
                 .append($('<label>').attr('for',element.id).text(element.label))
-                .append(ipt);
+                .append(ipt)
+                .append($('<span class="help-block">').attr('for', element.id));
         },
         'radio': function (element, value) {
                 var div=$('<div class="form-group col-sm-6">').attr('for',element.id);
@@ -199,7 +235,7 @@ define('tempo30/view/antragEditView', [
             return $('<div class="form-group col-sm-12">').append($('<hr>'));
         },
         'select': function (element, value) {
-            var div=$('<div class="form-group">').attr('for',element.id);
+            var div=$('<div class="form-group col-sm-6">').attr('for',element.id);
             var selectDiv= $('<select class="form-control">').prop('id',element.id);
             $.each(element.options, function (index, option) {
               var opt=$('<option>').prop('value', option.id).text(option.text);
@@ -312,6 +348,11 @@ define('tempo30/view/antragEditView', [
             $('<strong>').text('Vielen Dank')));
         }
         div.find('input.date-input').trigger('change');
+        div.find('input#mailcontact').change( function () {
+          if (div.find('input#mailcontact').prop('checked') === false) {
+            alert('Wenn Du diesen Haken entfernst, werden wir dir keine Nachricht mehr schicken, speichere deshalb die URL zu dieser Seite.')
+          };
+        });
         return div;
     }
     return getView;

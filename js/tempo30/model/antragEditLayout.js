@@ -9,7 +9,7 @@ define('tempo30/model/antragEditLayout', [
 
     return [{
         id: 'status',
-        headline: gt('Bitte geben Sie den Status zu Ihren Antrag an'),
+        headline: gt('Bitte gib den Status zu Deinem Antrag an'),
         elements: [{
             type: 'radio',
             id: 'status',
@@ -142,96 +142,113 @@ define('tempo30/model/antragEditLayout', [
         }],
    }, {
         id: 'bestandsDaten',
-        headline: gt('Hier kannst Du Deine Bestandsdaten noch einmal ansehen. Korrekturen und Ergänzungen bitte, zur Zeit, per E-Mail mitteilen.'),
+        headline: gt('Hier kannst Du Deine Bestandsdaten noch ansehen und ggf. ändern.'),
         elements: [{
             type: 'text',
             subtype: 'text',
             id: 'name',
             dbid: 'name',
-            readonly: true,
             label: gt('Ihr Name'),
-        },{
-            type: 'text',
-            subtype: 'email',
-            id: 'email',
-            dbid: 'email',
-            readonly: true,
-            label: gt('Ihre E-Mail Adresse'),
+          },{
+              type: 'text',
+              subtype: 'strasse',
+              id: 'antrag_strasse',
+              dbid: 'antrag_strasse',
+              label: gt('Antrag für Straße'),
         },{
             type: 'text',
             subtype: 'strasse',
             id: 'strasse',
             dbid: 'strasse',
-            readonly: true,
             label: gt('Straße (Wohnanschrift)'),
         },{
             type: 'text',
             subtype: 'hausnr',
             id: 'hausnr',
             dbid: 'hausnr',
-            readonly: true,
             label: gt('Hausnummer'),
+          },{
+              type: 'text',
+              id: 'lat',
+              subtype: 'lat',
+              dbid: 'lat',
+              label: gt('Geokoordinate Latitude'),
+          },{
+              type: 'text',
+              subtype: 'lon',
+              id: 'lon',
+              dbid: 'lon',
+              label: gt('Geokoordinate Longitude'),
         },{
             type: 'text',
             subtype: 'plz',
             id: 'plz',
             dbid: 'plz',
-            readonly: true,
             label: gt('Postleitzahl'),
         },{
-            type: 'text',
-            subtype: 'strasse',
-            id: 'antrag_strasse',
-            dbid: 'antrag_strasse',
-            readonly: true,
-            label: gt('Antrag für Straße'),
-        },{
-            type: 'text',
-            id: 'lat',
-            dbid: 'lat',
-            readonly: true,
-            label: gt('Geokoordinate Latitude'),
-        },{
-            type: 'text',
-            id: 'lon',
-            dbid: 'lon',
-            readonly: true,
-            label: gt('Geokoordinate Longitude'),
-        },{
-            type: 'text',
+            type: 'select',
             id: 'bezirk',
             dbid: 'bezirk',
-            readonly: true,
             label: gt('Bezirk'),
-        },
-        {
+            options: [{
+              id: '',
+              text: gt(' - keine Angabe - '),
+              },{
+                  id: 'Altona',
+                  text: gt('Altona'),
+                  },{
+                    id: 'Bergedorf',
+                    text: gt('Bergedorf'),
+                  },{
+                        id: 'Eimsbüttel',
+                        text: gt('Eimsbüttel'),
+                        },{
+                            id: 'Hamburg-Mitte',
+                            text: gt('Hamburg-Mitte'),
+                          },{
+                            id: 'Hamburg-Nord',
+                            text: gt('Hamburg-Nord'),
+                          },{
+                              id: 'Harburg',
+                              text: gt('Harburg'),
+                          },{
+                              id: 'Wandsbek',
+                              text: gt('Wandsbek'),
+
+
+            } ],
+
+
+        },{
+            type: 'hr',
+        },{
               type: 'checkbox',
               id: 'newsletter',
               dbid: 'newsletter',
-              readonly: true,
               label: gt('Ich möchte über Neuigkeiten zu Tempo30 informiert werden'),
           },{
-              id: 'adfc',
+              id: 'mailcontact',
               dbid: 'mailcontact',
               type: 'checkbox',
-              readonly: true,
-              label: gt('Der ADFC darf meine E-Mailaddresse und den Bezirk speichern und mich für Rückfragen zum Antrag kontaktieren und den Antrag statistisch auswerten.')
+              label: gt('Der ADFC darf mich für Rückfragen zum Antrag kontaktieren und den Antrag statistisch auswerten.')
           },{
               id: 'saveanschrift',
               dbid: 'saveanschrift',
               type: 'checkbox',
-              readonly: true,
               label: gt('Der ADFC darf meinen Namen, und die Anschrift speichern um z.B. (nach Rückfrage) Mitstreiter in der Nachbarschaft zu finden.')
           },{
-              id: 'landkarte',
+              id: 'showinmap',
               dbid: 'showinmap',
               type: 'checkbox',
-              readonly: true,
               label: gt('Auf einer Tempo30-Antrags-Landkarte darf die Position des Antrags angezeigt werden (ohne Namensnennung)')
+            },{
+                type: 'button',
+                subtype: 'save',
+                trigger: 'save-base',
           },]
     }, {
               id: 'interneDaten',
-              headline: gt('Diese Daten speichern wir intern über dich, sie können nicht geändert werden'),
+              headline: gt('Diese Daten speichern wir intern über dich, sie können nicht durch Dich geändert werden'),
               elements: [{
                 type: 'text',
                 id: 'id',
@@ -268,6 +285,13 @@ define('tempo30/model/antragEditLayout', [
               type: 'checkbox',
               readonly: true,
               label: gt('Postaddresse wurde bestätigt.')
+            },{
+                type: 'text',
+                subtype: 'email',
+                id: 'email',
+                dbid: 'email',
+                label: gt('E-Mail Adresse'),
+                readonly: true,
           },]
     }];
 
