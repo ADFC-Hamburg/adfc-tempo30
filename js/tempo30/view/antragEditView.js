@@ -203,7 +203,7 @@ define('tempo30/view/antragEditView', [
             if (value === null) {
               value="";
             }
-          };
+          }
             ipt.prop('value', value);
             if (element.readonly === true) {
               ipt.prop('readonly',true);
@@ -350,8 +350,8 @@ define('tempo30/view/antragEditView', [
         div.find('input.date-input').trigger('change');
         div.find('input#mailcontact').change( function () {
           if (div.find('input#mailcontact').prop('checked') === false) {
-            alert('Wenn Du diesen Haken entfernst, werden wir dir keine Nachricht mehr schicken, speichere deshalb die URL zu dieser Seite.')
-          };
+              alert('Wenn Du diesen Haken entfernst, werden wir dir keine Nachricht mehr schicken, speichere deshalb die URL zu dieser Seite.');
+          }
         });
         return div;
     }

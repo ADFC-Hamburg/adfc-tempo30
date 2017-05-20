@@ -89,7 +89,7 @@ function getQueryVariable(variable) {
               }
               viewDiv.find('.form-group[for=lat]').removeClass('has-error');
               viewDiv.find('.help-block[for=lat]').text('');
-              if ((savData.lat !== '') && (parseFloat(savData.lat) === NaN)) {
+		if ((savData.lat !== '') && isNaN(parseFloat(savData.lat))) {
                   viewDiv.find('.form-group[for=lat]').addClass('has-error');
               viewDiv.find('.help-block[for=lat]').text('Latitude muss eine Kommazahl sein.');
                   validate=false;
@@ -101,7 +101,7 @@ function getQueryVariable(variable) {
               }
               viewDiv.find('.form-group[for=lon]').removeClass('has-error');
               viewDiv.find('.help-block[for=lon]').text('');
-              if ((savData.lon !== '') && (parseFloat(savData.lat) === NaN)) {
+              if ((savData.lon !== '') && isNaN(parseFloat(savData.lat))) {
                   viewDiv.find('.form-group[for=lon]').addClass('has-error');
               viewDiv.find('.help-block[for=lon]').text('Longitude muss eine Kommazahl sein.');
                   validate=false;
@@ -137,7 +137,7 @@ function getQueryVariable(variable) {
                   $('<div class="alert alert-danger">')
                   .text(' Bitte behebe die obigen Fehler.')
                   .prepend($('<strong>').text('Speichern nicht möglich')));
-              };
+              }
               console.log(savData);
             };
             viewDiv.on('save', saveFunc );
