@@ -48,7 +48,7 @@ define('tempo30/model/antragEditLayout', [
         type: 'radio',
         id: 'status',
         dbid: 'status',
-        label: gt('Ich habe Widerspurch eingelgt.'),
+        label: gt('Ich habe Widerspruch eingelegt.'),
         options: [{
           id: '5',
           text: gt('Ich habe Widerspurch gegen eine ablehnende Antwort eingelgt.')
