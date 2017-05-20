@@ -40,7 +40,27 @@ function getQueryVariable(variable) {
           } else {
             var viewDiv=antragEditView(data);
             viewDiv.replaceAll('h6:first');
-            var saveFunc = function (ev, savData) {
+            var saveFunc;
+            var saveBase;
+            var updateFunc = function (updateStatus) {
+              var placeHolder=$('<div>').text('Bitte warten...');
+              placeHolder.replaceAll(viewDiv);
+              loadFunc().done(function (data) {
+                console.log(data);
+                // Fixme remove This
+                data.updateStatus=updateStatus;
+                viewDiv = antragEditView(data);
+                viewDiv.replaceAll(placeHolder);
+                viewDiv.on('save', saveFunc );
+                viewDiv.on('save-base', saveBase);
+                $('html, body').animate({
+                  scrollTop:$(viewDiv).offset().top-10
+                },'slow');
+              }).fail(function (jqXHR, textStatus) {
+                alert('Erneuter Datenabruf fehlgeschlagen, bitte versuchen Sie es später nochmal');
+              });
+            };
+            saveFunc = function (ev, savData) {
               savData.id= id;
               savData.secret = secret;
               $.ajax({
@@ -48,28 +68,80 @@ function getQueryVariable(variable) {
                    'dataType': 'json',
                    'method': 'POST',
                    'data': savData
-               }).done(function (updateStatus) {
-                 console.log(savData);
-                 var placeHolder=$('<div>').text('Bitte warten...');
-                 placeHolder.replaceAll(viewDiv);
-                 loadFunc().done(function (data) {
-                   console.log(data);
-                   // Fixme remove This
-                   data.updateStatus=updateStatus;
-                   viewDiv = antragEditView(data);
-                   viewDiv.replaceAll(placeHolder);
-                   viewDiv.on('save', saveFunc );
-                   $('html, body').animate({
-                     scrollTop:$(viewDiv).offset().top-10
-                   },'slow');
-                 }).fail(function (jqXHR, textStatus) {
-                   alert('Erneuter Datenabruf fehlgeschlagen, bitte versuchen Sie es später nochmal');
-                 });
-               }).fail(function (jqXHR, textStatus) {
+               }).done(updateFunc).fail(function (jqXHR, textStatus) {
                  alert('Speichern der Daten fehlgeschlagen, bitte versuchen Sie es später nochmal'+ textStatus);
                });
             };
+            saveBase = function (ev, savData) {
+              savData.id= id;
+              savData.secret = secret;
+              var validate= true;
+              viewDiv.find('.form-group[for=plz]').removeClass('has-error');
+              viewDiv.find('.help-block[for=plz]').text('');
+              if ((savData.plz !== '') && (savData.plz.length !== 5)) {
+                viewDiv.find('.form-group[for=plz]').addClass('has-error');
+                viewDiv.find('.help-block[for=plz]').text('Eine PLZ muss 5 Stellen haben');
+                validate=false;
+              } else if ((savData.plz.length === 5) &&  (!savData.plz.match(/2\d\d\d\d/))) {
+                viewDiv.find('.form-group[for=plz]').addClass('has-error');
+                viewDiv.find('.help-block[for=plz]').text('Die PLZ gibt es nicht in Hamburg.');
+                    validate=false;
+              }
+              viewDiv.find('.form-group[for=lat]').removeClass('has-error');
+              viewDiv.find('.help-block[for=lat]').text('');
+		if ((savData.lat !== '') && isNaN(parseFloat(savData.lat))) {
+                  viewDiv.find('.form-group[for=lat]').addClass('has-error');
+              viewDiv.find('.help-block[for=lat]').text('Latitude muss eine Kommazahl sein.');
+                  validate=false;
+              }
+              if (savData.showinmap && (savData.lat === '')) {
+                viewDiv.find('.form-group[for=lat]').addClass('has-error');
+                viewDiv.find('.help-block[for=lat]').text('Für die Kartenanzeige brauchen wir hier einen Wert');
+                    validate=false;
+              }
+              viewDiv.find('.form-group[for=lon]').removeClass('has-error');
+              viewDiv.find('.help-block[for=lon]').text('');
+              if ((savData.lon !== '') && isNaN(parseFloat(savData.lat))) {
+                  viewDiv.find('.form-group[for=lon]').addClass('has-error');
+              viewDiv.find('.help-block[for=lon]').text('Longitude muss eine Kommazahl sein.');
+                  validate=false;
+              }
+              if (savData.showinmap && (savData.lon === '')) {
+                viewDiv.find('.form-group[for=lon]').addClass('has-error');
+                viewDiv.find('.help-block[for=lon]').text('Für die Kartenanzeige brauchen wir hier einen Wert');
+                    validate=false;
+              }
+              if ((savData.lon === '') && (savData.lat !== '')) {
+                viewDiv.find('.form-group[for=lon]').addClass('has-error');
+                viewDiv.find('.help-block[for=lon]').text('Damit wir die Latitude abspeichern können muss auch hier ein Wert stehen.');
+                validate=false;
+              }
+              if ((savData.lat === '') && (savData.lon !== '')) {
+                viewDiv.find('.form-group[for=lat]').addClass('has-error');
+                viewDiv.find('.help-block[for=lat]').text('Damit wir die Lomgitude abspeichern können muss auch hier ein Wert stehen.');
+                validate=false;
+              }
+
+              viewDiv.find('button[evt=save-base]').parent().find('.alert').remove();
+              if (validate === true) {
+                $.ajax({
+                     'url': 'https://tools.adfc-hamburg.de/tempo30-backend/test/base-update.php',
+                     'dataType': 'json',
+                     'method': 'POST',
+                     'data': savData
+                 }).done(updateFunc).fail(function (jqXHR, textStatus) {
+                   alert('Speichern der Daten fehlgeschlagen, bitte versuchen Sie es später nochmal'+ textStatus);
+                 });
+              } else {
+                viewDiv.find('button[evt=save-base]').before(
+                  $('<div class="alert alert-danger">')
+                  .text(' Bitte behebe die obigen Fehler.')
+                  .prepend($('<strong>').text('Speichern nicht möglich')));
+              }
+              console.log(savData);
+            };
             viewDiv.on('save', saveFunc );
+            viewDiv.on('save-base', saveBase);
           }
         }).fail(function (jqXHR, textStatus) {
             alert('Datenabruf fehlgeschlagen, bitte versuchen Sie es später nochmal');
