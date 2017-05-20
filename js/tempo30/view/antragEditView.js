@@ -336,7 +336,7 @@ define('tempo30/view/antragEditView', [
           var mAntragDate=moment(data.antragdate, 'YYYY-MM-DD');
           if ((mAntragDate.add(3,'M').isBefore()) && (data.status === '2')) {
               div.prepend($('<div class="alert alert-warning">')
-              .text(' Seit der Antragsstelung sind mehr als 3 Monate vergangen. Die Behörde hätte Ihnen antwoten müssen. Sie könnten jetzt eine Untätigkeitsklage gegen die Stadt erheben. Vielleicht macht es auch Sinn, nochmal bei der Behörde nach dem Bearbeitungsstand zu fragen.')
+			  .text(' Seit der Antragsstelung sind mehr als 3 Monate vergangen. Die Behörde hätte Ihnen antwoten müssen. Sie könnten jetzt eine Untätigkeitsklage gegen die Stadt erheben. Vielleicht macht es auch Sinn, nochmal bei der Behörde nach dem Bearbeitungsstand zu fragen.').append($('<a href="http://hamburg.adfc.de/?1581" target="_blank">').text('Mehr dazu auf einer extra Webseite'))
               .prepend(
                 $('<strong>').text('Achtung')));
           }
