@@ -125,7 +125,7 @@ function getQueryVariable(variable) {
               viewDiv.find('button[evt=save-base]').parent().find('.alert').remove();
               if (validate === true) {
                 $.ajax({
-                     'url': 'https://tools.adfc-hamburg.de/tempo30-backend/test/base-update.php',
+                     'url': 'https://tools.adfc-hamburg.de/tempo30-backend/master/base-update.php',
                      'dataType': 'json',
                      'method': 'POST',
                      'data': savData
