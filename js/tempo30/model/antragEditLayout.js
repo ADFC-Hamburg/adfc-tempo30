@@ -236,7 +236,12 @@ define('tempo30/model/antragEditLayout', [
       id: 'showinmap',
       dbid: 'showinmap',
       type: 'checkbox',
-      label: gt('Auf einer Tempo30-Antrags-Landkarte darf die Position des Antrags angezeigt werden (ohne Namensnennung)')
+      label: gt('Auf einer Tempo30-Antrags-Landkarte darf die Position des Antrags angezeigt werden (ohne Namensnennung).')
+    },{
+      id: 'automail',
+      dbid: 'automail',
+      type: 'checkbox',
+      label: gt('Ich möchte automatisiert per E-Mail an meinen Antrag erinnert werden (maximal einmal in Monat je nach Antragsstand).')
     },{
       type: 'button',
       subtype: 'save',
