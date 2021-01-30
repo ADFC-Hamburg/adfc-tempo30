@@ -10,8 +10,9 @@ define('tempo30/app/map', [
     'tempo30/view/layer/luft-pm10',
     'tempo30/view/layer/luft-pm25',
     'tempo30/view/layer/tempo30-antraege',
-], function ($, map, gt, laermTag, laermNacht, tempoF, osmPoints, luftNo2, luftPm10, luftPm25, antraege) {
- 
+    'tempo30/app/antrag',
+], function ($, map, gt, laermTag, laermNacht, tempoF, osmPoints, luftNo2, luftPm10, luftPm25, antraege, antragApp) {
+
     'use strict';
 
 //    tempoF.addTo(map);
@@ -32,6 +33,6 @@ define('tempo30/app/map', [
     };
     L.control.layers(null, overlayMaps).addTo(map);
 
-    return map;    
+    return map;
 
 });

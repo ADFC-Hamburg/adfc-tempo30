@@ -5,12 +5,12 @@ define('tempo30/view/layer/osm-points-offline', [
     'tempo30/model/osm-points-tags',
     'leaflet-layer-overpass',
 ], function ($, L, gt, osmTags) {
-   
+
     'use strict';
 
     var endpoint= 'https://overpass-api.de/api/';
     var loadingDiv=$('<div class="osmLoading">').text(gt('Loading OpenStreetMap POIs, please wait (this will take normaly 30 seconds) ...'));
-    
+
     var query= '[out:json][timeout:60];(';
 /*    for (var i = 0; i < osmTags.length; i++) {
 	query=query+'node["'+osmTags[i].k+'"="'+osmTags[i].v+'"](BBOX);';
@@ -25,7 +25,7 @@ define('tempo30/view/layer/osm-points-offline', [
 
     url = requirejs.toUrl('data/osm-poi.json');
 
-    request.open("POST", url, true);
+    request.open("GET", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     var opl = new L.FeatureGroup([]);
 
@@ -42,7 +42,7 @@ define('tempo30/view/layer/osm-points-offline', [
 		    if (e.tags[osmTags[t].k] === osmTags[t].v) {
 			txt=osmTags[t].t;
 			color=osmTags[t].c;
-		    }   
+		    }
 		}
 
 		if (e.lat) {

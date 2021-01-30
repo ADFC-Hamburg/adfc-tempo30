@@ -2,7 +2,7 @@ define('tempo30/app/create-word', [
     'jquery',
     'lib/jszip-utils/jszip-utils',
     'lib/docxtemplater/docxtemplater-latest',
-    'lib/file-saver/FileSaver',
+    'file-saver/FileSaver',
 ], function ($, JSZipUtils, Docxtemplater, FileSaver) {
 
     function download(data) {
@@ -39,12 +39,12 @@ define('tempo30/app/create-word', [
 			  'LaermTagWertebereich': data.umweltdaten.laerm_tag.val_long,
 			  'LaermNachtWertebereich': data.umweltdaten.laerm_nacht.val_long,
 			  'antwortDatum': antwortBis,
-			 }); 
-            doc.render(); 
+			 });
+            doc.render();
             out=doc.getZip().generate({
 		type:"blob",
 		mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-	    });   
+	    });
 	    saveAs(out,"tempo30-antrag.docx");
 	});
     }
@@ -77,22 +77,22 @@ define('tempo30/app/create-word', [
 			  'LaermTagWertebereich': data.umweltdaten.laerm_tag.val_long,
 			  'LaermNachtWertebereich': data.umweltdaten.laerm_nacht.val_long,
 			  'antwortDatum': antwortBis,
-			 }); 
-            doc.render(); 
+			 });
+            doc.render();
             out=doc.getZip().generate({
 		type:"blob",
                 mimeType: "application/octet-stream",
 	    });
             var antragDocHref=dialogRef.getModalBody().find('#antragdoc');
             var reader = new window.FileReader();
-            reader.readAsDataURL(out); 
+            reader.readAsDataURL(out);
             reader.onloadend = function() {
                 base64data = reader.result;
                 antragDocHref.prop('href',base64data).text('den Antrag hier');
             };
         });
     }
-    return { 
+    return {
 	'download': download,
         'dialog': generateDownloadDialog,
     };

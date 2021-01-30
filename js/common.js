@@ -14,6 +14,7 @@ requirejs.config({
         'leaflethash': '../lib/leaflet-hash/leaflet-hash',
         'normalize': '../lib/require-less/normalize',
         'css-builder': '../bower_components/require-css/css-builder',
+        'file-saver': '../bower_components/jszip/vendor',
         'lessc': '../lib/require-less/lessc',
         'less': '../lib/require-less/less',
         'css': '../lib/require-css/css',

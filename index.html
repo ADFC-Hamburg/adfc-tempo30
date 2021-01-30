@@ -8,13 +8,18 @@
     <link rel="stylesheet" href="css/screen.css" />
 </head>
 <body>
-
+  <iframe style="display:none" id="hiddenJosmIframe" name="hiddenJosmIframe"></iframe>
+  <h1>L&auml;uft Tempo30 Antr&auml;ge</h1>
+  <div id="antragsBtn">bla bla bla <a href="https://hamburg.adfc.de/tempo30/">Mehr infos zur Kampange auf der Webseite des ADFC HH</a>.<br>
+<a href="javascript:doit();">Jetzt Tempo 30 beantragen</a></h3>
+  </div>
     <div id="map"></div>
-    <iframe style="display:none" id="hiddenJosmIframe" name="hiddenJosmIframe"></iframe>
     <script src="lib/requirejs/require.js"></script>
-    <script> 
+    <script>
         requirejs(['./js/common'], function (common) {
-              requirejs(['tempo30/app/map']);
+            requirejs(['tempo30/app/antrag','tempo30/app/map'], function (step1) {
+                doit=step1;
+            });
             });
     </script>
 </body>
