@@ -23,10 +23,8 @@ jobs:
       run: npm install
     - name: Grunt
       run: grunt
-    - name: test
-      run: |
-        pwd
-        ls -la .
+    - name: Copy Screen.css
+      run: cp css/screen.css dist/
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
