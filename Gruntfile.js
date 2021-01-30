@@ -69,19 +69,19 @@ dest: 'i18n/en_US.po'
                 },
                 files: {
                     'css/generated.css': [
-                        'lib/leaflet/leaflet.css',
-                        'lib/leaflet.markercluster/dist/MarkerCluster.css',
-                        'lib/leaflet.markercluster/dist/MarkerCluster.Default.css',
-                        'lib/bootstrap3-dialog/bootstrap-dialog.min.css',
+                        'node_modules/leaflet/dist/leaflet.css',
+                        'node_modules/leaflet.markercluster/dist/MarkerCluster.css',
+                        'node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css',
+                        'node_modules/bootstrap3-dialog/dist/css/bootstrap-dialog.css',
                         'node_modules/font-awesome/css/font-awesome.css',
                         'node_modules/bootstrap/dist/css/bootstrap.css',
                         'css/screen.css'
                     ],
                     'css/generated-wo-bs.css': [
-                        'lib/leaflet/leaflet.css',
-                        'lib/leaflet.markercluster/dist/MarkerCluster.css',
-                        'lib/leaflet.markercluster/dist/MarkerCluster.Default.css',
-                        'lib/bootstrap3-dialog/bootstrap-dialog.min.css',
+                        'node_modules/leaflet/dist/leaflet.css',
+                        'node_modules/leaflet.markercluster/dist/MarkerCluster.css',
+                        'node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css',
+                        'node_modules/bootstrap3-dialog/dist/css/bootstrap-dialog.css',
                         'node_modules/font-awesome/css/font-awesome.css',
                         'css/screen.css'
                     ]

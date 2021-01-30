@@ -1,7 +1,7 @@
 define('tempo30/app/create-word', [
     'jquery',
-    'lib/jszip-utils/jszip-utils',
-    'lib/docxtemplater/docxtemplater-latest',
+    'jszip-utils',
+    'docxtemplater',
     'file-saver/FileSaver',
 ], function ($, JSZipUtils, Docxtemplater, FileSaver) {
 
