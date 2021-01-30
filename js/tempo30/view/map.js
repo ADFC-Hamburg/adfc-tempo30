@@ -6,12 +6,12 @@ define('tempo30/view/map', [
     // not in function:
     'leaflethash'
 ], function ($, L, basemap, gt) {
- 
+
     'use strict';
 
     var map = new L.Map('map', {
         zoom: 11, 
-	center: [ 53.56, 10.02],
+        center: [ 53.56, 10.02],
         maxZoom: 18, 
         zoomControl: false,
         layers: [basemap()], 
@@ -23,8 +23,8 @@ define('tempo30/view/map', [
     });
 
     map.addControl(map.zoomControl);
-    
-//    $('#aboutMap').click( aboutDialog.show);
+
+    //    $('#aboutMap').click( aboutDialog.show);
 
     return map;
 

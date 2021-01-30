@@ -6,7 +6,7 @@ define('tempo30/view/fehler_melden_dialog', [
     'use strict';
 
     function getDialog(subject, msg) {
-	return globalDialog(
+        return globalDialog(
             subject,
             msg,
             gt('Fehler melden'),

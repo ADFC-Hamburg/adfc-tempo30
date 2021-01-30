@@ -14,8 +14,8 @@ define('tempo30/view/fehler_global_dialog', [
         subject = '('+version.revision+') '+subject;
         msg = msg+' Version:'+version.revision+'\n';
         msg = msg+' Browser-Agent String:'+navigator.userAgent+'\n';
-        
-	var buttons=[
+
+        var buttons=[
             {
                 id: 'btn-mail',
                 label:'Mail an '+mailadr,
@@ -29,28 +29,28 @@ define('tempo30/view/fehler_global_dialog', [
                     window.open(githubUrl, '_blank');
                 }
             },
-	    {
-		id: 'cancel-btn',
-		label: gt('schließen'),
-		cssClass: 'btn-default',
-		action: function (dialogRef) {
-		    dialogRef.close();
-		}
-	    }];
+            {
+                id: 'cancel-btn',
+                label: gt('schließen'),
+                cssClass: 'btn-default',
+                action: function (dialogRef) {
+                    dialogRef.close();
+                }
+            }];
 
-	var dialog = new BootstrapDialog({
-	    'type': BootstrapDialog.TYPE_WARNING,
-	    'title': title,
-	    'message':  startmsg+' '+gt('Bitte schicken Sie eine E-Mail oder (wenn Sie sich gut mit Computern auskennen) erstellen Sie einen Github-Issue.')+gt('Bitte erwähnen Sie folgende Details (gerne noch mehr):')+'<br/><b>Betreff: </b>'+subject+'<br/><textarea id="errtxt" style="width:100%; height:130px;" readonly>'+msg+'</textarea></br>'+gt('Vielen Dank!'),
-	    'buttons': buttons,
-             onshown: function(dialogRef){
-                 dialogRef.getModalBody().find('#errtxt').text(msg);
-                 $(dialogRef.getButton('btn-mail')).replaceWith(
-                     $('<a class="btn btn-primary" target="_blank">').prop("href", "mailto:"+mailadr+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(msg))
-                         .text('Mail an '+mailadr));
-	    }
+        var dialog = new BootstrapDialog({
+            'type': BootstrapDialog.TYPE_WARNING,
+            'title': title,
+            'message':  startmsg+' '+gt('Bitte schicken Sie eine E-Mail oder (wenn Sie sich gut mit Computern auskennen) erstellen Sie einen Github-Issue.')+gt('Bitte erwähnen Sie folgende Details (gerne noch mehr):')+'<br/><b>Betreff: </b>'+subject+'<br/><textarea id="errtxt" style="width:100%; height:130px;" readonly>'+msg+'</textarea></br>'+gt('Vielen Dank!'),
+            'buttons': buttons,
+            onshown: function(dialogRef){
+                dialogRef.getModalBody().find('#errtxt').text(msg);
+                $(dialogRef.getButton('btn-mail')).replaceWith(
+                    $('<a class="btn btn-primary" target="_blank">').prop("href", "mailto:"+mailadr+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(msg))
+                        .text('Mail an '+mailadr));
+            }
         });
-	return dialog;
+        return dialog;
     }
     return getDialog;
 });

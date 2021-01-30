@@ -7,12 +7,12 @@ define('tempo30/view/layer/luft-pm10', [
     'use strict';
 
     var layer = L.tileLayer(mapurl.base, {
-	layers: 'luft-pm10',
-	attribution: "Luftdaten: https://fragdenstaat.de/a/17206",
+        layers: 'luft-pm10',
+        attribution: "Luftdaten: https://fragdenstaat.de/a/17206",
         subdomains: mapurl.subdomains,
         bounds: bounds.bounds,
         minZoom: bounds.minZoom,
     });
-    
+
     return layer;
 });

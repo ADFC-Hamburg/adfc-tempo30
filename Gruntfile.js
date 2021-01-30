@@ -1,21 +1,21 @@
 
 module.exports = function(grunt) {
- 
+
     grunt.initConfig({
         clean: ['fonts', 
-                'css/generated.css', 
-                'css/generated-wo-bs.css',
-                'js/generated.js', 
-                'bower_components', 
-                'js/i18n/**',
-                'dist'],
+            'css/generated.css', 
+            'css/generated-wo-bs.css',
+            'js/generated.js', 
+            'bower_components', 
+            'js/i18n/**',
+            'dist'],
         bower: {
             install: {
                 options: {
                     copy: true,
                     verbose: true,
                 },
-  //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
+                //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
             },
         },
         jshint: {
@@ -25,20 +25,20 @@ module.exports = function(grunt) {
             target: ['Gruntfile.js', 'js/**.js', 'js/**/**.js', 'config.js', '!js/tempo30/model/version.js' ]
         },
         copy: {
-/*            i18n_en: {
-                files: [
-                    {src: 'i18n/tempo30.pot',
-                    dest: 'i18n/en_US.po'
-                    }
-                ]
-            },*/
+            /*            i18n_en: {
+files: [
+{src: 'i18n/tempo30.pot',
+dest: 'i18n/en_US.po'
+}
+]
+},*/
             i18n: {
                 files: [
                     {expand: true,
-                     flatten: true,
-                     src: 'js/i18n/*.js',
-                     dest: 'dist/i18n/',
-                     filter: 'isFile',
+                        flatten: true,
+                        src: 'js/i18n/*.js',
+                        dest: 'dist/i18n/',
+                        filter: 'isFile',
                     }
                 ]
             },
@@ -48,27 +48,27 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-		files: [
+                files: [
                     {expand: true, 
-                     flatten: false, 
-                     src: [
-			   '*.html',
-                           'validator-test.html',
-                           'lib/**',
-                           'css/generated.css*',
-			   'css/generated-wo-bs.css*',
-		           'css/images/*',
-                           'bower_components/requirejs/require.js',
-                           'fonts/*',
-                           'data/*',
-			   'img/*',
-			   'docx/*',
-			   'update-overpass.js',
-                           'bower_components/leaflet/dist/images/*',
-			   'node_modules/requirejs/**',
-                          ], 
-                     dest: 'dist/', 
-                     filter: 'isFile'},
+                        flatten: false, 
+                        src: [
+                            '*.html',
+                            'validator-test.html',
+                            'lib/**',
+                            'css/generated.css*',
+                            'css/generated-wo-bs.css*',
+                            'css/images/*',
+                            'bower_components/requirejs/require.js',
+                            'fonts/*',
+                            'data/*',
+                            'img/*',
+                            'docx/*',
+                            'update-overpass.js',
+                            'bower_components/leaflet/dist/images/*',
+                            'node_modules/requirejs/**',
+                        ], 
+                        dest: 'dist/', 
+                        filter: 'isFile'},
                 ]
             },
         },
@@ -107,15 +107,15 @@ module.exports = function(grunt) {
                     include: ['jquery','bootstrap'],
                 }
             },
-	    common_nojq: {
+            common_nojq: {
                 options: {
                     baseUrl: 'js',
                     mainConfigFile: 'js/common.js',
                     out: 'dist/js/common_nojq.js',
-		    include: ['text'],
-		    exclude: ['jquery','bootstrap'],
+                    include: ['text'],
+                    exclude: ['jquery','bootstrap'],
                 }
-	    },
+            },
             map: {
                 options: {
                     baseUrl: 'js',
@@ -125,37 +125,37 @@ module.exports = function(grunt) {
                     exclude: ['jquery', 'bootstrap'],
                 }
             },
-	    antrag: {
+            antrag: {
                 options: {
                     baseUrl: 'js',
                     mainConfigFile: 'js/common.js',
                     out: 'dist/tempo30/app/antrag.js',
                     name: 'tempo30/app/antrag',
                     exclude: ['jquery', 'bootstrap'],
-		},
-	    },
-	    antragEdit: {
-		options: {
-	  	    baseUrl: 'js',
+                },
+            },
+            antragEdit: {
+                options: {
+                    baseUrl: 'js',
                     mainConfigFile: 'js/common.js',
                     out: 'dist/tempo30/app/antragEdit.js',
                     name: 'tempo30/app/antragEdit',
                     exclude: ['jquery', 'bootstrap'],
-		}
-	    },	
-	    update_overpass: {
+                }
+            },	
+            update_overpass: {
                 options: {
                     baseUrl: 'js',
-		    paths: {
+                    paths: {
                         'fs':'empty:',
-			'request': '../node_modules/request/request',
+                        'request': '../node_modules/request/request',
                     },
                     mainConfigFile: 'js/common.js',
                     out: 'dist/tempo30/app/update-overpass.js',
                     name: 'tempo30/app/update-overpass',
                     exclude: ['jquery', 'bootstrap', 'request' ],
                 }
-	    },
+            },
         },
         watch: {
             scripts: {
@@ -200,10 +200,10 @@ module.exports = function(grunt) {
     grunt.event.once('git-describe', function (rev) {
         grunt.log.writeln('Git Revision: ' + rev);
         var out = 'define(\'tempo30/model/version\', function () { return '+
-            JSON.stringify({
-                revision: rev[0],
-                date: grunt.template.today()
-            })+';});';
+JSON.stringify({
+    revision: rev[0],
+    date: grunt.template.today()
+})+';});';
         grunt.file.write('js/tempo30/model/version.js', out.replace(/\"/g, '\'').replace(/,/g, ', '));
     });
     grunt.loadNpmTasks('grunt-eslint');
@@ -217,7 +217,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-require-gettext');
     grunt.task.registerTask('default', ['bower',  'git-describe', 'eslint', 'jshint', 'create_pot', 
-                                        'compile_po', 'requirejs', 'cssmin', 'copy:fonts', 'copy:dist', 'copy:i18n']);
+        'compile_po', 'requirejs', 'cssmin', 'copy:fonts', 'copy:dist', 'copy:i18n']);
 
     grunt.registerTask('update-overpass', 'update-data from overpass api', function(arg1) {
         var done = this.async(),
@@ -227,7 +227,7 @@ module.exports = function(grunt) {
         requirejs.config({
             baseUrl: __dirname,
         });
-	console.log(arg1);
+        console.log(arg1);
         if ((arg1 !== undefined) && (arg1 === 'test')) {
             testmode = true;
         }

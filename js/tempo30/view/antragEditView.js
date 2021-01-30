@@ -15,103 +15,103 @@ define('tempo30/view/antragEditView', [
     'use strtict';
 
     var saveElements = {
-      'datepicker': function (element, section) {
-        if (! $("input#"+element.id).is(':visible')) {
-          return null;
-        }
-         var value=$("input#"+element.id).val();
-         if (value === '') {
-           return null;
-         }
-         var dateFromatRegEx=/^(\d\d)\.(\d\d)\.(\d\d\d\d)$/;
-         if (value) {
-           value=value.replace(dateFromatRegEx,'$3-$2-$1');
-         }
-         return value;
-      },
-      'checkbox': function (element, section) {
-        if (! $("input#"+element.id).is(':visible')) {
-          return null;
-        }
-        return $("input#"+element.id).prop('checked');
+        'datepicker': function (element, section) {
+            if (! $("input#"+element.id).is(':visible')) {
+                return null;
+            }
+            var value=$("input#"+element.id).val();
+            if (value === '') {
+                return null;
+            }
+            var dateFromatRegEx=/^(\d\d)\.(\d\d)\.(\d\d\d\d)$/;
+            if (value) {
+                value=value.replace(dateFromatRegEx,'$3-$2-$1');
+            }
+            return value;
+        },
+        'checkbox': function (element, section) {
+            if (! $("input#"+element.id).is(':visible')) {
+                return null;
+            }
+            return $("input#"+element.id).prop('checked');
 
-      },
-      'radio': function (element, section) {
-        if (! $("input[name='"+element.id+"']").is(':visible')) {
-          return null;
+        },
+        'radio': function (element, section) {
+            if (! $("input[name='"+element.id+"']").is(':visible')) {
+                return null;
+            }
+            return $("input[name='"+element.id+"']:checked").val();
+        },
+        'text': function (element, section) {
+            return $("input#"+element.id).val();
+        },
+        'select': function (element, section) {
+            return $("select#"+element.id).val();
         }
-        return $("input[name='"+element.id+"']:checked").val();
-      },
-      'text': function (element, section) {
-          return $("input#"+element.id).val();
-      },
-    'select': function (element, section) {
-      return $("select#"+element.id).val();
-    }
     };
     var viewElements= {
         'button': function (element) {
-          if (element.subtype=== 'save') {
-            var btn=$('<button type="submit" class="btn btn-primary">')
-            .attr('evT', element.trigger)
-            .text('Speichern');
-            btn.click(function () {
-              btn.addClass('disabled');
-              var data = {};
-              var sectionDiv=btn.closest('div.section');
-              var container = btn.closest('div.container-fluid');
-              $.each(layout, function (index, section) {
-                if ('section_'+section.id === sectionDiv.attr('id')) {
-                  $.each(section.elements, function (index, element) {
-                    var saveFunc=saveElements[element.type];
-                    if (typeof(saveFunc) === 'function') {
-                      data[element.id] = saveFunc(element, sectionDiv);
-                    }
-                  });
-                }
-              });
-              container.trigger(element.trigger, data);
-              btn.removeClass('disabled');
-            });
-            return $('<div class="form-group col-sm-12">').append(btn);
-          }
-          if (element.subtype=== 'delete') {
-            return $('<button type="submit" class="btn btn-danger">Meine Daten löschen</button>');
-          }
+            if (element.subtype=== 'save') {
+                var btn=$('<button type="submit" class="btn btn-primary">')
+                    .attr('evT', element.trigger)
+                    .text('Speichern');
+                btn.click(function () {
+                    btn.addClass('disabled');
+                    var data = {};
+                    var sectionDiv=btn.closest('div.section');
+                    var container = btn.closest('div.container-fluid');
+                    $.each(layout, function (index, section) {
+                        if ('section_'+section.id === sectionDiv.attr('id')) {
+                            $.each(section.elements, function (index, element) {
+                                var saveFunc=saveElements[element.type];
+                                if (typeof(saveFunc) === 'function') {
+                                    data[element.id] = saveFunc(element, sectionDiv);
+                                }
+                            });
+                        }
+                    });
+                    container.trigger(element.trigger, data);
+                    btn.removeClass('disabled');
+                });
+                return $('<div class="form-group col-sm-12">').append(btn);
+            }
+            if (element.subtype=== 'delete') {
+                return $('<button type="submit" class="btn btn-danger">Meine Daten löschen</button>');
+            }
         },
         'checkbox': function (element, value) {
             var c=false;
             if ((value === true) || (value === 't')) {
-              c=true;
+                c=true;
             }
             var ipt=$('<input type="checkbox">')
-              .prop('id', element.id)
-              .prop('checked', c);
+                .prop('id', element.id)
+                .prop('checked', c);
             if (element.readonly === true) {
-              ipt.prop('readonly', true);
-              ipt.prop('disabled', true);
+                ipt.prop('readonly', true);
+                ipt.prop('disabled', true);
             }
             return $('<div class="form-group col-sm-6">').attr('for',element.id).append(
-             $('<div class="checkbox">').append(
-                $('<label>')
-                    .text(element.label)
-                    .prepend(ipt))
+                $('<div class="checkbox">').append(
+                    $('<label>')
+                        .text(element.label)
+                        .prepend(ipt))
 
             );
         },
         'datepicker': function (element, value) {
             var dateFromatRegEx=/^(\d\d\d\d)\-(\d\d)\-(\d\d)$/;
             if (value) {
-              value=value.replace(dateFromatRegEx,'$3.$2.$1');
+                value=value.replace(dateFromatRegEx,'$3.$2.$1');
             }
             var input=$('<input type="text" class="form-control date-input">')
-            .prop('id', element.id)
-            .prop('value', value );
+                .prop('id', element.id)
+                .prop('value', value );
             var colSm = $('<div class="col-sm-6">');
             var formGroup=$('<div class="form-group">').attr('for', element.id);
             var inputGroup=$('<div class="input-group date">').append(input)
-            .append($('<span class="input-group-addon">').append(
-              $('<span class="glyphicon glyphicon-calendar">')));
+                .append($('<span class="input-group-addon">').append(
+                    $('<span class="glyphicon glyphicon-calendar">')));
             var helpBlock=$('<span class="help-block">').attr('for', element.id);
 
             inputGroup.datepicker({
@@ -122,40 +122,40 @@ define('tempo30/view/antragEditView', [
             });
             var isRegisterdNachVal=false;
             var changeFunc= function () {
-              console.log(input.val());
-              var datumVal=moment(input.val(),"DD.MM.YYYY");
-              if (input.val() === '') {
-                formGroup.removeClass('has-error');
-                helpBlock.text('');
-              } else
-              if (datumVal.isValid()) {
-                if (datumVal.isAfter()) {
-                  formGroup.addClass('has-error');
-                  helpBlock.text('Termin liegt in der Zukunft');
-                } else {
-                  if (element.nachId) {
-                    var nachValInput=colSm.parent().find('input#'+element.nachId);
-                    if ((isRegisterdNachVal === false) && (nachValInput.length >0)) {
-                      nachValInput.on('change', changeFunc);
-                      isRegisterdNachVal = true;
-                    }
-                    var nachVal=moment(nachValInput.val(), "DD.MM.YYYY");
-                    if (nachVal.isValid() && datumVal.isBefore(nachVal)) {
-                      formGroup.addClass('has-error');
-                      helpBlock.text('Liegt vor dem '+ nachValInput.val() + '!');
-                    } else {
-                      formGroup.removeClass('has-error');
-                      helpBlock.text('');
-                    }
-                  } else {
+                console.log(input.val());
+                var datumVal=moment(input.val(),"DD.MM.YYYY");
+                if (input.val() === '') {
                     formGroup.removeClass('has-error');
                     helpBlock.text('');
-                  }
+                } else
+                if (datumVal.isValid()) {
+                    if (datumVal.isAfter()) {
+                        formGroup.addClass('has-error');
+                        helpBlock.text('Termin liegt in der Zukunft');
+                    } else {
+                        if (element.nachId) {
+                            var nachValInput=colSm.parent().find('input#'+element.nachId);
+                            if ((isRegisterdNachVal === false) && (nachValInput.length >0)) {
+                                nachValInput.on('change', changeFunc);
+                                isRegisterdNachVal = true;
+                            }
+                            var nachVal=moment(nachValInput.val(), "DD.MM.YYYY");
+                            if (nachVal.isValid() && datumVal.isBefore(nachVal)) {
+                                formGroup.addClass('has-error');
+                                helpBlock.text('Liegt vor dem '+ nachValInput.val() + '!');
+                            } else {
+                                formGroup.removeClass('has-error');
+                                helpBlock.text('');
+                            }
+                        } else {
+                            formGroup.removeClass('has-error');
+                            helpBlock.text('');
+                        }
+                    }
+                } else {
+                    formGroup.addClass('has-error');
+                    helpBlock.text('Falsches Datumsformat');
                 }
-              } else {
-                formGroup.addClass('has-error');
-                helpBlock.text('Falsches Datumsformat');
-              }
             };
             input.on('change', changeFunc);
 
@@ -166,47 +166,47 @@ define('tempo30/view/antragEditView', [
 
         },
         'text': function (element, value) {
-          var ipt=$('<input type="text" class="form-control">')
-            .prop('id', element.id);
+            var ipt=$('<input type="text" class="form-control">')
+                .prop('id', element.id);
             if (element.subtype === 'betrag')  {
-              ipt.prop('type','number')
-              .prop('min', '0')
-              .prop('step','0.01');
-              if (value === null) {
-                value="0.00";
-              }
+                ipt.prop('type','number')
+                    .prop('min', '0')
+                    .prop('step','0.01');
+                if (value === null) {
+                    value="0.00";
+                }
             } else if (element.subtype === 'lat')  {
-              ipt.prop('type','number')
-              .prop('step','0.00000001')
-              .prop('min', '53.1')
-              .prop('max', '53.7');
+                ipt.prop('type','number')
+                    .prop('step','0.00000001')
+                    .prop('min', '53.1')
+                    .prop('max', '53.7');
 
-              if (value === null) {
-                value="";
-              }
+                if (value === null) {
+                    value="";
+                }
             } else if (element.subtype === 'lon')  {
-              ipt.prop('type','number')
-              .prop('step','0.00000001')
-              .prop('min', '9.7')
-              .prop('max', '10.4');
+                ipt.prop('type','number')
+                    .prop('step','0.00000001')
+                    .prop('min', '9.7')
+                    .prop('max', '10.4');
 
-              if (value === null) {
-                value="";
-              }
+                if (value === null) {
+                    value="";
+                }
 
-          } else if (element.subtype === 'plz')  {
-            ipt.prop('type','number')
-            .prop('step','1')
-            .prop('min', '20000')
-            .prop('max', '29999');
+            } else if (element.subtype === 'plz')  {
+                ipt.prop('type','number')
+                    .prop('step','1')
+                    .prop('min', '20000')
+                    .prop('max', '29999');
 
-            if (value === null) {
-              value="";
+                if (value === null) {
+                    value="";
+                }
             }
-          }
             ipt.prop('value', value);
             if (element.readonly === true) {
-              ipt.prop('readonly',true);
+                ipt.prop('readonly',true);
             }
             return $('<div class="form-group col-sm-6">').attr('for',element.id)
                 .append($('<label>').attr('for',element.id).text(element.label))
@@ -214,22 +214,22 @@ define('tempo30/view/antragEditView', [
                 .append($('<span class="help-block">').attr('for', element.id));
         },
         'radio': function (element, value) {
-                var div=$('<div class="form-group col-sm-6">').attr('for',element.id);
-                div.append($('<label>').attr('for', element.id).text(element.label));
+            var div=$('<div class="form-group col-sm-6">').attr('for',element.id);
+            div.append($('<label>').attr('for', element.id).text(element.label));
             $.each(element.options, function (index, option) {
-              var radioInput=  $('<input type="radio">')
-                      .prop('value', option.id)
-                      .prop('name', element.id);
-              if (value === option.id) {
-                radioInput.prop('checked', true);
-              }
-              var radioDiv=$('<div class="radio">').append(
-                  $('<label>').text(option.text).prepend(
-                    radioInput)
+                var radioInput=  $('<input type="radio">')
+                    .prop('value', option.id)
+                    .prop('name', element.id);
+                if (value === option.id) {
+                    radioInput.prop('checked', true);
+                }
+                var radioDiv=$('<div class="radio">').append(
+                    $('<label>').text(option.text).prepend(
+                        radioInput)
                 );
-              div.append(radioDiv);
+                div.append(radioDiv);
             });
-              return div;
+            return div;
         },
         'hr': function (element) {
             return $('<div class="form-group col-sm-12">').append($('<hr>'));
@@ -238,11 +238,11 @@ define('tempo30/view/antragEditView', [
             var div=$('<div class="form-group col-sm-6">').attr('for',element.id);
             var selectDiv= $('<select class="form-control">').prop('id',element.id);
             $.each(element.options, function (index, option) {
-              var opt=$('<option>').prop('value', option.id).text(option.text);
-              if (option.id == value) {
-                opt.prop('selected', true);
-              }
-              selectDiv.append(opt);
+                var opt=$('<option>').prop('value', option.id).text(option.text);
+                if (option.id == value) {
+                    opt.prop('selected', true);
+                }
+                selectDiv.append(opt);
             });
 
             div.append($('<label>').attr('for',element.id).text(element.label))
@@ -254,9 +254,9 @@ define('tempo30/view/antragEditView', [
         $.each(elements, function (index, element) {
             var eleData=null;
             if (element.dbid) {
-              eleData=data[element.dbid];
+                eleData=data[element.dbid];
             } else if (data[element.id] !== undefined) {
-              eleData=data[element.id];
+                eleData=data[element.id];
             }
             sectionDiv.append(viewElements[element.type](element, eleData));
         });
@@ -267,7 +267,7 @@ define('tempo30/view/antragEditView', [
         var ele=div.find('.form-group[for='+id+']');
         var found=false;
         if (ele.length===0) {
-          console.error('Group not found: '+id);
+            console.error('Group not found: '+id);
         }
         $.each(array, function (idx, eleM) {
             if (eleM===statusVal) {
@@ -295,8 +295,8 @@ define('tempo30/view/antragEditView', [
             var arr=['0', '1'];
             hideIfInArray(div, statusVal, arr, 'antragdate');
             hideIfInArray(div, statusVal, arr, 'belegantragsabgabe');
-  /*          hideIfInArray(div, statusVal, arr, 'kostenBezahlt');
-            hideIfInArray(div, statusVal, arr, 'kostenErwartet');*/
+            /*          hideIfInArray(div, statusVal, arr, 'kostenBezahlt');
+hideIfInArray(div, statusVal, arr, 'kostenErwartet');*/
             arr.push('2');
             hideIfInArray(div, statusVal, arr, 'antwortaufantrag');
             arr.push('3');
@@ -319,39 +319,39 @@ define('tempo30/view/antragEditView', [
         div.find('input[name=status]').change(enableDisableBoxes);
         enableDisableBoxes();
         div.find('#section_status').after($('<hr>')).after($('<div class="alert alert-info">').text('Du hast Fragen oder möchtest uns etwas mitteilen, was hier im Formular keinen Raum findet? Schreibe uns an ').
-        append($('<strong>').append($('<a href="mailto:laeuft@hamburg.adfc.de?subject=Tempo30-Antrag-Daten-Id-'+data.id+'">').text('laeuft@hamburg.adfc.de')))).after($('<hr>'));
+            append($('<strong>').append($('<a href="mailto:laeuft@hamburg.adfc.de?subject=Tempo30-Antrag-Daten-Id-'+data.id+'">').text('laeuft@hamburg.adfc.de')))).after($('<hr>'));
 
         if (data.lastchanged !== null) {
-          var mLastChange = moment(data.lastchanged);
-          if (mLastChange.add(1,'M').isBefore()) {
-            mLastChange = moment(data.lastchanged);
-            div.prepend($('<div class="alert alert-warning">')
-            .text(' Die Daten wurden das letzte Mal am '+mLastChange.format('DD.MM.YYYY')+
-            ' in der Datenbank aktualisiert. Bitte drücken Sie auch bei keiner Änderung auf den "Speichern" Button um uns mitzuteilen, dass es keine Änderung des Status gab ')
-            .prepend(
-              $('<strong>').text('Achtung')));
-          }
+            var mLastChange = moment(data.lastchanged);
+            if (mLastChange.add(1,'M').isBefore()) {
+                mLastChange = moment(data.lastchanged);
+                div.prepend($('<div class="alert alert-warning">')
+                    .text(' Die Daten wurden das letzte Mal am '+mLastChange.format('DD.MM.YYYY')+
+' in der Datenbank aktualisiert. Bitte drücken Sie auch bei keiner Änderung auf den "Speichern" Button um uns mitzuteilen, dass es keine Änderung des Status gab ')
+                    .prepend(
+                        $('<strong>').text('Achtung')));
+            }
         }
         if (data.antragdate !== null) {
-          var mAntragDate=moment(data.antragdate, 'YYYY-MM-DD');
-          if ((mAntragDate.add(3,'M').isBefore()) && (data.status === '2')) {
-              div.prepend($('<div class="alert alert-warning">')
-			  .text(' Seit der Antragsstelung sind mehr als 3 Monate vergangen. Die Behörde hätte Ihnen antworten müssen. Sie könnten jetzt eine Untätigkeitsklage gegen die Stadt erheben. Vielleicht macht es auch Sinn, nochmal bei der Behörde nach dem Bearbeitungsstand zu fragen.').append($('<a href="http://hamburg.adfc.de/?1581" target="_blank">').text('Mehr dazu auf einer extra Webseite'))
-              .prepend(
-                $('<strong>').text('Achtung')));
-          }
+            var mAntragDate=moment(data.antragdate, 'YYYY-MM-DD');
+            if ((mAntragDate.add(3,'M').isBefore()) && (data.status === '2')) {
+                div.prepend($('<div class="alert alert-warning">')
+                    .text(' Seit der Antragsstelung sind mehr als 3 Monate vergangen. Die Behörde hätte Ihnen antworten müssen. Sie könnten jetzt eine Untätigkeitsklage gegen die Stadt erheben. Vielleicht macht es auch Sinn, nochmal bei der Behörde nach dem Bearbeitungsstand zu fragen.').append($('<a href="http://hamburg.adfc.de/?1581" target="_blank">').text('Mehr dazu auf einer extra Webseite'))
+                    .prepend(
+                        $('<strong>').text('Achtung')));
+            }
         }
         if (data.updateStatus !== undefined) {
-          div.prepend($('<div class="alert alert-success">')
-          .text(' Die Daten wurden erfolgreich aktualisiert.')
-          .prepend(
-            $('<strong>').text('Vielen Dank')));
+            div.prepend($('<div class="alert alert-success">')
+                .text(' Die Daten wurden erfolgreich aktualisiert.')
+                .prepend(
+                    $('<strong>').text('Vielen Dank')));
         }
         div.find('input.date-input').trigger('change');
         div.find('input#mailcontact').change( function () {
-          if (div.find('input#mailcontact').prop('checked') === false) {
-              alert('Wenn Du diesen Haken entfernst, werden wir dir keine Nachricht mehr schicken, speichere deshalb die URL zu dieser Seite.');
-          }
+            if (div.find('input#mailcontact').prop('checked') === false) {
+                alert('Wenn Du diesen Haken entfernst, werden wir dir keine Nachricht mehr schicken, speichere deshalb die URL zu dieser Seite.');
+            }
         });
         return div;
     }

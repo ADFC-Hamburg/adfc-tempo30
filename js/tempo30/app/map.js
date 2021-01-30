@@ -15,20 +15,20 @@ define('tempo30/app/map', [
 
     'use strict';
 
-//    tempoF.addTo(map);
-//    laermTag.addTo(map);
-//    laermNacht.addTo(map);
-//    osmPoints.addTo(map);
+    //    tempoF.addTo(map);
+    //    laermTag.addTo(map);
+    //    laermNacht.addTo(map);
+    //    osmPoints.addTo(map);
     antraege.addTo(map);
 
     var overlayMaps = {
-	'Tempobegrenzungen': tempoF,
-	'Lärm Tag': laermTag,
-	'Lärm Nacht': laermNacht,
-	'POI': osmPoints,
-	'Stickstoffdioxid NO<sub>2</sub>': luftNo2,
-	'Feinstaub PM<sub>10</sub>': luftPm10,
-	'Feinstaub PM<sub>2.5</sub>': luftPm25,
+        'Tempobegrenzungen': tempoF,
+        'Lärm Tag': laermTag,
+        'Lärm Nacht': laermNacht,
+        'POI': osmPoints,
+        'Stickstoffdioxid NO<sub>2</sub>': luftNo2,
+        'Feinstaub PM<sub>10</sub>': luftPm10,
+        'Feinstaub PM<sub>2.5</sub>': luftPm25,
         'Anträge': antraege,
     };
     L.control.layers(null, overlayMaps).addTo(map);

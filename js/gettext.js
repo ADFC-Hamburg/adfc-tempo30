@@ -58,7 +58,7 @@ define('gettext', ['jed'], function () {
                             },
                             'locale_data': msg
                         });
-                        
+
                         function gt(id) {
                             var out;
                             if (arguments.length<2) {
@@ -89,18 +89,18 @@ define('gettext', ['jed'], function () {
                                 // e.g. send key to web service or
                                 //console.error('missing_i18n_key', key);
                             },
-			    locale_data: {
-				'messages': {
-				    '': {
-					'domain': name,
-					'lang': lang,
-					'plural_forms': 'nplurals=2; plural=(n!=1);'
-				    },
+                            locale_data: {
+                                'messages': {
+                                    '': {
+                                        'domain': name,
+                                        'lang': lang,
+                                        'plural_forms': 'nplurals=2; plural=(n!=1);'
+                                    },
 
-				}
-			    }
+                                }
+                            }
                         });
-                        
+
                         function gt(id) {
                             var out;
                             if (arguments.length<2) {
@@ -122,8 +122,8 @@ define('gettext', ['jed'], function () {
                             return out;
                         };
                         onload(gt);
-		    });        
-	    }
+                    });        
+            }
         }
     };
 

@@ -5,10 +5,10 @@ define('tempo30/view/layer/laerm_tag', [
 ], function (L, mapurl, bounds) {
 
     'use strict';
-    
+
     var layer = L.tileLayer(mapurl.base, {
-	layers: 'Laerm_2012_Tag',
-	attribution: "Laermkarten Hamburg © Datenlizenz Deutschland Namensnennung 2.0",
+        layers: 'Laerm_2012_Tag',
+        attribution: "Laermkarten Hamburg © Datenlizenz Deutschland Namensnennung 2.0",
         subdomains: mapurl.subdomains,
         bounds: bounds.bounds,
         minZoom: bounds.minZoom,

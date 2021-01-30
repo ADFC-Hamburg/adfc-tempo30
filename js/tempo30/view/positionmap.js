@@ -6,11 +6,11 @@ define('tempo30/view/positionmap', [
     // not in function:
     'leaflethash'
 ], function ($, L, basemap, gt) {
- 
+
     'use strict';
 
     function createMap(id,lat,lon) {
-	var map = new L.Map(id, {
+        var map = new L.Map(id, {
             zoom: 17, 
             center: [ lat, lon],
             maxZoom: 18, 
@@ -18,22 +18,22 @@ define('tempo30/view/positionmap', [
             layers: [basemap()], 
             attributionControl: true});
 
-	var circle = L.circle([lat, lon], 10, {
-	    color: 'red',
-	    fillColor: '#f03',
-	    fillOpacity: 0.5
-	}).addTo(map);
+        var circle = L.circle([lat, lon], 10, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5
+        }).addTo(map);
 
-	map.zoomControl = new L.Control.Zoom({
+        map.zoomControl = new L.Control.Zoom({
             zoomInTitle: gt('Zoom in'),
             zoomOutTitle: gt('Zoom out'),
-	});
-	map.addControl(map.zoomControl);
-	map.on('click', function (e) {
-	    circle.setLatLng(e.latlng);
-	    map.fireEvent('posChange', e.latlng);
-	});
-	return map;
+        });
+        map.addControl(map.zoomControl);
+        map.on('click', function (e) {
+            circle.setLatLng(e.latlng);
+            map.fireEvent('posChange', e.latlng);
+        });
+        return map;
 
     }
 

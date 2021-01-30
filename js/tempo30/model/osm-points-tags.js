@@ -1,5 +1,5 @@
 define('tempo30/model/osm-points-tags', [], function () {
-   'use strict';
+    'use strict';
 
     var osmTags=[{
         k:'amenity',
@@ -50,7 +50,7 @@ define('tempo30/model/osm-points-tags', [], function () {
         k:'leisure',
         v:'playground',
         t:'Spielplatz',
-	c:'green',
+        c:'green',
     }];
 
     return osmTags;

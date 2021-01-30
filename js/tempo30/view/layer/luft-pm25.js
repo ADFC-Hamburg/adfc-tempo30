@@ -7,8 +7,8 @@ define('tempo30/view/layer/luft-pm25', [
     'use strict';
 
     var layer = L.tileLayer(mapurl.base, {
-	layers: 'luft-pm25',
-	attribution: "Luftdaten: https://fragdenstaat.de/a/17206",
+        layers: 'luft-pm25',
+        attribution: "Luftdaten: https://fragdenstaat.de/a/17206",
         subdomains: mapurl.subdomains,
         bounds: bounds.bounds,
         minZoom: bounds.minZoom,
