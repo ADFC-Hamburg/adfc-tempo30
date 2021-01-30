@@ -1,0 +1,35 @@
+# GitHub Actions docs
+# https://help.github.com/en/articles/about-github-actions
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+# see also: https://github.com/filipesilva/ng-github-actions/blob/master/.github/workflows/main.yml
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    # Machine environment:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Install packages
+      run: |
+        sudo apt update
+        sudo apt dist-upgrade
+        sudo apt install nodejs npm
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Nodejs
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: npm install
+      run: npm install
+    - name: Grunt
+      run: grunt
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: adfc-t30-dist
+        path: /home/runner/work/dist/
