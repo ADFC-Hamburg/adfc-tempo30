@@ -23,8 +23,12 @@ jobs:
       run: npm install
     - name: Grunt
       run: grunt
+    - name: test
+      run: |
+        pwd
+        ls -la .
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
         name: adfc-t30-dist
-        path: /home/runner/work/dist/
+        path: dist/
