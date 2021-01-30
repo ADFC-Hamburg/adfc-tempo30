@@ -25,8 +25,13 @@ jobs:
       run: grunt
     - name: Copy Screen.css
       run: cp css/screen.css dist/
+    - name: Get current time
+      uses: srfrnk/current-time@master
+      id: current-time
+      with:
+        format: YYYYMMDD-HHmmss
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: adfc-t30-dist
+        name: "adfc-t30-dist-${{ steps.current-time.outputs.formattedTime }}"
         path: dist/
