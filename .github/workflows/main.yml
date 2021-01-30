@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - name: Install packages
-      run: |
-        sudo apt update
-        sudo apt dist-upgrade
-        sudo apt install nodejs npm
     - name: Checkout
       uses: actions/checkout@v2
     - name: Setup Nodejs
