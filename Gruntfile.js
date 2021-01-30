@@ -2,27 +2,17 @@
 module.exports = function(grunt) {
 
     grunt.initConfig({
-        clean: ['fonts', 
-            'css/generated.css', 
+        clean: ['fonts',
+            'css/generated.css',
             'css/generated-wo-bs.css',
-            'js/generated.js', 
-            'bower_components', 
+            'js/generated.js',
             'js/i18n/**',
             'dist'],
-        bower: {
-            install: {
-                options: {
-                    copy: true,
-                    verbose: true,
-                },
-                //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
-            },
-        },
         jshint: {
             all: ['Gruntfile.js', 'js/**.js', 'js/**/**.js', 'config.js'  ]
         },
         eslint: {
-            target: ['Gruntfile.js', 'js/**.js', 'js/**/**.js', 'config.js', '!js/tempo30/model/version.js' ]
+            target: ['Gruntfile.js', 'js/**.js', 'js/**/**.js', 'config.js', '!js/tempo30/model/version.js', '!js/i18n/**.js' ]
         },
         copy: {
             /*            i18n_en: {
@@ -44,13 +34,13 @@ dest: 'i18n/en_US.po'
             },
             fonts: {
                 files: [
-                    {expand: true, flatten: true, src: ['bower_components/*/fonts/*'], dest: 'fonts/', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['node_modules/*/fonts/*'], dest: 'fonts/', filter: 'isFile'},
                 ]
             },
             dist: {
                 files: [
-                    {expand: true, 
-                        flatten: false, 
+                    {expand: true,
+                        flatten: false,
                         src: [
                             '*.html',
                             'validator-test.html',
@@ -58,16 +48,16 @@ dest: 'i18n/en_US.po'
                             'css/generated.css*',
                             'css/generated-wo-bs.css*',
                             'css/images/*',
-                            'bower_components/requirejs/require.js',
+                            'node_modules/requirejs/require.js',
                             'fonts/*',
                             'data/*',
                             'img/*',
                             'docx/*',
                             'update-overpass.js',
-                            'bower_components/leaflet/dist/images/*',
+                            'node_modules/leaflet/dist/images/*',
                             'node_modules/requirejs/**',
-                        ], 
-                        dest: 'dist/', 
+                        ],
+                        dest: 'dist/',
                         filter: 'isFile'},
                 ]
             },
@@ -83,8 +73,8 @@ dest: 'i18n/en_US.po'
                         'lib/leaflet.markercluster/dist/MarkerCluster.css',
                         'lib/leaflet.markercluster/dist/MarkerCluster.Default.css',
                         'lib/bootstrap3-dialog/bootstrap-dialog.min.css',
-                        'bower_components/font-awesome/css/font-awesome.css',
-                        'bower_components/bootstrap/dist/css/bootstrap.css',
+                        'node_modules/font-awesome/css/font-awesome.css',
+                        'node_modules/bootstrap/dist/css/bootstrap.css',
                         'css/screen.css'
                     ],
                     'css/generated-wo-bs.css': [
@@ -92,7 +82,7 @@ dest: 'i18n/en_US.po'
                         'lib/leaflet.markercluster/dist/MarkerCluster.css',
                         'lib/leaflet.markercluster/dist/MarkerCluster.Default.css',
                         'lib/bootstrap3-dialog/bootstrap-dialog.min.css',
-                        'bower_components/font-awesome/css/font-awesome.css',
+                        'node_modules/font-awesome/css/font-awesome.css',
                         'css/screen.css'
                     ]
                 }
@@ -142,7 +132,7 @@ dest: 'i18n/en_US.po'
                     name: 'tempo30/app/antragEdit',
                     exclude: ['jquery', 'bootstrap'],
                 }
-            },	
+            },
             update_overpass: {
                 options: {
                     baseUrl: 'js',
@@ -185,7 +175,7 @@ dest: 'i18n/en_US.po'
                 }
             }
         },
-        compile_po: { 
+        compile_po: {
             simple: {
                 options: {
                     template: 'i18n/templates/po_template.js',
@@ -211,12 +201,11 @@ JSON.stringify({
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-git-describe');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-require-gettext');
-    grunt.task.registerTask('default', ['bower',  'git-describe', 'eslint', 'jshint', 'create_pot', 
+    grunt.task.registerTask('default', [  'git-describe', 'eslint', 'jshint', 'create_pot',
         'compile_po', 'requirejs', 'cssmin', 'copy:fonts', 'copy:dist', 'copy:i18n']);
 
     grunt.registerTask('update-overpass', 'update-data from overpass api', function(arg1) {
