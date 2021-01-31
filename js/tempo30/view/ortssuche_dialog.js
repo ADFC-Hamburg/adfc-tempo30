@@ -2,7 +2,7 @@ define('tempo30/view/ortssuche_dialog', [
     'jquery',
     'bootstrap',
     'bootstrap-dialog',
-    'gettext!tempo30', 
+    'gettext!tempo30',
     'text!tempo30/overpass/hausnummernsuche.txt',
     'bootstraptypehead',
 ], function ($, bootstrap, BootstrapDialog, gt, hausnummernsucheTxt) {
@@ -74,7 +74,7 @@ gt('Meine Surfverhalten im Tempo30-Antrag darf für Verbesserungen aufgezeichnet
                     dialogRef.getModalBody().find('#str').typeahead({source:strassenListe});
                     dialogRef.getModalBody().find('#str').prop('disabled', false);
                     dialogRef.getModalBody().find('#str').focus();
-                }).error(function (err) {
+                }).fail(function (err) {
                     alert(err);
                 });
             },

@@ -5,18 +5,19 @@ define('tempo30/view/map', [
     'gettext!tempo30',
     // not in function:
     'leaflethash'
-], function ($, L, basemap, gt) {
+], function ($, L, basemap, gt,leaflethash) {
 
     'use strict';
 
     var map = new L.Map('map', {
-        zoom: 11, 
+        zoom: 11,
         center: [ 53.56, 10.02],
-        maxZoom: 18, 
+        maxZoom: 18,
         zoomControl: false,
-        layers: [basemap()], 
+        layers: [basemap()],
         attributionControl: true});
-    new L.Hash(map);
+    console.log('LH',leaflethash);
+    //new L.Hash(map);
     map.zoomControl = new L.Control.Zoom({
         zoomInTitle: gt('Zoom in'),
         zoomOutTitle: gt('Zoom out'),

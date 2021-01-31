@@ -23,8 +23,11 @@ jobs:
       run: npm install
     - name: Grunt
       run: grunt
-    - name: Copy Screen.css
-      run: cp css/screen.css dist/
+    - name: Copy Screen.css and images
+      run: |
+        mkdir -p dist/css/images
+        cp node_modules/leaflet/dist/images/* dist/css/images/
+        cp css/screen.css dist/css/
     - name: Get current time
       uses: srfrnk/current-time@master
       id: current-time

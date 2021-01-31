@@ -2,15 +2,17 @@ define('tempo30/app/create-word', [
     'jquery',
     'jszip-utils',
     'docxtemplater',
+    'pizzip',
     'file-saver/FileSaver',
-], function ($, JSZipUtils, Docxtemplater, FileSaver) {
-
+], function ($,  jszip, pizzip,Docxtemplater_bla, FileSaver) {
     function download(data) {
-        console.log('jszip');
-        JSZipUtils.getBinaryContent(requirejs.toUrl('docx/antrag-tempo30-template.docx'),function(err,content){
+        console.log('jszip', jszip, window);
+        jszip.getBinaryContent(requirejs.toUrl('docx/antrag-tempo30-template.docx')).then(function(content){
             console.log('a');
-            if (err) { throw e;}
-            doc=new Docxtemplater(content);
+            Docxtemplater= window.docxtemplater;
+            PizZip=window.PizZip;
+            zip=new PizZip(content);
+            doc=new Docxtemplater(zip);
             //set the templateVariable
             var datum = new Date();
             datum.setDate(datum.getDate()+30);
@@ -46,6 +48,9 @@ define('tempo30/app/create-word', [
                 mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             });
             saveAs(out,"tempo30-antrag.docx");
+        },
+        function(err){
+            throw err;
         });
     }
 

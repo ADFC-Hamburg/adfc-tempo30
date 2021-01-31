@@ -50,6 +50,7 @@
     "leaflet-overpass-layer": "^2.8.3",
     "leaflet.markercluster": "^1.4.1",
     "moment": "^2.29.1",
+    "pizzip": "^3.0.6",
     "require-css": "^0.1.10",
     "require-less": "0.0.7",
     "requirejs-plugins": "^1.0.2"
