@@ -38,3 +38,13 @@ jobs:
       with:
         name: "adfc-t30-dist-${{ steps.current-time.outputs.formattedTime }}"
         path: dist/
+    - name: Synchronize Git repository to Tools
+      uses: AEnterprise/rsync-deploy@v1.0
+      env:
+        DEPLOY_KEY: ${{ secrets.SSH_T30_SECRET }}
+        ARGS: "-e -c -r --delete"
+        SERVER_PORT: 22
+        FOLDER: "dist/"
+        SERVER_IP: tools.adfc-hamburg.de
+        USERNAME: github
+        SERVER_DESTINATION: $GITHUB_REF
