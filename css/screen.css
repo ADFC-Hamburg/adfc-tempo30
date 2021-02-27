@@ -23,8 +23,11 @@ h1 {
     position: relative;
     text-align: left;
 }
-h1 img {
+h1 img.adfc {
     width: 200px;
+}
+h1 img.herz {
+    width: 120px;
 }
 div.head a {
     color: white;
