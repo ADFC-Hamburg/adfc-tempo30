@@ -29,8 +29,14 @@ h1 img.adfc {
 h1 img.herz {
     width: 120px;
 }
+h3 {
+    font-weight: 300;
+}
 div.head a {
     color: white;
+}
+div#antragsBtn a {
+    font-weight: 300;
 }
 div.head-break {
     background-color: #ee7f00;
