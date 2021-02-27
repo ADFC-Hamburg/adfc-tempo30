@@ -27,7 +27,9 @@ jobs:
       run: |
         mkdir -p dist/css/images
         cp node_modules/leaflet/dist/images/* dist/css/images/
+        cp apple-touch-icon.png favico* site.webmanifest android-chrome-*.png  dist/
         cp css/screen.css dist/css/
+        cp css/roboto.css dist/css/
     - name: Get current time
       uses: srfrnk/current-time@master
       id: current-time
