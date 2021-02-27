@@ -30,6 +30,7 @@ jobs:
         cp apple-touch-icon.png favico* site.webmanifest android-chrome-*.png  dist/
         cp css/screen.css dist/css/
         cp css/roboto.css dist/css/
+        cp -r fonts/roboto/ dist/fonts/
     - name: Get current time
       uses: srfrnk/current-time@master
       id: current-time
