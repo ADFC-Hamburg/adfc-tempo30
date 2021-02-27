@@ -1,3 +1,5 @@
+
+
 div.head {
     width:100%;
     background-color: #ee7f00;
@@ -6,10 +8,20 @@ div.head {
     padding-left: 10%;
     top: 0px;
     height: auto;
-
 }
 h1 {
     padding-left: 10%;
+    font-weight: 100;
+    color: #000;
+    font-family: roboto,arial,sans-serif;
+    font-size: 30px;
+    font-variant-ligatures: none;
+    font-weight: 100;
+    line-height: 1.2em;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    position: relative;
+    text-align: left;
 }
 h1 img {
     width: 200px;
@@ -36,10 +48,10 @@ div.head-break {
     width: 100%;
     height: 100%;
 }
-
 body {
     padding: 0;
     margin: 0;
+    font-family: roboto,arial,sans-serif;
 }
 
 html, body, #map {
