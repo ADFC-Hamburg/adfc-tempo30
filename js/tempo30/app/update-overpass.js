@@ -2,8 +2,8 @@ define('tempo30/app/update-overpass', [
     'rsvp',
     'fs', 
     'request', 
-    'text!tempo30/overpass/strassenliste.txt',
-    'text!tempo30/overpass/strassenliste-test.txt',
+    'text!tempo30/overpass/strassenliste.overpassql',
+    'text!tempo30/overpass/strassenliste-test.overpassql',
     'tempo30/model/osm-points-tags',
 ], function (RSVP, fs, request, opStrassen, opStrassenTest, osmTags) {
 

@@ -6,7 +6,7 @@ define('tempo30/view/str_wahl_dialog', [
     'tempo30/view/positionmap',
     'tempo30/model/geoUtil',
     'tempo30/model/overpassUtil',
-    'text!tempo30/overpass/t50_strassen_in_bbox.txt',
+    'text!tempo30/overpass/t50_strassen_in_bbox.overpassql',
 ], function ($, bootstrap, BootstrapDialog, gt, createMap, geoUtil, opUtil, ovT50Query) {
 
     'use strict';
