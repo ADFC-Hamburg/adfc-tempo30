@@ -3,9 +3,9 @@ define('tempo30/view/ortssuche_dialog', [
     'bootstrap',
     'bootstrap-dialog',
     'gettext!tempo30',
-    'text!tempo30/overpass/hausnummernsuche.txt',
+    'text!tempo30/overpass/hausnummernsuche.overpassql',
     'bootstraptypehead',
-], function ($, bootstrap, BootstrapDialog, gt, hausnummernsucheTxt) {
+], function ($, bootstrap, BootstrapDialog, gt, hausnummernsucheQuery) {
 
     'use strict';
 
